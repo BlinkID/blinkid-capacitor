@@ -2,15 +2,16 @@
 
 blink_id_plugin_path=`pwd`/BlinkID
 
-# remove any existing code
-rm -rf SampleIonic
+appName=Sample
 
-# create a sample application
-# https://github.com/react-native-community/cli#using-npx-recommended
+# remove any existing code
+rm -rf $appName
+
+# create a sample application with capacitor enabled
 ionic start SampleIonic --capacitor
 
 # enter into demo project folder
-pushd SampleIonic
+pushd $appName
 
 if true; then
   # download npm package
