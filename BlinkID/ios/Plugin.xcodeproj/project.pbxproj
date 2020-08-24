@@ -15,6 +15,51 @@
 		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
 		50ADFFA82020EE4F00D50D53 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ADFFA72020EE4F00D50D53 /* Plugin.m */; };
 		50E1A94820377CB70090CE1A /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E1A94720377CB70090CE1A /* Plugin.swift */; };
+		A27C07EC24F41A69001E90C1 /* MBBlinkIDSerializationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07BA24F41A69001E90C1 /* MBBlinkIDSerializationUtils.m */; };
+		A27C07ED24F41A69001E90C1 /* MBCommonSerializationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07BC24F41A69001E90C1 /* MBCommonSerializationUtils.m */; };
+		A27C07EE24F41A69001E90C1 /* MBOverlaySerializationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07BE24F41A69001E90C1 /* MBOverlaySerializationUtils.m */; };
+		A27C07EF24F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07C024F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.h */; };
+		A27C07F024F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07C124F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.m */; };
+		A27C07F124F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07C224F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.m */; };
+		A27C07F224F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07C324F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.m */; };
+		A27C07F324F41A69001E90C1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A27C07C424F41A69001E90C1 /* .gitignore */; };
+		A27C07F424F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07C524F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.h */; };
+		A27C07F524F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07C624F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.h */; };
+		A27C07F624F41A69001E90C1 /* MBOverlayVCCreator.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07C724F41A69001E90C1 /* MBOverlayVCCreator.h */; };
+		A27C07F724F41A69001E90C1 /* MBOverlaySettingsSerializers.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07C824F41A69001E90C1 /* MBOverlaySettingsSerializers.m */; };
+		A27C07F824F41A69001E90C1 /* MBOverlaySerializationUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07C924F41A69001E90C1 /* MBOverlaySerializationUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A27C07F924F41A69001E90C1 /* MBOverlayViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07CA24F41A69001E90C1 /* MBOverlayViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A27C07FA24F41A69001E90C1 /* MBOverlaySettingsSerializers.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07CB24F41A69001E90C1 /* MBOverlaySettingsSerializers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A27C07FB24F41A69001E90C1 /* MBSerializationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07CC24F41A69001E90C1 /* MBSerializationUtils.m */; };
+		A27C07FC24F41A69001E90C1 /* MBBlinkIDSerializationUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07CD24F41A69001E90C1 /* MBBlinkIDSerializationUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A27C07FD24F41A69001E90C1 /* MBRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07CF24F41A69001E90C1 /* MBRecognizerWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A27C07FE24F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07D124F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.m */; };
+		A27C07FF24F41A69001E90C1 /* MBVisaRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07D224F41A69001E90C1 /* MBVisaRecognizerWrapper.m */; };
+		A27C080024F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07D324F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.h */; };
+		A27C080124F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07D424F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.h */; };
+		A27C080224F41A69001E90C1 /* MBMrtdRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07D524F41A69001E90C1 /* MBMrtdRecognizerWrapper.m */; };
+		A27C080324F41A69001E90C1 /* MBUsdlRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07D624F41A69001E90C1 /* MBUsdlRecognizerWrapper.h */; };
+		A27C080424F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07D724F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.m */; };
+		A27C080524F41A69001E90C1 /* MBPassportRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07D824F41A69001E90C1 /* MBPassportRecognizerWrapper.m */; };
+		A27C080624F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07D924F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.m */; };
+		A27C080724F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07DA24F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.m */; };
+		A27C080824F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07DB24F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.h */; };
+		A27C080924F41A69001E90C1 /* MBVisaRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07DC24F41A69001E90C1 /* MBVisaRecognizerWrapper.h */; };
+		A27C080A24F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07DD24F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.h */; };
+		A27C080B24F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07DE24F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.h */; };
+		A27C080C24F41A69001E90C1 /* MBUsdlRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07DF24F41A69001E90C1 /* MBUsdlRecognizerWrapper.m */; };
+		A27C080D24F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07E024F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.m */; };
+		A27C080E24F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07E124F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.m */; };
+		A27C080F24F41A69001E90C1 /* MBMrtdRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07E224F41A69001E90C1 /* MBMrtdRecognizerWrapper.h */; };
+		A27C081024F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07E324F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.m */; };
+		A27C081124F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07E424F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.h */; };
+		A27C081224F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07E524F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.h */; };
+		A27C081324F41A69001E90C1 /* MBPassportRecognizerWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07E624F41A69001E90C1 /* MBPassportRecognizerWrapper.h */; };
+		A27C081424F41A69001E90C1 /* MBRecognizerSerializers.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07E724F41A69001E90C1 /* MBRecognizerSerializers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A27C081524F41A69001E90C1 /* MBRecognizerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07E824F41A69001E90C1 /* MBRecognizerWrapper.m */; };
+		A27C081624F41A69001E90C1 /* MBRecognizerSerializers.m in Sources */ = {isa = PBXBuildFile; fileRef = A27C07E924F41A69001E90C1 /* MBRecognizerSerializers.m */; };
+		A27C081724F41A69001E90C1 /* MBCommonSerializationUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07EA24F41A69001E90C1 /* MBCommonSerializationUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A27C081824F41A69001E90C1 /* MBSerializationUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = A27C07EB24F41A69001E90C1 /* MBSerializationUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +86,51 @@
 		5E23F77F099397094342571A /* Pods-Plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.debug.xcconfig"; sourceTree = "<group>"; };
 		91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.release.xcconfig"; sourceTree = "<group>"; };
 		96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A27C07BA24F41A69001E90C1 /* MBBlinkIDSerializationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBBlinkIDSerializationUtils.m; sourceTree = "<group>"; };
+		A27C07BC24F41A69001E90C1 /* MBCommonSerializationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBCommonSerializationUtils.m; sourceTree = "<group>"; };
+		A27C07BE24F41A69001E90C1 /* MBOverlaySerializationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBOverlaySerializationUtils.m; sourceTree = "<group>"; };
+		A27C07C024F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDocumentOverlaySettingsSerialization.h; sourceTree = "<group>"; };
+		A27C07C124F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDocumentVerificationOverlaySettingsSerialization.m; sourceTree = "<group>"; };
+		A27C07C224F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBBlinkIdOverlaySettingsSerialization.m; sourceTree = "<group>"; };
+		A27C07C324F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDocumentOverlaySettingsSerialization.m; sourceTree = "<group>"; };
+		A27C07C424F41A69001E90C1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		A27C07C524F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDocumentVerificationOverlaySettingsSerialization.h; sourceTree = "<group>"; };
+		A27C07C624F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBBlinkIdOverlaySettingsSerialization.h; sourceTree = "<group>"; };
+		A27C07C724F41A69001E90C1 /* MBOverlayVCCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBOverlayVCCreator.h; sourceTree = "<group>"; };
+		A27C07C824F41A69001E90C1 /* MBOverlaySettingsSerializers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBOverlaySettingsSerializers.m; sourceTree = "<group>"; };
+		A27C07C924F41A69001E90C1 /* MBOverlaySerializationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBOverlaySerializationUtils.h; sourceTree = "<group>"; };
+		A27C07CA24F41A69001E90C1 /* MBOverlayViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBOverlayViewControllerDelegate.h; sourceTree = "<group>"; };
+		A27C07CB24F41A69001E90C1 /* MBOverlaySettingsSerializers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBOverlaySettingsSerializers.h; sourceTree = "<group>"; };
+		A27C07CC24F41A69001E90C1 /* MBSerializationUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBSerializationUtils.m; sourceTree = "<group>"; };
+		A27C07CD24F41A69001E90C1 /* MBBlinkIDSerializationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBBlinkIDSerializationUtils.h; sourceTree = "<group>"; };
+		A27C07CF24F41A69001E90C1 /* MBRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07D124F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBDocumentFaceRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07D224F41A69001E90C1 /* MBVisaRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBVisaRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07D324F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBBlinkIdCombinedRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07D424F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBSuccessFrameGrabberRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07D524F41A69001E90C1 /* MBMrtdRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBMrtdRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07D624F41A69001E90C1 /* MBUsdlRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBUsdlRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07D724F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBMrtdCombinedRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07D824F41A69001E90C1 /* MBPassportRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBPassportRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07D924F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBUsdlCombinedRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07DA24F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBIdBarcodeRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07DB24F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBBlinkIdRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07DC24F41A69001E90C1 /* MBVisaRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBVisaRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07DD24F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBDocumentFaceRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07DE24F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBMrtdCombinedRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07DF24F41A69001E90C1 /* MBUsdlRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBUsdlRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07E024F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBBlinkIdCombinedRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07E124F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBSuccessFrameGrabberRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07E224F41A69001E90C1 /* MBMrtdRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBMrtdRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07E324F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBBlinkIdRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07E424F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBIdBarcodeRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07E524F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBUsdlCombinedRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07E624F41A69001E90C1 /* MBPassportRecognizerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBPassportRecognizerWrapper.h; sourceTree = "<group>"; };
+		A27C07E724F41A69001E90C1 /* MBRecognizerSerializers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBRecognizerSerializers.h; sourceTree = "<group>"; };
+		A27C07E824F41A69001E90C1 /* MBRecognizerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBRecognizerWrapper.m; sourceTree = "<group>"; };
+		A27C07E924F41A69001E90C1 /* MBRecognizerSerializers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBRecognizerSerializers.m; sourceTree = "<group>"; };
+		A27C07EA24F41A69001E90C1 /* MBCommonSerializationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBCommonSerializationUtils.h; sourceTree = "<group>"; };
+		A27C07EB24F41A69001E90C1 /* MBSerializationUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBSerializationUtils.h; sourceTree = "<group>"; };
 		F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.release.xcconfig"; sourceTree = "<group>"; };
 		F6753A823D3815DB436415E3 /* Pods_PluginTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PluginTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,6 +180,7 @@
 		50ADFF8A201F53D600D50D53 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				A27C07B924F41A69001E90C1 /* MicroblinkModule */,
 				50E1A94720377CB70090CE1A /* Plugin.swift */,
 				50ADFF8B201F53D600D50D53 /* Plugin.h */,
 				50ADFFA72020EE4F00D50D53 /* Plugin.m */,
@@ -118,6 +209,98 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		A27C07B924F41A69001E90C1 /* MicroblinkModule */ = {
+			isa = PBXGroup;
+			children = (
+				A27C07BA24F41A69001E90C1 /* MBBlinkIDSerializationUtils.m */,
+				A27C07BB24F41A69001E90C1 /* Parsers */,
+				A27C07BC24F41A69001E90C1 /* MBCommonSerializationUtils.m */,
+				A27C07BD24F41A69001E90C1 /* Overlays */,
+				A27C07CC24F41A69001E90C1 /* MBSerializationUtils.m */,
+				A27C07CD24F41A69001E90C1 /* MBBlinkIDSerializationUtils.h */,
+				A27C07CE24F41A69001E90C1 /* Recognizers */,
+				A27C07EA24F41A69001E90C1 /* MBCommonSerializationUtils.h */,
+				A27C07EB24F41A69001E90C1 /* MBSerializationUtils.h */,
+			);
+			path = MicroblinkModule;
+			sourceTree = "<group>";
+		};
+		A27C07BB24F41A69001E90C1 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Parsers;
+			sourceTree = "<group>";
+		};
+		A27C07BD24F41A69001E90C1 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				A27C07BE24F41A69001E90C1 /* MBOverlaySerializationUtils.m */,
+				A27C07BF24F41A69001E90C1 /* Serialization */,
+				A27C07C724F41A69001E90C1 /* MBOverlayVCCreator.h */,
+				A27C07C824F41A69001E90C1 /* MBOverlaySettingsSerializers.m */,
+				A27C07C924F41A69001E90C1 /* MBOverlaySerializationUtils.h */,
+				A27C07CA24F41A69001E90C1 /* MBOverlayViewControllerDelegate.h */,
+				A27C07CB24F41A69001E90C1 /* MBOverlaySettingsSerializers.h */,
+			);
+			path = Overlays;
+			sourceTree = "<group>";
+		};
+		A27C07BF24F41A69001E90C1 /* Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				A27C07C024F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.h */,
+				A27C07C124F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.m */,
+				A27C07C224F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.m */,
+				A27C07C324F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.m */,
+				A27C07C424F41A69001E90C1 /* .gitignore */,
+				A27C07C524F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.h */,
+				A27C07C624F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.h */,
+			);
+			path = Serialization;
+			sourceTree = "<group>";
+		};
+		A27C07CE24F41A69001E90C1 /* Recognizers */ = {
+			isa = PBXGroup;
+			children = (
+				A27C07CF24F41A69001E90C1 /* MBRecognizerWrapper.h */,
+				A27C07D024F41A69001E90C1 /* Wrappers */,
+				A27C07E724F41A69001E90C1 /* MBRecognizerSerializers.h */,
+				A27C07E824F41A69001E90C1 /* MBRecognizerWrapper.m */,
+				A27C07E924F41A69001E90C1 /* MBRecognizerSerializers.m */,
+			);
+			path = Recognizers;
+			sourceTree = "<group>";
+		};
+		A27C07D024F41A69001E90C1 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				A27C07D124F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.m */,
+				A27C07D224F41A69001E90C1 /* MBVisaRecognizerWrapper.m */,
+				A27C07D324F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.h */,
+				A27C07D424F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.h */,
+				A27C07D524F41A69001E90C1 /* MBMrtdRecognizerWrapper.m */,
+				A27C07D624F41A69001E90C1 /* MBUsdlRecognizerWrapper.h */,
+				A27C07D724F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.m */,
+				A27C07D824F41A69001E90C1 /* MBPassportRecognizerWrapper.m */,
+				A27C07D924F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.m */,
+				A27C07DA24F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.m */,
+				A27C07DB24F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.h */,
+				A27C07DC24F41A69001E90C1 /* MBVisaRecognizerWrapper.h */,
+				A27C07DD24F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.h */,
+				A27C07DE24F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.h */,
+				A27C07DF24F41A69001E90C1 /* MBUsdlRecognizerWrapper.m */,
+				A27C07E024F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.m */,
+				A27C07E124F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.m */,
+				A27C07E224F41A69001E90C1 /* MBMrtdRecognizerWrapper.h */,
+				A27C07E324F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.m */,
+				A27C07E424F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.h */,
+				A27C07E524F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.h */,
+				A27C07E624F41A69001E90C1 /* MBPassportRecognizerWrapper.h */,
+			);
+			path = Wrappers;
+			sourceTree = "<group>";
+		};
 		A797B9EFA3DCEFEA1FBB66A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +318,30 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A27C081224F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.h in Headers */,
+				A27C07F824F41A69001E90C1 /* MBOverlaySerializationUtils.h in Headers */,
+				A27C07FC24F41A69001E90C1 /* MBBlinkIDSerializationUtils.h in Headers */,
+				A27C07FD24F41A69001E90C1 /* MBRecognizerWrapper.h in Headers */,
+				A27C07FA24F41A69001E90C1 /* MBOverlaySettingsSerializers.h in Headers */,
+				A27C081824F41A69001E90C1 /* MBSerializationUtils.h in Headers */,
+				A27C07F924F41A69001E90C1 /* MBOverlayViewControllerDelegate.h in Headers */,
+				A27C081424F41A69001E90C1 /* MBRecognizerSerializers.h in Headers */,
+				A27C081724F41A69001E90C1 /* MBCommonSerializationUtils.h in Headers */,
 				50ADFF99201F53D600D50D53 /* Plugin.h in Headers */,
+				A27C080024F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.h in Headers */,
+				A27C07F424F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.h in Headers */,
+				A27C07F624F41A69001E90C1 /* MBOverlayVCCreator.h in Headers */,
+				A27C080B24F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.h in Headers */,
+				A27C080F24F41A69001E90C1 /* MBMrtdRecognizerWrapper.h in Headers */,
+				A27C081124F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.h in Headers */,
+				A27C080A24F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.h in Headers */,
+				A27C081324F41A69001E90C1 /* MBPassportRecognizerWrapper.h in Headers */,
+				A27C080124F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.h in Headers */,
+				A27C07F524F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.h in Headers */,
+				A27C080324F41A69001E90C1 /* MBUsdlRecognizerWrapper.h in Headers */,
+				A27C07EF24F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.h in Headers */,
+				A27C080824F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.h in Headers */,
+				A27C080924F41A69001E90C1 /* MBVisaRecognizerWrapper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +432,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A27C07F324F41A69001E90C1 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,11 +491,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PluginTests/Pods-PluginTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Capacitor/Capacitor.framework",
 				"${BUILT_PRODUCTS_DIR}/CapacitorCordova/Cordova.framework",
+				"${PODS_ROOT}/PPBlinkID/Microblink.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Capacitor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Microblink.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -302,8 +511,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A27C081524F41A69001E90C1 /* MBRecognizerWrapper.m in Sources */,
+				A27C080524F41A69001E90C1 /* MBPassportRecognizerWrapper.m in Sources */,
+				A27C07FE24F41A69001E90C1 /* MBDocumentFaceRecognizerWrapper.m in Sources */,
+				A27C07EE24F41A69001E90C1 /* MBOverlaySerializationUtils.m in Sources */,
+				A27C080224F41A69001E90C1 /* MBMrtdRecognizerWrapper.m in Sources */,
+				A27C080C24F41A69001E90C1 /* MBUsdlRecognizerWrapper.m in Sources */,
 				50E1A94820377CB70090CE1A /* Plugin.swift in Sources */,
+				A27C07F224F41A69001E90C1 /* MBDocumentOverlaySettingsSerialization.m in Sources */,
+				A27C080724F41A69001E90C1 /* MBIdBarcodeRecognizerWrapper.m in Sources */,
+				A27C080E24F41A69001E90C1 /* MBSuccessFrameGrabberRecognizerWrapper.m in Sources */,
+				A27C07FB24F41A69001E90C1 /* MBSerializationUtils.m in Sources */,
+				A27C080D24F41A69001E90C1 /* MBBlinkIdCombinedRecognizerWrapper.m in Sources */,
+				A27C080624F41A69001E90C1 /* MBUsdlCombinedRecognizerWrapper.m in Sources */,
 				50ADFFA82020EE4F00D50D53 /* Plugin.m in Sources */,
+				A27C081624F41A69001E90C1 /* MBRecognizerSerializers.m in Sources */,
+				A27C07F724F41A69001E90C1 /* MBOverlaySettingsSerializers.m in Sources */,
+				A27C081024F41A69001E90C1 /* MBBlinkIdRecognizerWrapper.m in Sources */,
+				A27C080424F41A69001E90C1 /* MBMrtdCombinedRecognizerWrapper.m in Sources */,
+				A27C07ED24F41A69001E90C1 /* MBCommonSerializationUtils.m in Sources */,
+				A27C07F124F41A69001E90C1 /* MBBlinkIdOverlaySettingsSerialization.m in Sources */,
+				A27C07EC24F41A69001E90C1 /* MBBlinkIDSerializationUtils.m in Sources */,
+				A27C07F024F41A69001E90C1 /* MBDocumentVerificationOverlaySettingsSerialization.m in Sources */,
+				A27C07FF24F41A69001E90C1 /* MBVisaRecognizerWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
