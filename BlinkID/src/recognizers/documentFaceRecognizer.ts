@@ -204,7 +204,7 @@ export class DocumentFaceRecognizer extends Recognizer {
          */
         this.returnFullDocumentImage = false;
         
-    }
 
-//     createResultFromNative = (nativeResult: any) => { return new DocumentFaceRecognizerResult(nativeResult); }
+    	this.createResultFromNative = (nativeResult: any) => { return new DocumentFaceRecognizerResult(nativeResult); };
+    }
 }

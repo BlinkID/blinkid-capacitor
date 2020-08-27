@@ -92,6 +92,11 @@ extension BlinkIDCapacitorPlugin: MBOverlayViewControllerDelegate {
 
     public func overlayViewControllerDidFinishScanning(_ overlayViewController: MBOverlayViewController!, state: MBRecognizerResultState) {
 
+        defer {
+        	recognizerCollection = nil
+            pluginCall = nil
+        }
+
         if (state != .empty) {
             overlayViewController.recognizerRunnerViewController?.pauseScanning()
 
@@ -99,21 +104,21 @@ extension BlinkIDCapacitorPlugin: MBOverlayViewControllerDelegate {
                 return
             }
 
-            var resultJson = [Any]()
+            var resultJson = [NSDictionary]()
 
-            for recognizerIndex in 0..<(recognizerListCount-1) {
-                resultJson.append(recognizerCollection?.recognizerList[recognizerIndex].serializeResult() as Any)
+            for recognizerIndex in 0..<recognizerListCount {
+                guard let resultDict = recognizerCollection?.recognizerList[recognizerIndex].serializeResult() else {
+                    return
+                }
+                resultJson.append(resultDict as NSDictionary)
             }
 
             pluginCall?.resolve([
               "cancelled": false,
-              "scanningResult": resultJson
+              "resultList": resultJson
             ])
 
             DispatchQueue.main.async {
-                defer {
-                    self.recognizerCollection = nil
-                }
                 overlayViewController.dismiss(animated: true, completion: nil)
             }
         }
@@ -121,6 +126,7 @@ extension BlinkIDCapacitorPlugin: MBOverlayViewControllerDelegate {
 
     public func overlayDidTapClose(_ overlayViewController: MBOverlayViewController!) {
         defer {
+        	recognizerCollection = nil
             pluginCall = nil
         }
 

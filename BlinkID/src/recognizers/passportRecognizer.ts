@@ -220,7 +220,7 @@ export class PassportRecognizer extends Recognizer {
          */
         this.signResult = false;
         
-    }
 
-//     createResultFromNative = (nativeResult: any) => { return new PassportRecognizerResult(nativeResult); }
+    	this.createResultFromNative = (nativeResult: any) => { return new PassportRecognizerResult(nativeResult); };
+    }
 }

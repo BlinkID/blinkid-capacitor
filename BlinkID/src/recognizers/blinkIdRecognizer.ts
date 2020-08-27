@@ -612,7 +612,7 @@ export class BlinkIdRecognizer extends Recognizer {
          */
         this.validateResultCharacters = true;
         
-    }
 
-//     createResultFromNative = (nativeResult: any) => { return new BlinkIdRecognizerResult(nativeResult); }
+    	this.createResultFromNative = (nativeResult: any) => { return new BlinkIdRecognizerResult(nativeResult); };
+    }
 }

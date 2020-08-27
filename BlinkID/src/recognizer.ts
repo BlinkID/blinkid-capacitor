@@ -1,5 +1,3 @@
-type NativeResultFunction = (nativeResult: any) => RecognizerResult;
-
 /**
  * Base class for all recognizers.
  * Recognizer is object that performs recognition of image
@@ -9,7 +7,7 @@ export class Recognizer {
 
     recognizerType: string;
 
-    createResultFromNative: NativeResultFunction;
+    createResultFromNative: Function;
 
     constructor(recognizerType: string) {
         this.recognizerType = recognizerType;

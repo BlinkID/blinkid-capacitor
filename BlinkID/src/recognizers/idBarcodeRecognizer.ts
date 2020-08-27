@@ -428,7 +428,7 @@ export class IdBarcodeRecognizer extends Recognizer {
     constructor() {
         super('IdBarcodeRecognizer');
         
-    }
 
-//     createResultFromNative = (nativeResult: any) => { return new IdBarcodeRecognizerResult(nativeResult); }
+    	this.createResultFromNative = (nativeResult: any) => { return new IdBarcodeRecognizerResult(nativeResult); };
+    }
 }

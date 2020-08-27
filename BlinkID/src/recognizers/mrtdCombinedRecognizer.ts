@@ -310,7 +310,7 @@ export class MrtdCombinedRecognizer extends Recognizer {
          */
         this.signResult = false;
         
-    }
 
-//     createResultFromNative = (nativeResult: any) => { return new MrtdCombinedRecognizerResult(nativeResult); }
+    	this.createResultFromNative = (nativeResult: any) => { return new MrtdCombinedRecognizerResult(nativeResult); };
+    }
 }

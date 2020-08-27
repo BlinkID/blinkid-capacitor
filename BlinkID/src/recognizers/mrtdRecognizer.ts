@@ -176,7 +176,7 @@ export class MrtdRecognizer extends Recognizer {
          */
         this.returnFullDocumentImage = false;
         
-    }
 
-//     createResultFromNative = (nativeResult: any) => { return new MrtdRecognizerResult(nativeResult); }
+    	this.createResultFromNative = (nativeResult: any) => { return new MrtdRecognizerResult(nativeResult); };
+    }
 }

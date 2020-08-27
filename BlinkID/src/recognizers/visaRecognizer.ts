@@ -172,7 +172,7 @@ export class VisaRecognizer extends Recognizer {
          */
         this.returnFullDocumentImage = false;
         
-    }
 
-//     createResultFromNative = (nativeResult: any) => { return new VisaRecognizerResult(nativeResult); }
+    	this.createResultFromNative = (nativeResult: any) => { return new VisaRecognizerResult(nativeResult); };
+    }
 }
