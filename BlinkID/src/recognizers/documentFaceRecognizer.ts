@@ -12,11 +12,22 @@ import {
     Region,
     Type,
     DocumentImageColorStatus,
-    DocumentImageMoireStatus,
+    ImageAnalysisResult,
+    VizResult,
+    BarcodeResult,
+    ProcessingStatus,
     AnonymizationMode,
+    RecognitionModeFilter,
+    DriverLicenseDetailedInfo,
+    BarcodeType,
+    RecognitionMode,
+    IdBarcodeDocumentType,
+    ClassInfo,
     
     
 } from '../types'
+
+/* tslint:disable:no-unused-variable */
 
 /**
  * Result object for DocumentFaceRecognizer.
@@ -45,7 +56,7 @@ export class DocumentFaceRecognizerResult extends RecognizerResult {
     fullDocumentImage: string;
     
 
-    constructor(nativeResult) {
+    constructor(nativeResult: any) {
         super(nativeResult.resultState);
         
         /**
@@ -125,14 +136,14 @@ export class DocumentFaceRecognizer extends Recognizer {
          * 
          * 
      */
-    returnFaceImage: bool;
+    returnFaceImage: boolean;
     
     /**
      * Sets whether full document image of ID card should be extracted.
          * 
          * 
      */
-    returnFullDocumentImage: bool;
+    returnFullDocumentImage: boolean;
     
 
     constructor() {
@@ -195,5 +206,5 @@ export class DocumentFaceRecognizer extends Recognizer {
         
     }
 
-    createResultFromNative = (nativeResult: any) => { return new DocumentFaceRecognizerResult(nativeResult); }
+//     createResultFromNative = (nativeResult: any) => { return new DocumentFaceRecognizerResult(nativeResult); }
 }

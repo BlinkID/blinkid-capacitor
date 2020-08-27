@@ -12,11 +12,22 @@ import {
     Region,
     Type,
     DocumentImageColorStatus,
-    DocumentImageMoireStatus,
+    ImageAnalysisResult,
+    VizResult,
+    BarcodeResult,
+    ProcessingStatus,
     AnonymizationMode,
+    RecognitionModeFilter,
+    DriverLicenseDetailedInfo,
+    BarcodeType,
+    RecognitionMode,
+    IdBarcodeDocumentType,
+    ClassInfo,
     
     
 } from '../types'
+
+/* tslint:disable:no-unused-variable */
 
 /**
  * Result object for VisaRecognizer.
@@ -40,7 +51,7 @@ export class VisaRecognizerResult extends RecognizerResult {
     mrzResult: MrzResult;
     
 
-    constructor(nativeResult) {
+    constructor(nativeResult: any) {
         super(nativeResult.resultState);
         
         /**
@@ -72,7 +83,7 @@ export class VisaRecognizer extends Recognizer {
          * 
          * 
      */
-    detectGlare: bool;
+    detectGlare: boolean;
     
     /**
      * Property for setting DPI for face images
@@ -103,14 +114,14 @@ export class VisaRecognizer extends Recognizer {
          * 
          * 
      */
-    returnFaceImage: bool;
+    returnFaceImage: boolean;
     
     /**
      * Sets whether full document image of ID card should be extracted.
          * 
          * 
      */
-    returnFullDocumentImage: bool;
+    returnFullDocumentImage: boolean;
     
 
     constructor() {
@@ -163,5 +174,5 @@ export class VisaRecognizer extends Recognizer {
         
     }
 
-    createResultFromNative = (nativeResult: any) => { return new VisaRecognizerResult(nativeResult); }
+//     createResultFromNative = (nativeResult: any) => { return new VisaRecognizerResult(nativeResult); }
 }

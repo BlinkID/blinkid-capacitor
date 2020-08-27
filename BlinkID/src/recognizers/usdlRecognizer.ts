@@ -79,7 +79,7 @@ export class UsdlRecognizerResult extends RecognizerResult {
     jurisdiction: string;
 
 
-    constructor(nativeResult) {
+    constructor(nativeResult: any) {
         super(nativeResult.resultState);
 
         this.optionalElements = nativeResult.optionalElements;

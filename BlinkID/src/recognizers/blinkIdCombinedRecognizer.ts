@@ -12,11 +12,22 @@ import {
     Region,
     Type,
     DocumentImageColorStatus,
-    DocumentImageMoireStatus,
+    ImageAnalysisResult,
+    VizResult,
+    BarcodeResult,
+    ProcessingStatus,
     AnonymizationMode,
+    RecognitionModeFilter,
+    DriverLicenseDetailedInfo,
+    BarcodeType,
+    RecognitionMode,
+    IdBarcodeDocumentType,
+    ClassInfo,
     
     
 } from '../types'
+
+/* tslint:disable:no-unused-variable */
 
 /**
  * Result object for BlinkIdCombinedRecognizer.
@@ -79,7 +90,7 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
     /**
      * Determines if date of expiry is permanent.
      */
-    dateOfExpiryPermanent: bool;
+    dateOfExpiryPermanent: boolean;
     
     /**
      * The date of issue of the document.
@@ -133,7 +144,7 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
          * date of expiry has passed
          * date of expiry is unknown and it is not permanent
      */
-    expired: bool;
+    expired: boolean;
     
     /**
      * face image from the document if enabled with returnFaceImage property.
@@ -244,7 +255,7 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
      * Returns true if recognizer has finished scanning first side and is now scanning back side,
          * false if it's still scanning first side.
      */
-    scanningFirstSideDone: bool;
+    scanningFirstSideDone: boolean;
     
     /**
      * The sex of the document owner.
@@ -252,7 +263,7 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
     sex: string;
     
 
-    constructor(nativeResult) {
+    constructor(nativeResult: any) {
         super(nativeResult.resultState);
         
         /**
@@ -496,14 +507,14 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
          * 
          * 
      */
-    allowBlurFilter: bool;
+    allowBlurFilter: boolean;
     
     /**
      * Defines whether returning of unparsed MRZ (Machine Readable Zone) results is allowed
          * 
          * 
      */
-    allowUnparsedMrzResults: bool;
+    allowUnparsedMrzResults: boolean;
     
     /**
      * Defines whether returning unverified MRZ (Machine Readable Zone) results is allowed
@@ -511,7 +522,7 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
          * 
          * 
      */
-    allowUnverifiedMrzResults: bool;
+    allowUnverifiedMrzResults: boolean;
     
     /**
      * Defines whether sensitive data should be removed from images, result fields or both.
@@ -552,7 +563,7 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
          * 
          * 
      */
-    paddingEdge: double;
+    paddingEdge: number;
     
     /**
      * Enable or disable recognition of specific document groups supported by the current license.
@@ -566,28 +577,28 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
          * 
          * 
      */
-    returnFaceImage: bool;
+    returnFaceImage: boolean;
     
     /**
      * Sets whether full document image of ID card should be extracted.
          * 
          * 
      */
-    returnFullDocumentImage: bool;
+    returnFullDocumentImage: boolean;
     
     /**
      * Whether or not recognition result should be signed.
          * 
          * 
      */
-    signResult: bool;
+    signResult: boolean;
     
     /**
      * Skip back side capture and processing step when back side of the document is not supported
          * 
          * 
      */
-    skipUnsupportedBack: bool;
+    skipUnsupportedBack: boolean;
     
     /**
      * Defines whether result characters validatation is performed.
@@ -595,7 +606,7 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
          * 
          * 
      */
-    validateResultCharacters: bool;
+    validateResultCharacters: boolean;
     
 
     constructor() {
@@ -709,5 +720,5 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
         
     }
 
-    createResultFromNative = (nativeResult: any) => { return new BlinkIdCombinedRecognizerResult(nativeResult); }
+//     createResultFromNative = (nativeResult: any) => { return new BlinkIdCombinedRecognizerResult(nativeResult); }
 }

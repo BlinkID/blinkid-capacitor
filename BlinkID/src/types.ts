@@ -9,7 +9,7 @@ export class Date {
     /** year */
     year: number;
 
-    constructor(nativeDate) {
+    constructor(nativeDate: any) {
         this.day = nativeDate.day;
         this.month = nativeDate.month;
         this.year = nativeDate.year;
@@ -25,7 +25,7 @@ export class Point {
     /** y coordinate of the point */
     y: number;
 
-    constructor(nativePoint) {
+    constructor(nativePoint: any) {
         this.x = nativePoint.x;
         this.y = nativePoint.y;
     }
@@ -45,7 +45,7 @@ export class Quadrilateral {
     /** lower right point of the quadrilateral */
     lowerRight: Point;
 
-    constructor(nativeQuad) {
+    constructor(nativeQuad: any) {
         this.upperLeft = new Point(nativeQuad.upperLeft);
         this.upperRight = new Point(nativeQuad.upperRight);
         this.lowerLeft = new Point(nativeQuad.lowerLeft);
@@ -53,6 +53,64 @@ export class Quadrilateral {
     }
 }
 
+/**
+ * Represents the type of scanned barcode
+ */
+export const enum BarcodeType {
+    /** No barcode was scanned */
+    None = 1,
+    /** QR code was scanned */
+    QRCode = 2,
+    /** Data Matrix 2D barcode was scanned */
+    DataMatrix = 3,
+    /** UPC E barcode was scanned */
+    UPCE = 4,
+    /** UPC A barcode was scanned */
+    UPCA = 5,
+    /** EAN 8 barcode was scanned */
+    EAN8 = 6,
+    /** EAN 13 barcode was scanned */
+    EAN13 = 7,
+    /** Code 128 barcode was scanned */
+    Code128 = 8,
+    /** Code 39 barcode was scanned */
+    Code39 = 9,
+    /** ITF barcode was scanned */
+    ITF = 10,
+    /** Aztec 2D barcode was scanned */
+    Aztec = 11,
+    /** PDF417 2D barcode was scanned */
+    PDF417 = 12
+}
+
+/**
+ * Represents data extracted from the Driver's license.
+ */
+export class DriverLicenseDetailedInfo {
+
+    /**  Restrictions to driving privileges for the driver license owner. */
+    restrictions: string;
+    /** Additional privileges granted to the driver license owner. */
+    endorsements: string;
+    /** The type of vehicle the driver license owner has privilege to drive. */
+    vehicleClass: string;
+
+    constructor(nativeDriverLicenseDetailedInfo: any) {
+        this.restrictions = nativeDriverLicenseDetailedInfo.restrictions;
+        this.endorsements = nativeDriverLicenseDetailedInfo.endorsements;
+        this.vehicleClass = nativeDriverLicenseDetailedInfo.vehicleClass;
+    }
+}
+
+/** Result of the data matching algorithm for scanned parts/sides of the document. */
+export const enum DataMatchResult {
+    /** Data matching has not been performed. */
+    NotPerformed = 1,
+    /** Data does not match. */
+    Failed = 2,
+    /** Data match. */
+    Success = 3
+}
 /**
  * Possible types of Machine Readable Travel Documents (MRTDs).
  */
@@ -73,7 +131,7 @@ export const enum MrtdDocumentType {
 /**
  * Possible types of documents scanned with IdBarcodeRecognizer.
  */
-export const IdBarcodeDocumentType {
+export const enum IdBarcodeDocumentType {
     /** No document was scanned */
     None = 1,
     /** AAMVACompliant document was scanned */
@@ -111,7 +169,7 @@ export const enum DocumentImageColorStatus {
 /**
  * Defines possible states of Moire pattern detection.
  */
-export const DocumentImageMoireStatus {
+export const enum ImageAnalysisDetectionStatus {
     /** Detection of Moire patterns was not performed. */
     NotAvailable = 1,
 
@@ -139,6 +197,22 @@ export const enum AnonymizationMode {
     FullResult = 4
 }
 
+/** Represents the classification information. **/
+export class ClassInfo {
+    /** The document country. **/
+    country: Country;
+    /** The document region. **/
+    region: Region;
+    /** The type of the scanned document. **/
+    type: Type;
+
+    constructor(nativeClassInfo: any) {
+        this.country = nativeClassInfo.country;
+        this.region = nativeClassInfo.region;
+        this.type = nativeClassInfo.type;
+    }
+}
+
 /**
  * Defines possible color and moire statuses determined from scanned image.
  */
@@ -157,13 +231,13 @@ export class ImageAnalysisResult {
     /** Barcode detection status determined from the scanned image. */
     barcodeDetectionStatus: ImageAnalysisDetectionStatus;
 
-    constructor(nativeImageAnalysisResult) {
+    constructor(nativeImageAnalysisResult: any) {
         this.blurred = nativeImageAnalysisResult.blurred;
         this.documentImageColorStatus = nativeImageAnalysisResult.documentImageColorStatus;
         this.documentImageMoireStatus = nativeImageAnalysisResult.documentImageMoireStatus;
         this.faceDetectionStatus = nativeImageAnalysisResult.faceDetectionStatus;
-        mrzDetectionStatus = nativeImageAnalysisResult.mrzDetectionStatus;
-        barcodeDetectionStatus = nativeImageAnalysisResult.barcodeDetectionStatus;
+        this.mrzDetectionStatus = nativeImageAnalysisResult.mrzDetectionStatus;
+        this.barcodeDetectionStatus = nativeImageAnalysisResult.barcodeDetectionStatus;
     }
 }
 
@@ -266,7 +340,7 @@ export const enum Country {
 /**
  * Defines possible the document country's region from ClassInfo scanned with BlinkID or BlinkID Combined Recognizer
  */
-export const Region {
+export const enum Region {
     None = 1,
     Alabama = 2,
     Alaska = 3,
@@ -435,7 +509,7 @@ export class BarcodeResult {
     /// Flag that indicates if barcode result is empty
     empty: boolean;
 
-    constructor(nativeBarcodeResult) {
+    constructor(nativeBarcodeResult: any) {
 
         /** Type of the barcode scanned */
         this.barcodeType = nativeBarcodeResult.barcodeType;
@@ -589,7 +663,7 @@ export class VizResult {
     /// Flag that indicates if barcode result is empty
     empty: boolean;
 
-    constructor(nativeVizResult) {
+    constructor(nativeVizResult: any) {
 
         /** The first name of the document owner. */
         this.firstName = nativeVizResult.firstName;
@@ -776,7 +850,7 @@ export class MrzResult {
     /// @return current age of the document owner in years or -1 if date of birth is unknown.
     age: number;
 
-    constructor(nativeMRZResult) {
+    constructor(nativeMRZResult: any) {
         /**
          * Type of recognized document. It is always one of the values represented by BlinkIDScanner.MRTDDocumentType
          */

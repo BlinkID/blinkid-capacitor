@@ -12,11 +12,22 @@ import {
     Region,
     Type,
     DocumentImageColorStatus,
-    DocumentImageMoireStatus,
+    ImageAnalysisResult,
+    VizResult,
+    BarcodeResult,
+    ProcessingStatus,
     AnonymizationMode,
+    RecognitionModeFilter,
+    DriverLicenseDetailedInfo,
+    BarcodeType,
+    RecognitionMode,
+    IdBarcodeDocumentType,
+    ClassInfo,
     
     
 } from '../types'
+
+/* tslint:disable:no-unused-variable */
 
 /**
  * Result object for BlinkIdRecognizer.
@@ -69,7 +80,7 @@ export class BlinkIdRecognizerResult extends RecognizerResult {
     /**
      * Determines if date of expiry is permanent.
      */
-    dateOfExpiryPermanent: bool;
+    dateOfExpiryPermanent: boolean;
     
     /**
      * The date of issue of the document.
@@ -105,7 +116,7 @@ export class BlinkIdRecognizerResult extends RecognizerResult {
          * date of expiry has passed
          * date of expiry is unknown and it is not permanent
      */
-    expired: bool;
+    expired: boolean;
     
     /**
      * face image from the document if enabled with returnFaceImage property.
@@ -213,7 +224,7 @@ export class BlinkIdRecognizerResult extends RecognizerResult {
     vizResult: VizResult;
     
 
-    constructor(nativeResult) {
+    constructor(nativeResult: any) {
         super(nativeResult.resultState);
         
         /**
@@ -418,14 +429,14 @@ export class BlinkIdRecognizer extends Recognizer {
          * 
          * 
      */
-    allowBlurFilter: bool;
+    allowBlurFilter: boolean;
     
     /**
      * Defines whether returning of unparsed MRZ (Machine Readable Zone) results is allowed
          * 
          * 
      */
-    allowUnparsedMrzResults: bool;
+    allowUnparsedMrzResults: boolean;
     
     /**
      * Defines whether returning unverified MRZ (Machine Readable Zone) results is allowed
@@ -433,7 +444,7 @@ export class BlinkIdRecognizer extends Recognizer {
          * 
          * 
      */
-    allowUnverifiedMrzResults: bool;
+    allowUnverifiedMrzResults: boolean;
     
     /**
      * Defines whether sensitive data should be removed from images, result fields or both.
@@ -474,7 +485,7 @@ export class BlinkIdRecognizer extends Recognizer {
          * 
          * 
      */
-    paddingEdge: double;
+    paddingEdge: number;
     
     /**
      * Enable or disable recognition of specific document groups supported by the current license.
@@ -488,14 +499,14 @@ export class BlinkIdRecognizer extends Recognizer {
          * 
          * 
      */
-    returnFaceImage: bool;
+    returnFaceImage: boolean;
     
     /**
      * Sets whether full document image of ID card should be extracted.
          * 
          * 
      */
-    returnFullDocumentImage: bool;
+    returnFullDocumentImage: boolean;
     
     /**
      * Defines whether result characters validatation is performed.
@@ -503,7 +514,7 @@ export class BlinkIdRecognizer extends Recognizer {
          * 
          * 
      */
-    validateResultCharacters: bool;
+    validateResultCharacters: boolean;
     
 
     constructor() {
@@ -603,5 +614,5 @@ export class BlinkIdRecognizer extends Recognizer {
         
     }
 
-    createResultFromNative = (nativeResult: any) => { return new BlinkIdRecognizerResult(nativeResult); }
+//     createResultFromNative = (nativeResult: any) => { return new BlinkIdRecognizerResult(nativeResult); }
 }

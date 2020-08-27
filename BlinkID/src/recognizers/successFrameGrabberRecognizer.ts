@@ -11,7 +11,7 @@ export class SuccessFrameGrabberRecognizerResult extends RecognizerResult {
     /** RecognizerResult of the slave recognizer */
     slaveRecognizerResult: RecognizerResult;
 
-    constructor(nativeResult, slaveRecognizerResult) {
+    constructor(nativeResult: any, slaveRecognizerResult: RecognizerResult) {
         super(nativeResult.resultState);
 
         this.successFrame = nativeResult.successFrame;
@@ -28,7 +28,7 @@ export class SuccessFrameGrabberRecognizer extends Recognizer {
     /** Slave recognizer that SuccessFrameGrabberRecognizer will watch */
     slaveRecognizer: Recognizer;
 
-    constructor(slaveRecognizer) {
+    constructor(slaveRecognizer: Recognizer) {
         super('SuccessFrameGrabberRecognizer');
 
         this.slaveRecognizer = slaveRecognizer;

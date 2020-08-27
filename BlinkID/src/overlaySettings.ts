@@ -17,7 +17,7 @@ export class OverlaySettings {
         /** example: "US" to use "en_US" on Android and en-US on iOS */
     country: string;
 
-    constructor(overlaySettingsType) {
+    constructor(overlaySettingsType: string) {
         this.overlaySettingsType = overlaySettingsType;
         this.useFrontCamera = false;
         this.enableBeep = false;

@@ -12,11 +12,22 @@ import {
     Region,
     Type,
     DocumentImageColorStatus,
-    DocumentImageMoireStatus,
+    ImageAnalysisResult,
+    VizResult,
+    BarcodeResult,
+    ProcessingStatus,
     AnonymizationMode,
+    RecognitionModeFilter,
+    DriverLicenseDetailedInfo,
+    BarcodeType,
+    RecognitionMode,
+    IdBarcodeDocumentType,
+    ClassInfo,
     
     
 } from '../types'
+
+/* tslint:disable:no-unused-variable */
 
 /**
  * Result object for PassportRecognizer.
@@ -50,7 +61,7 @@ export class PassportRecognizerResult extends RecognizerResult {
     mrzResult: MrzResult;
     
 
-    constructor(nativeResult) {
+    constructor(nativeResult: any) {
         super(nativeResult.resultState);
         
         /**
@@ -92,14 +103,14 @@ export class PassportRecognizer extends Recognizer {
          * 
          * 
      */
-    anonymizeNetherlandsMrz: bool;
+    anonymizeNetherlandsMrz: boolean;
     
     /**
      * Defines if glare detection should be turned on/off.
          * 
          * 
      */
-    detectGlare: bool;
+    detectGlare: boolean;
     
     /**
      * Property for setting DPI for face images
@@ -130,21 +141,21 @@ export class PassportRecognizer extends Recognizer {
          * 
          * 
      */
-    returnFaceImage: bool;
+    returnFaceImage: boolean;
     
     /**
      * Sets whether full document image of ID card should be extracted.
          * 
          * 
      */
-    returnFullDocumentImage: bool;
+    returnFullDocumentImage: boolean;
     
     /**
      * Whether or not recognition result should be signed.
          * 
          * 
      */
-    signResult: bool;
+    signResult: boolean;
     
 
     constructor() {
@@ -211,5 +222,5 @@ export class PassportRecognizer extends Recognizer {
         
     }
 
-    createResultFromNative = (nativeResult: any) => { return new PassportRecognizerResult(nativeResult); }
+//     createResultFromNative = (nativeResult: any) => { return new PassportRecognizerResult(nativeResult); }
 }

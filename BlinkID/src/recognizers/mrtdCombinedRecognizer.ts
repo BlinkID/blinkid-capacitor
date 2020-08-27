@@ -12,11 +12,22 @@ import {
     Region,
     Type,
     DocumentImageColorStatus,
-    DocumentImageMoireStatus,
+    ImageAnalysisResult,
+    VizResult,
+    BarcodeResult,
+    ProcessingStatus,
     AnonymizationMode,
+    RecognitionModeFilter,
+    DriverLicenseDetailedInfo,
+    BarcodeType,
+    RecognitionMode,
+    IdBarcodeDocumentType,
+    ClassInfo,
     
     
 } from '../types'
+
+/* tslint:disable:no-unused-variable */
 
 /**
  * Result object for MrtdCombinedRecognizer.
@@ -66,10 +77,10 @@ export class MrtdCombinedRecognizerResult extends RecognizerResult {
      * Returns true if recognizer has finished scanning first side and is now scanning back side,
          * false if it's still scanning first side.
      */
-    scanningFirstSideDone: bool;
+    scanningFirstSideDone: boolean;
     
 
-    constructor(nativeResult) {
+    constructor(nativeResult: any) {
         super(nativeResult.resultState);
         
         /**
@@ -132,14 +143,14 @@ export class MrtdCombinedRecognizer extends Recognizer {
          * 
          * 
      */
-    allowSpecialCharacters: bool;
+    allowSpecialCharacters: boolean;
     
     /**
      * Whether returning of unparsed results is allowed
          * 
          * 
      */
-    allowUnparsedResults: bool;
+    allowUnparsedResults: boolean;
     
     /**
      * Whether returning of unverified results is allowed
@@ -147,7 +158,7 @@ export class MrtdCombinedRecognizer extends Recognizer {
          * 
          * 
      */
-    allowUnverifiedResults: bool;
+    allowUnverifiedResults: boolean;
     
     /**
      * Type of document this recognizer will scan.
@@ -195,21 +206,21 @@ export class MrtdCombinedRecognizer extends Recognizer {
          * 
          * 
      */
-    returnFaceImage: bool;
+    returnFaceImage: boolean;
     
     /**
      * Sets whether full document image of ID card should be extracted.
          * 
          * 
      */
-    returnFullDocumentImage: bool;
+    returnFullDocumentImage: boolean;
     
     /**
      * Whether or not recognition result should be signed.
          * 
          * 
      */
-    signResult: bool;
+    signResult: boolean;
     
 
     constructor() {
@@ -301,5 +312,5 @@ export class MrtdCombinedRecognizer extends Recognizer {
         
     }
 
-    createResultFromNative = (nativeResult: any) => { return new MrtdCombinedRecognizerResult(nativeResult); }
+//     createResultFromNative = (nativeResult: any) => { return new MrtdCombinedRecognizerResult(nativeResult); }
 }

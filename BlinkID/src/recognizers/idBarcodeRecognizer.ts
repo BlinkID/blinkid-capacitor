@@ -12,11 +12,22 @@ import {
     Region,
     Type,
     DocumentImageColorStatus,
-    DocumentImageMoireStatus,
+    ImageAnalysisResult,
+    VizResult,
+    BarcodeResult,
+    ProcessingStatus,
     AnonymizationMode,
+    RecognitionModeFilter,
+    DriverLicenseDetailedInfo,
+    BarcodeType,
+    RecognitionMode,
+    IdBarcodeDocumentType,
+    ClassInfo,
     
     
 } from '../types'
+
+/* tslint:disable:no-unused-variable */
 
 /**
  * Result object for IdBarcodeRecognizer.
@@ -104,7 +115,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
          * date of expiry has passed
          * date of expiry is unknown and it is not permanent
      */
-    expired: bool;
+    expired: boolean;
     
     /**
      * The first name of the document owner.
@@ -205,7 +216,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
      * Flag indicating uncertain scanning data
          * E.g obtained from damaged barcode.
      */
-    uncertain: bool;
+    uncertain: boolean;
     
     /**
      * The type of vehicle the driver license owner has privilege to drive.
@@ -213,7 +224,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     vehicleClass: string;
     
 
-    constructor(nativeResult) {
+    constructor(nativeResult: any) {
         super(nativeResult.resultState);
         
         /**
@@ -419,5 +430,5 @@ export class IdBarcodeRecognizer extends Recognizer {
         
     }
 
-    createResultFromNative = (nativeResult: any) => { return new IdBarcodeRecognizerResult(nativeResult); }
+//     createResultFromNative = (nativeResult: any) => { return new IdBarcodeRecognizerResult(nativeResult); }
 }
