@@ -10,8 +10,6 @@ rm -rf $appName
 # create a sample application with capacitor enabled
 ionic start $appName blank --capacitor --type=angular
 
-echo "Choose Angular project"
-
 # enter into demo project folder
 pushd $appName
 
@@ -34,17 +32,9 @@ ionic build
 
 # We neeed to add capacitor platforms
 npx cap add ios
-# npx cap add android
+npx cap add android
 
 npx cap sync
-
-# enter into android project folder
-# pushd android
-
-# patch the build.gradle to add "maven { url https://maven.microblink.com }"" repository
-# perl -i~ -pe "BEGIN{$/ = undef;} s/maven \{/maven \{ url 'https:\\/\\/maven.microblink.com' }\n        maven {/" build.gradle
-
-# popd
 
 # enter into ios project folder
 pushd ios/App
@@ -82,13 +72,10 @@ popd
 
 pushd $appName
 
-# Ensure that all pages are available for iOS
+# Ensure that all pages are available for iOS and Android
 ionic capacitor copy ios
-
-# ionic capacitor copy android
+ionic capacitor copy android
 
 popd
 
 echo "Go to Ionic project folder: cd Sample"
-# echo "To run on Android execute: react-native run-android"
-# echo "To run on iOS: go to BlinkIDReactNative/ios and open BlinkIDReactNative.xcworkspace; set your development team and add Privacy - Camera Usage Description key to Your info.plist file and press run"
