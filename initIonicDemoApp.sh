@@ -36,6 +36,14 @@ npx cap add android
 
 npx cap sync
 
+# enter into android project folder
+pushd android
+
+file_MainActivity=app/src/main/java/io/ionic/starter/MainActivity.java
+perl -i~ -pe "BEGIN{$/ = undef;} s/\/\/ Ex: add\(TotallyAwesomePlugin.class\);/\/\/ Ex: add\(TotallyAwesomePlugin.class\);\n      add\(com.microblink.capacitor.BlinkIDCapacitorPlugin.class\);/" $file_MainActivity
+
+popd
+
 # enter into ios project folder
 pushd ios/App
 
@@ -50,7 +58,6 @@ if false; then
   rm -rf Microblink.framework
 
   cp -r ~/Downloads/blinkid-ios/Microblink.framework ./
-  #popd
 fi
 
 # go to root
