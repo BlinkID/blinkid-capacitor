@@ -78,4 +78,5 @@ ionic capacitor copy android
 
 popd
 
-echo "Go to Ionic project folder: cd Sample"
+echo "Go to Ionic project folder: cd $appName"
+echo "To run on iOS: go to $appName/ios and open App.xcworkspace; set your development team and press run"
