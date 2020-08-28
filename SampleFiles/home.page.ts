@@ -44,9 +44,9 @@ export class HomePage {
     for (const result of scanningResults) {
       if (result instanceof BlinkID.BlinkIdCombinedRecognizerResult) {
         this.Results = getIdResultsString(result);
-        this.DocumentFront = `data:image/jpg;base64,${result.fullDocumentFrontImage}`;
-        this.DocumentBack = `data:image/jpg;base64,${result.fullDocumentBackImage}`;
-        this.DocumentFace = `data:image/jpg;base64,${result.faceImage}`;
+        this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
+        this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
+        this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
       }
     }
   }
