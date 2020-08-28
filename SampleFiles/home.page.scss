@@ -1,27 +1,12 @@
 #container {
+  display: block;
   text-align: center;
-
-  position: top;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(50%);
+  margin: 20px 20px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+#results {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  white-space: pre-wrap
 }
