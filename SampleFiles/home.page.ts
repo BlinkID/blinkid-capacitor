@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-
-import { Plugins } from '@capacitor/core';
 import * as BlinkID from 'blinkid-capacitor';
 
-const { BlinkIDPlugin } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -21,6 +18,8 @@ export class HomePage {
 
   async scan() {
 
+    const plugin = new BlinkID.BlinkIDPlugin();
+
     const blinkIdCombinedRecognizer = new BlinkID.BlinkIdCombinedRecognizer();
     blinkIdCombinedRecognizer.returnFullDocumentImage = true;
     blinkIdCombinedRecognizer.returnFaceImage = true;
@@ -31,23 +30,23 @@ export class HomePage {
       showTimeLimitedLicenseKeyWarning: true
     };
 
-    const scanningResults = await BlinkIDPlugin.scanWithCamera({
-      overlaySettings: new BlinkID.BlinkIdOverlaySettings(),
-      recognizerCollection: new BlinkID.RecognizerCollection([blinkIdCombinedRecognizer/*, mrtdSuccessFrameGrabber*/]),
-      licenses: licenseKeys
-    });
+    const scanningResults = await plugin.scanWithCamera(
+      new BlinkID.BlinkIdOverlaySettings(),
+      new BlinkID.RecognizerCollection([blinkIdCombinedRecognizer/*, mrtdSuccessFrameGrabber*/]),
+      licenseKeys
+    );
 
-    if (scanningResults.resultList.length === 0) {
+    if (scanningResults.length === 0) {
       return;
     }
 
-    for (const result of scanningResults.resultList) {
-      // if (result instanceof BlinkIdCombinedRecognizerResult) {
+    for (const result of scanningResults) {
+      if (result instanceof BlinkID.BlinkIdCombinedRecognizerResult) {
         this.Results = getIdResultsString(result);
         this.DocumentFront = `data:image/jpg;base64,${result.fullDocumentFrontImage}`;
         this.DocumentBack = `data:image/jpg;base64,${result.fullDocumentBackImage}`;
         this.DocumentFace = `data:image/jpg;base64,${result.faceImage}`;
-      // }
+      }
     }
   }
 }
