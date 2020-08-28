@@ -37,7 +37,6 @@ export class HomePage {
       licenses: licenseKeys
     });
 
-    this.Results = (scanningResults.resultList[0].age);
     if (scanningResults.resultList.length === 0) {
       return;
     }
