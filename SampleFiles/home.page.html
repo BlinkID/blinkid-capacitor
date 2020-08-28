@@ -15,5 +15,11 @@
 
   <div id="container">
     <ion-button (click)="scan()">Scan</ion-button>
+    <div id="results">
+      {{Results}}
+      <img [src]="DocumentFront"/>
+      <img [src]="DocumentBack"/>
+      <img [src]="DocumentFace" width="100"/>
+    </div>
   </div>
 </ion-content>

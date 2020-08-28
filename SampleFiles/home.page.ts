@@ -12,6 +12,11 @@ const { BlinkIDPlugin } = Plugins;
 })
 export class HomePage {
 
+  Results: string;
+  DocumentFront: string;
+  DocumentBack: string;
+  DocumentFace: string;
+
   constructor() {}
 
   async scan() {
@@ -31,5 +36,80 @@ export class HomePage {
       recognizerCollection: new BlinkID.RecognizerCollection([blinkIdCombinedRecognizer/*, mrtdSuccessFrameGrabber*/]),
       licenses: licenseKeys
     });
+
+    this.Results = (scanningResults.resultList[0].age);
+    if (scanningResults.resultList.length === 0) {
+      return;
+    }
+
+    for (const result of scanningResults.resultList) {
+      // if (result instanceof BlinkIdCombinedRecognizerResult) {
+        this.Results = getIdResultsString(result);
+        this.DocumentFront = `data:image/jpg;base64,${result.fullDocumentFrontImage}`;
+        this.DocumentBack = `data:image/jpg;base64,${result.fullDocumentBackImage}`;
+        this.DocumentFace = `data:image/jpg;base64,${result.faceImage}`;
+      // }
+    }
   }
+}
+
+function getIdResultsString(result) {
+  return buildResult(result.firstName, 'First name') +
+      buildResult(result.lastName, 'Last name') +
+      buildResult(result.fullName, 'Full name') +
+      buildResult(result.localizedName, 'Localized name') +
+      buildResult(result.additionalNameInformation, 'Additional name info') +
+      buildResult(result.address, 'Address') +
+      buildResult(
+          result.additionalAddressInformation, 'Additional address info') +
+      buildResult(result.documentNumber, 'Document number') +
+      buildResult(
+          result.documentAdditionalNumber, 'Additional document number') +
+      buildResult(result.sex, 'Sex') +
+      buildResult(result.issuingAuthority, 'Issuing authority') +
+      buildResult(result.nationality, 'Nationality') +
+      buildDateResult(result.dateOfBirth, 'Date of birth') +
+      buildIntResult(result.age, 'Age') +
+      buildDateResult(result.dateOfIssue, 'Date of issue') +
+      buildDateResult(result.dateOfExpiry, 'Date of expiry') +
+      buildResult(result.dateOfExpiryPermanent.toString(),
+          'Date of expiry permanent') +
+      buildResult(result.maritalStatus, 'Martial status') +
+      buildResult(result.personalIdNumber, 'Personal Id Number') +
+      buildResult(result.profession, 'Profession') +
+      buildResult(result.race, 'Race') +
+      buildResult(result.religion, 'Religion') +
+      buildResult(result.residentialStatus, 'Residential Status') +
+      buildDriverLicenceResult(result.driverLicenseDetailedInfo);
+}
+
+function buildResult(result, key) {
+  if (result && result !== '') {
+    return `${key}: ${result}\n`;
+  }
+  return '';
+}
+
+function buildDateResult(result, key) {
+  if (result && result.year !== 0) {
+    return buildResult(`${result.day}.${result.month}.${result.year}`, key);
+  }
+  return '';
+}
+
+function buildIntResult(result, key) {
+  if (result >= 0) {
+    return buildResult(result.toString(), key);
+  }
+  return '';
+}
+
+function buildDriverLicenceResult(result) {
+  if (result) {
+    return buildResult(result.restrictions, 'Restrictions') +
+        buildResult(result.endorsements, 'Endorsements') +
+        buildResult(result.vehicleClass, 'Vehicle class') +
+        buildResult(result.conditions, 'Conditions');
+  }
+  return '';
 }
