@@ -13,17 +13,13 @@ ionic start $appName blank --capacitor --type=angular
 # enter into demo project folder
 pushd $appName
 
-if false; then
+if true; then
   # download npm package
   echo "Downloading blinkid-capacitor module"
   npm install --save blinkid-capacitor
 else
   echo "Using blinkid-capacitor from this repo instead from NPM"
   # use directly source code from this repo instead of npm package
-  # from RN 0.57 symlink does not work any more
-  # npm pack $blink_id_plugin_path
-  # npm install --save blinkid-capacitor-5.7.1.tgz
-
   npm i $blink_id_plugin_path
 fi
 
@@ -86,4 +82,5 @@ ionic capacitor copy android
 popd
 
 echo "Go to Ionic project folder: cd $appName"
-echo "To run on iOS: go to $appName/ios and open App.xcworkspace; set your development team and press run"
+echo "To run on Android: go to $appName and run npx cap open android in terminal and press run"
+echo "To run on iOS: go to $appName and run npx cap open ios in terminal; set your development team and press run"

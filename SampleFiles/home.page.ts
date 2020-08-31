@@ -33,7 +33,7 @@ export class HomePage {
 
     const scanningResults = await plugin.scanWithCamera(
       new BlinkID.BlinkIdOverlaySettings(),
-      new BlinkID.RecognizerCollection([blinkIdCombinedRecognizer/*, mrtdSuccessFrameGrabber*/]),
+      new BlinkID.RecognizerCollection([blinkIdCombinedRecognizer]),
       licenseKeys
     );
 
