@@ -47,12 +47,17 @@ export class HomePage {
         this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
         this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
         this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
+      } else if (result instanceof BlinkID.MrtdCombinedRecognizerResult) {
+        this.Results = getMrzResultsString(result);
+        this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
+        this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
+        this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
       }
     }
   }
 }
 
-function getIdResultsString(result) {
+function getIdResultsString(result: BlinkID.BlinkIdCombinedRecognizerResult) {
   return buildResult(result.firstName, 'First name') +
       buildResult(result.lastName, 'Last name') +
       buildResult(result.fullName, 'Full name') +
@@ -80,6 +85,23 @@ function getIdResultsString(result) {
       buildResult(result.religion, 'Religion') +
       buildResult(result.residentialStatus, 'Residential Status') +
       buildDriverLicenceResult(result.driverLicenseDetailedInfo);
+}
+
+function getMrzResultsString(result: BlinkID.MrtdCombinedRecognizerResult) {
+  const mrzResult = result.mrzResult;
+  return buildResult(mrzResult.primaryId, 'Primary ID') +
+      buildResult(mrzResult.secondaryId, 'Secondary ID') +
+      buildResult(mrzResult.gender, 'Gender') +
+      buildResult(mrzResult.issuer, 'Issuer') +
+      buildResult(mrzResult.nationality, 'Nationality') +
+      buildDateResult(mrzResult.dateOfBirth, 'Date of birth') +
+      buildIntResult(mrzResult.age, 'Age') +
+      buildDateResult(mrzResult.dateOfExpiry, 'Date of expiry') +
+      buildResult(mrzResult.documentCode, 'Document code') +
+      buildResult(mrzResult.documentType, 'Document type') +
+      buildResult(mrzResult.opt1, 'Optional 1') +
+      buildResult(mrzResult.opt2, 'Optional 2') +
+      buildResult(mrzResult.mrzText, 'MRZ Text');
 }
 
 function buildResult(result, key) {
