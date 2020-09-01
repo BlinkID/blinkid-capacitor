@@ -57,7 +57,7 @@ To run sample application:
 
 	```typescript
 	import { Component } from '@angular/core';
-	import * as BlinkID from 'blinkid-capacitor';
+	import * as BlinkID from '@microblink/blinkid-capacitor';
 	```
 
 2. Initialize plugin
