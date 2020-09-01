@@ -5,7 +5,7 @@ and [Android](https://github.com/BlinkID/blinkid-android)). Not all features of 
 
 ## Minimum software requirements
 
-Package depends on [BlinkID SDK](https://microblink.com/products/blinkid) it is required to download and install [BlinkID iOS SDK](https://github.com/BlinkID/blinkid-ios) and [BlinkID Android SDK](https://github.com/BlinkID/blinkid-android). For more information on how to do that, please check our [Platform specifics](#platform-specifics) section.
+Package depends on [BlinkID SDK](https://microblink.com/products/blinkid) and it is required to download and install [BlinkID iOS SDK](https://github.com/BlinkID/blinkid-ios) and [BlinkID Android SDK](https://github.com/BlinkID/blinkid-android). For more information on how to do that, please check our [Platform specifics](#platform-specifics) section.
 
 ### Capacitor
 
@@ -17,6 +17,8 @@ For help with Capacitor, view official [documentation](https://capacitorjs.com/d
 BlinkID Capacitor plugin supports iOS 11.0 or newer.
 
 ### Android
+
+BlinkID Capacitor plugin support Android Android 5.0 (API level 21) or newer.
 
 ## Getting Started
 
@@ -46,6 +48,8 @@ To run sample application:
 	* Press `Run`
 
 * Android
+	* Open the app in Android Studio by running ```npx cap open android``` from the sample app's root directory
+	* Press `Run`
 
 ### Plugin usage
 
@@ -92,7 +96,7 @@ To run sample application:
   	}
 	 ```
 	
-4. When scanning is completed, variable `scanningResults ` will contain a list of non-empty `RecognizerResults` from recognizers set in `RecognizerCollection`. You can then access each result individually. If the scanning is manually closed, the method will return an empty list.
+4. When scanning is completed, variable `scanningResults` will contain a list of non-empty `RecognizerResults` from recognizers set in `RecognizerCollection`. You can then access each result individually. If the scanning is manually closed, the method will return an empty list.
 
 For more information please refer to our sample files in [SampleFiles folder](https://github.com/BlinkID/blinkid-capacitor/tree/master/SampleFiles) and  sample application source code.
 
@@ -102,7 +106,7 @@ All available recognizers can be found inside `BlinkID/src/recognizers`.
 
 All available overlays can be found inside `BlinkID/src/overlays`.
 
-###<a name="platform-specifics"></a> Platform specifics
+### Platform specifics
 
 Plugin implementation is in folder `src`, while platform specific implementations are in `android` and `ios` folders.
 
@@ -112,6 +116,25 @@ To initialize BlinkID framework for use with iOS, after you've added the depende
 Our `blinkid-capacitor` depends on the latest [PPBlinkID pod](https://cocoapods.org/pods/PPBlinkID) so it will be installed automatically.
 
 #### Android
+
+To use BlinkID plugin on Android you need to add the plugin to the MainActivity.java. Note that our [script](https://github.com/BlinkID/blinkid-capacitor/blob/feature/ios-capacitor/initIonicDemoApp.sh) does this automatically.
+
+```java
+public class MainActivity extends BridgeActivity {
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    // Initializes the Bridge
+    this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
+      // Additional plugins you've installed go here
+      // Ex: add(TotallyAwesomePlugin.class);
+      add(com.microblink.capacitor.BlinkIDCapacitorPlugin.class);
+    }});
+  }
+}
+```
+
 
 ## Licensing
 
