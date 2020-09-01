@@ -13,12 +13,11 @@ ionic start $appName blank --capacitor --type=angular
 # enter into demo project folder
 pushd $appName
 
-if true; then
-  # download npm package
-  echo "Downloading blinkid-capacitor module"
-  npm install --save blinkid-capacitor
+if true npm package
+  echo "Downloading @microblink/blinkid-capacitor module"
+  npm install --save @microblink/blinkid-capacitor
 else
-  echo "Using blinkid-capacitor from this repo instead from NPM"
+  echo "Using @microblink/blinkid-capacitor from this repo instead from NPM"
   # use directly source code from this repo instead of npm package
   npm i $blink_id_plugin_path
 fi
