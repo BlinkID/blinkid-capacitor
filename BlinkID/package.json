@@ -38,7 +38,7 @@
     "ios/",
     "android/",
     "src/scanner",
-    "BlinkidCapacitor.podspec"
+    "MicroblinkBlinkidCapacitor.podspec"
   ],
   "peerDependencies": {
     "@capacitor/core": "^2.4.0"
