@@ -12,19 +12,21 @@ import com.microblink.uisettings.ActivityRunner;
 import com.microblink.capacitor.overlays.OverlaySettingsSerializers;
 import com.microblink.capacitor.recognizers.RecognizerSerializers;
 import com.getcapacitor.JSObject;
-import com.getcapacitor.JSArray;
 import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
-@NativePlugin(requestCodes = {
-        BlinkIDCapacitorPlugin.REQUEST_CODE
+@NativePlugin(
+        name="BlinkIDCapacitorPlugin",
+        requestCodes = {MicroblinkPlugin.REQUEST_CODE
 })
-public class BlinkIDCapacitorPlugin extends Plugin {
+public class MicroblinkPlugin extends Plugin {
 
     static final int REQUEST_CODE = 1453;
 
