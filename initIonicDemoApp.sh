@@ -36,7 +36,7 @@ npx cap sync
 pushd android
 
 file_MainActivity=app/src/main/java/io/ionic/starter/MainActivity.java
-perl -i~ -pe "BEGIN{$/ = undef;} s/\/\/ Ex: add\(TotallyAwesomePlugin.class\);/\/\/ Ex: add\(TotallyAwesomePlugin.class\);\n      add\(com.microblink.capacitor.BlinkIDCapacitorPlugin.class\);/" $file_MainActivity
+perl -i~ -pe "BEGIN{$/ = undef;} s/\/\/ Ex: add\(TotallyAwesomePlugin.class\);/\/\/ Ex: add\(TotallyAwesomePlugin.class\);\n      add\(com.microblink.capacitor.MicroblinkPlugin.class\);/" $file_MainActivity
 
 popd
 
