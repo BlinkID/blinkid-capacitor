@@ -31,7 +31,7 @@ ionic start project_name --capacitor
 Install blinkid-capacitor package:
 
 ```shell
-npm install --save blinkid-capacitor
+npm install --save @microblink/blinkid-capacitor
 ```
 
 ### Quick start with sample app
