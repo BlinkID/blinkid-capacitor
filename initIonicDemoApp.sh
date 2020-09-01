@@ -7,13 +7,13 @@ appName=Sample
 # remove any existing code
 rm -rf $appName
 
-# create a sample application with capacitor enabled
-ionic start $appName blank --capacitor --type=angular
+# create a sample application with capacitor enabled without ionic free account 
+printf "%s\n" n | ionic start $appName blank --capacitor --type=angular
 
 # enter into demo project folder
 pushd $appName
 
-if true npm package
+if false; then
   echo "Downloading @microblink/blinkid-capacitor module"
   npm install --save @microblink/blinkid-capacitor
 else
