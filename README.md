@@ -56,7 +56,6 @@ To run sample application:
 1. Import blinkid-capacitor package
 
 	```typescript
-	import { Component } from '@angular/core';
 	import * as BlinkID from '@microblink/blinkid-capacitor';
 	```
 
@@ -112,8 +111,8 @@ Plugin implementation is in folder `src`, while platform specific implementation
 
 #### iOS
 
-To initialize BlinkID framework for use with iOS, after you've added the dependency to `blinkid-capacitor` to your, go to `NameOfYourProject/ios`and run `pod install`.
-Our `blinkid-capacitor` depends on the latest [PPBlinkID pod](https://cocoapods.org/pods/PPBlinkID) so it will be installed automatically.
+To initialize BlinkID framework for use with iOS, after you've added the dependency to `@microblink/blinkid-capacitor` to your project, go to `NameOfYourProject/ios`and run `pod install`.
+Our `@microblink/blinkid-capacitor` depends on the latest [PPBlinkID pod](https://cocoapods.org/pods/PPBlinkID) so it will be installed automatically.
 
 #### Android
 
