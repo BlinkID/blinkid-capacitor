@@ -2,6 +2,11 @@
 
 blink_id_plugin_path=`pwd`/BlinkID
 
+pushd $blink_id_plugin_path
+npm install
+npm run build
+popd
+
 appName=Sample
 
 # remove any existing code
