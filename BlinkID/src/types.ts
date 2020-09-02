@@ -446,67 +446,67 @@ export const enum Type {
 /** Defines the data extracted from the barcode. */
 export class BarcodeResult {
 
-    /// Type of the barcode scanned
+    /** Type of the barcode scanned */
     barcodeType: BarcodeType;
-    /// Byte array with result of the scan
+    /** Byte array with result of the scan */
     rawData: string;
-    /// Retrieves content of scanned data
+    /** Retrieves content of scanned data */
     stringData: string;
-    /// Flag indicating uncertain scanning data
+    /** Flag indicating uncertain scanning data */
     uncertain: boolean;
-    /// The first name of the document owner.
+    /** The first name of the document owner. */
     firstName: string;
-    /// The last name of the document owner.
+    /** The last name of the document owner. */
     lastName: string;
-    /// The full name of the document owner.
+    /** The full name of the document owner. */
     fullName: string;
-    /// The additional name information of the document owner.
+    /** The additional name information of the document owner. */
     additionalNameInformation: string;
-    /// The address of the document owner.
+    /** The address of the document owner. */
     address: string;
-    /// The place of birth of the document owner.
+    /** The place of birth of the document owner. */
     placeOfBirth: string;
-    /// The nationality of the documet owner.
+    /** The nationality of the documet owner. */
     nationality: string;
-    /// The race of the document owner.
+    /** The race of the document owner. */
     race: string;
-    /// The religion of the document owner.
+    /** The religion of the document owner. */
     religion: string;
-    /// The profession of the document owner.
+    /** The profession of the document owner. */
     profession: string;
-    /// The marital status of the document owner.
+    /** The marital status of the document owner. */
     maritalStatus: string;
-    /// The residential stauts of the document owner.
+    /** The residential stauts of the document owner. */
     residentialStatus: string;
-    /// The employer of the document owner.
+    /** The employer of the document owner. */
     employer: string;
-    /// The sex of the document owner.
+    /** The sex of the document owner. */
     sex: string;
-    /// The date of birth of the document owner.
+    /** The date of birth of the document owner. */
     dateOfBirth: Date;
-    /// The date of issue of the document.
+    /** The date of issue of the document. */
     dateOfIssue: Date;
-    /// The date of expiry of the document.
+    /** The date of expiry of the document. */
     dateOfExpiry: Date;
-    /// The document number.
+    /** The document number. */
     documentNumber: string;
-    ///  The personal identification number.
+    /**  The personal identification number. */
     personalIdNumber: string;
-    /// The additional number of the document.
+    /** The additional number of the document. */
     documentAdditionalNumber: string;
-    /// The issuing authority of the document.
+    /** The issuing authority of the document. */
     issuingAuthority: string;
-    /// The street address portion of the document owner.
+    /** The street address portion of the document owner. */
     street: string;
-    /// The postal code address portion of the document owner.
+    /** The postal code address portion of the document owner. */
     postalCode: string;
-    /// The city address portion of the document owner.
+    /** The city address portion of the document owner. */
     city: string;
-    /// The jurisdiction code address portion of the document owner.
+    /** The jurisdiction code address portion of the document owner. */
     jurisdiction: string;
-    /// The driver license detailed info.
+    /** The driver license detailed info. */
     driverLicenseDetailedInfo: DriverLicenseDetailedInfo;
-    /// Flag that indicates if barcode result is empty
+    /** Flag that indicates if barcode result is empty */
     empty: boolean;
 
     constructor(nativeBarcodeResult: any) {
@@ -608,59 +608,59 @@ export class BarcodeResult {
 
 /** Defines the data extracted from the visual inspection zone */
 export class VizResult {
-    /// The first name of the document owner.
+    /** The first name of the document owner. */
     firstName: string;
-    /// The last name of the document owner.
+    /** The last name of the document owner. */
     lastName: string;
-    /// The full name of the document owner.
+    /** The full name of the document owner. */
     fullName: string;
-    /// The additional name information of the document owner.
+    /** The additional name information of the document owner. */
     additionalNameInformation: string;
-    /// The localized name of the document owner.
+    /** The localized name of the document owner. */
     localizedName: string;
-    /// The address of the document owner.
+    /** The address of the document owner. */
     address: string;
-    /// The additional address information of the document owner.
+    /** The additional address information of the document owner. */
     additionalAddressInformation: string;
-    /// The place of birth of the document owner.
+    /** The place of birth of the document owner. */
     placeOfBirth: string;
-    /// The nationality of the documet owner.
+    /** The nationality of the documet owner. */
     nationality: string;
-    /// The race of the document owner.
+    /** The race of the document owner. */
     race: string;
-    /// The religion of the document owner.
+    /** The religion of the document owner. */
     religion: string;
-    /// The profession of the document owner.
+    /** The profession of the document owner. */
     profession: string;
-    /// The marital status of the document owner.
+    /** The marital status of the document owner. */
     maritalStatus: string;
-    /// The residential stauts of the document owner.
+    /** The residential stauts of the document owner. */
     residentialStatus: string;
-    /// The employer of the document owner.
+    /** The employer of the document owner. */
     employer: string;
-    /// The sex of the document owner.
+    /** The sex of the document owner. */
     sex: string;
-    /// The date of birth of the document owner.
+    /** The date of birth of the document owner. */
     dateOfBirth: Date;
-    /// The date of issue of the document.
+    /** The date of issue of the document. */
     dateOfIssue: Date;
-    /// The date of expiry of the document.
+    /** The date of expiry of the document. */
     dateOfExpiry: Date;
-    /// The document number.
+    /** The document number. */
     documentNumber: string;
-    /// The personal identification number.
+    /** The personal identification number. */
     personalIdNumber: string;
-    /// The additional number of the document.
+    /** The additional number of the document. */
     documentAdditionalNumber: string;
-    /// The additional personal identification number.
+    /** The additional personal identification number. */
     additionalPersonalIdNumber: string;
-    /// The issuing authority of the document.
+    /** The issuing authority of the document. */
     issuingAuthority: string;
-    /// The driver license detailed info.
+    /** The driver license detailed info. */
     driverLicenseDetailedInfo: DriverLicenseDetailedInfo;
-    /// The driver license conditions.
+    /** The driver license conditions. */
     conditions: string;
-    /// Flag that indicates if barcode result is empty
+    /** Flag that indicates if barcode result is empty */
     empty: boolean;
 
     constructor(nativeVizResult: any) {
@@ -753,101 +753,113 @@ export class VizResult {
  */
 export class MrzResult {
 
-    /// Type of recognized document. It is always one of the values represented by BlinkIDScanner.MRTDDocumentType
+    /** Type of recognized document. It is always one of the values represented by BlinkIDScanner.MRTDDocumentType */
     documentType: MrtdDocumentType;
 
-    /// The primary indentifier. If there is more than one component, they are separated with space.
+    /** The primary indentifier. If there is more than one component, they are separated with space. */
     primaryId: string;
 
-    /// The secondary identifier. If there is more than one component, they are separated with space.
+    /** The secondary identifier. If there is more than one component, they are separated with space. */
     secondaryId: string;
 
-    /// Three-letter or two-letter code which indicate the issuing State. Three-letter codes are based
-    /// on Aplha-3 codes for entities specified in ISO 3166-1, with extensions for certain States. Two-letter
-    /// codes are based on Alpha-2 codes for entities specified in ISO 3166-1, with extensions for certain States.
+    /** Three-letter or two-letter code which indicate the issuing State. Three-letter codes are based
+     * on Aplha-3 codes for entities specified in ISO 3166-1, with extensions for certain States. Two-letter
+     * codes are based on Alpha-2 codes for entities specified in ISO 3166-1, with extensions for certain States.
+     */
     issuer: string;
 
-    /// Holder's date of birth
+    /** Holder's date of birth */
     dateOfBirth: Date;
 
-    /// The document number. Document number contains up to 9 characters.
-    /// Element does not exist on US Green Card. To see which document was scanned use documentType property.
+    /** The document number. Document number contains up to 9 characters.
+     *  Element does not exist on US Green Card. To see which document was scanned use documentType property.
+     */
     documentNumber: string;
 
-    /// The nationality of the holder represented by a three-letter or two-letter code. Three-letter
-    /// codes are based on Alpha-3 codes for entities specified in ISO 3166-1, with extensions for certain
-    /// States. Two-letter codes are based on Aplha-2 codes for entities specified in ISO 3166-1, with
-    /// extensions for certain States.
+    /** The nationality of the holder represented by a three-letter or two-letter code. Three-letter
+     * codes are based on Alpha-3 codes for entities specified in ISO 3166-1, with extensions for certain
+     * States. Two-letter codes are based on Aplha-2 codes for entities specified in ISO 3166-1, with
+     * extensions for certain States.
+     */
     nationality: string;
 
-    /// The gender of the card holder. Gender is specified by use of the single initial, capital letter F for female,
-    /// M for male or <code>&lt;</code> for unspecified.
+    /** The gender of the card holder. Gender is specified by use of the single initial, capital letter F for female,
+     * M for male or <code>&lt;</code> for unspecified.
+     */
     gender: string;
 
-    /// The document code. Document code contains two characters. For MRTD the first character shall
-    /// be A, C or I. The second character shall be discretion of the issuing State or organization except
-    /// that V shall not be used, and `C` shall not be used after `A` except in the crew member certificate.
-    /// On machine-readable passports (MRP) first character shall be `P` to designate an MRP. One additional
-    /// letter may be used, at the discretion of the issuing State or organization, to designate a particular
-    /// MRP. If the second character position is not used for this purpose, it shall be filled by the filter
-    /// character <code>&lt;</code>.
+    /** The document code. Document code contains two characters. For MRTD the first character shall
+     * be A, C or I. The second character shall be discretion of the issuing State or organization except
+     * that V shall not be used, and `C` shall not be used after `A` except in the crew member certificate.
+     * On machine-readable passports (MRP) first character shall be `P` to designate an MRP. One additional
+     * letter may be used, at the discretion of the issuing State or organization, to designate a particular
+     * MRP. If the second character position is not used for this purpose, it shall be filled by the filter
+     * character <code>&lt;</code>.
+     */
     documentCode: string;
 
-    /// The date of expiry
+    /** The date of expiry */
     dateOfExpiry: Date;
 
-    /// The first optional data. Contains empty if not available.
-    /// Element does not exist on US Green Card. To see which document was scanned use the documentType property.
+    /** The first optional data. Contains empty if not available.
+     * Element does not exist on US Green Card. To see which document was scanned use the documentType property.
+     */
     opt1: string;
 
-    /// The second optional data. Contains empty if not available.
-    /// Element does not exist on Passports and Visas. To see which document was scanned use the documentType property.
+    /** The second optional data. Contains empty if not available.
+     * Element does not exist on Passports and Visas. To see which document was scanned use the documentType property.
+     */
     opt2: string;
 
-    /// The alien number. Contains empty if not available.
-    /// Exists only on US Green Cards. To see which document was scanned use the documentType property.
+    /** The alien number. Contains empty if not available.
+     * Exists only on US Green Cards. To see which document was scanned use the documentType property.
+     */
     alienNumber: string;
 
-    /// The application receipt number. Contains empty if not available.
-    /// Exists only on US Green Cards. To see which document was scanned use the documentType property.
+    /** The application receipt number. Contains empty if not available.
+     * Exists only on US Green Cards. To see which document was scanned use the documentType property.
+     */
     applicationReceiptNumber: string;
 
-    /// The immigrant case number. Contains empty if not available.
-    /// Exists only on US Green Cards. To see which document was scanned use the documentType property.
+    /** The immigrant case number. Contains empty if not available.
+     * Exists only on US Green Cards. To see which document was scanned use the documentType property.
+     */
     immigrantCaseNumber: string;
 
-    /// The entire Machine Readable Zone text from ID. This text is usually used for parsing
-    /// other elements.
-    /// NOTE: This is available only if OCR result was parsed successfully.
+    /** The entire Machine Readable Zone text from ID. This text is usually used for parsing
+     * other elements.
+     * NOTE: This is available only if OCR result was parsed successfully.
+     */
     mrzText: string;
 
-    /// true if Machine Readable Zone has been parsed, false otherwise.
+    /** true if Machine Readable Zone has been parsed, false otherwise. */
     mrzParsed: boolean;
 
-    /// true if all check digits inside MRZ are correct, false otherwise.
+    /** true if all check digits inside MRZ are correct, false otherwise. */
     mrzVerified: boolean;
 
-    /// Sanitized field opt1
+    /** Sanitized field opt1 */
     sanitizedOpt1: string;
 
-    /// Sanitized field opt2
+    /** Sanitized field opt2 */
     sanitizedOpt2: string;
 
-    /// Sanitized field nationality
+    /** Sanitized field nationality */
     sanitizedNationality: string;
 
-    /// Sanitized field issuer
+    /** Sanitized field issuer */
     sanitizedIssuer: string;
 
-    /// Sanitized document code
+    /** Sanitized document code */
     sanitizedDocumentCode: string;
 
-    /// Sanitized document number
+    /** Sanitized document number */
     sanitizedDocumentNumber: string;
 
-    /// The current age of the document owner in years. It is calculated difference
-    /// between now and date of birth. Now is current time on the device.
-    /// @return current age of the document owner in years or -1 if date of birth is unknown.
+    /** The current age of the document owner in years. It is calculated difference
+     * between now and date of birth. Now is current time on the device.
+     * @return current age of the document owner in years or -1 if date of birth is unknown.
+     */
     age: number;
 
     constructor(nativeMRZResult: any) {
@@ -1007,14 +1019,15 @@ export class ImageExtensionFactors {
         /** image extension factor relative to full image height in LEFT direction. */
         this.leftFactor = 0.0;
     }
-};
+}
+
 /**
  * RecognitionModeFilter is used to enable/disable recognition of specific document groups.
  * Setting is taken into account only if the right for that document is purchased.
  */
 export class RecognitionModeFilter {
 
-	 /** Enable scanning of MRZ IDs. Setting is taken into account only if the mrz_id right is purchased. */
+    /** Enable scanning of MRZ IDs. Setting is taken into account only if the mrz_id right is purchased. */
     enableMrzId: boolean;
     /** Enable scanning of visa MRZ. Setting is taken into account only if the visa right is purchased. */
     enableMrzVisa: boolean;
@@ -1039,69 +1052,69 @@ export class RecognitionModeFilter {
     }
 }
 
-/// Defines status of the last recognition process.
+/** Defines status of the last recognition process. */
 export const enum ProcessingStatus {
-    /// Recognition was successful.
+    /** Recognition was successful. */
     Success,
 
-    /// Detection of the document failed.
+    /** Detection of the document failed. */
     DetectionFailed,
 
-    /// Preprocessing of the input image has failed.
+    /** Preprocessing of the input image has failed. */
     ImagePreprocessingFailed,
 
-    /// Recognizer has inconsistent results.
+    /** Recognizer has inconsistent results. */
     StabilityTestFailed,
 
-    /// Wrong side of the document has been scanned.
+    /** Wrong side of the document has been scanned. */
     ScanningWrongSide,
 
-    /// Identification of the fields present on the document has failed.
+    /** Identification of the fields present on the document has failed. */
     FieldIdentificationFailed,
 
-    /// Mandatory field for the specific document is missing.
+    /** Mandatory field for the specific document is missing. */
     MandatoryFieldMissing,
 
-    /// Result contains invalid characters in some of the fields.
+    /** Result contains invalid characters in some of the fields. */
     InvalidCharactersFound,
 
-    /// Failed to return a requested image.
+    /** Failed to return a requested image. */
     ImageReturnFailed,
 
-    /// Reading or parsing of the barcode has failed.
+    /** Reading or parsing of the barcode has failed. */
     BarcodeRecognitionFailed,
 
-    /// Parsing of the MRZ has failed.
+    /** Parsing of the MRZ has failed. */
     MrzParsingFailed,
 
-    /// Document class has been filtered out.
+    /** Document class has been filtered out. */
     ClassFiltered,
 
-    /// Document currently not supported by the recognizer.
+    /** Document currently not supported by the recognizer. */
     UnsupportedClass,
 
-    /// License for the detected document is missing.
+    /** License for the detected document is missing. */
     UnsupportedByLicense
 }
 
-/// Define level of anonymization performed on recognizer result
+/** Define level of anonymization performed on recognizer result */
 export const enum RecognitionMode {
-    /// No recognition performed.
+    /** No recognition performed. */
     None,
 
-    /// Recognition of mrz document (does not include visa and passport)
+    /** Recognition of mrz document (does not include visa and passport) */
     MrzId,
 
-    /// Recognition of visa mrz.
+    /** Recognition of visa mrz. */
     MrzVisa,
 
-    /// Recognition of passport mrz.
+    /** Recognition of passport mrz. */
     MrzPassport,
 
-    /// Recognition of documents that have face photo on the front.
+    /** Recognition of documents that have face photo on the front. */
     PhotoId,
 
-    /// Detailed document recognition.
+    /** Detailed document recognition. */
     FullRecognition
 }
 
