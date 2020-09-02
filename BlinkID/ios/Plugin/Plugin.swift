@@ -106,6 +106,8 @@ extension BlinkIDCapacitorPlugin: MBOverlayViewControllerDelegate {
 
             var resultJson = [NSDictionary]()
 
+		var isDocumentCaptureRecognizer = false
+
             for recognizerIndex in 0..<recognizerListCount {
                 guard let resultDict = recognizerCollection?.recognizerList[recognizerIndex].serializeResult() else {
                     return
@@ -113,10 +115,12 @@ extension BlinkIDCapacitorPlugin: MBOverlayViewControllerDelegate {
                 resultJson.append(resultDict as NSDictionary)
             }
 
-            pluginCall?.resolve([
-              "cancelled": false,
-              "resultList": resultJson
-            ])
+            if (!isDocumentCaptureRecognizer) {
+		pluginCall?.resolve([
+			"cancelled": false,
+			"resultList": resultJson
+		])
+		}
 
             DispatchQueue.main.async {
                 overlayViewController.dismiss(animated: true, completion: nil)
