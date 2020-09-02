@@ -94,11 +94,14 @@ export class DriverLicenseDetailedInfo {
     endorsements: string;
     /** The type of vehicle the driver license owner has privilege to drive. */
     vehicleClass: string;
+    /** The driver license conditions. */
+    conditions: string;
 
     constructor(nativeDriverLicenseDetailedInfo: any) {
         this.restrictions = nativeDriverLicenseDetailedInfo.restrictions;
         this.endorsements = nativeDriverLicenseDetailedInfo.endorsements;
         this.vehicleClass = nativeDriverLicenseDetailedInfo.vehicleClass;
+        this.conditions = nativeDriverLicenseDetailedInfo.conditions;
     }
 }
 
@@ -658,8 +661,6 @@ export class VizResult {
     issuingAuthority: string;
     /** The driver license detailed info. */
     driverLicenseDetailedInfo: DriverLicenseDetailedInfo;
-    /** The driver license conditions. */
-    conditions: string;
     /** Flag that indicates if barcode result is empty */
     empty: boolean;
 
@@ -739,9 +740,6 @@ export class VizResult {
 
         /** The driver license detailed info. */
         this.driverLicenseDetailedInfo = nativeVizResult.driverLicenseDetailedInfo != null ? new DriverLicenseDetailedInfo(nativeVizResult.driverLicenseDetailedInfo) : null;
-
-        /** The driver license conditions. */
-        this.conditions = nativeVizResult.conditions;
 
         /** Flag that indicates if barcode result is empty */
         this.empty = nativeVizResult.empty;
