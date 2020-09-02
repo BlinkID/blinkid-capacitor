@@ -1,6 +1,6 @@
 {
-  "name": "blinkid-capacitor",
-  "version": "0.0.1",
+  "name": "@microblink/blinkid-capacitor",
+  "version": "5.7.1",
   "description": "A small and powerful ID card Capacitor plugin for BlinkID SDK",
   "main": "dist/plugin.js",
   "module": "dist/esm/index.js",
@@ -16,6 +16,9 @@
   },
   "author": "Microblink",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@capacitor/android": "^2.4.0",
     "@capacitor/core": "^2.4.0",
@@ -30,15 +33,16 @@
     "swiftlint": "^1.0.1",
     "typescript": "~3.8.3"
   },
-  "peerDependencies": {
-    "@capacitor/core": "^2.4.0"
-  },
   "files": [
     "dist/",
     "ios/",
     "android/",
-    "MBBlinkIDCapacitor.podspec"
+    "src/scanner",
+    "MicroblinkBlinkidCapacitor.podspec"
   ],
+  "peerDependencies": {
+    "@capacitor/core": "^2.4.0"
+  },
   "keywords": [
     "capacitor",
     "plugin",

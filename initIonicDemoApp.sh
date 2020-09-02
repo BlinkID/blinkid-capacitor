@@ -2,41 +2,53 @@
 
 blink_id_plugin_path=`pwd`/BlinkID
 
+pushd $blink_id_plugin_path
+npm install
+npm run build
+popd
+
 appName=Sample
 
 # remove any existing code
 rm -rf $appName
 
-# create a sample application with capacitor enabled
-ionic start SampleIonic --capacitor
+# create a sample application with capacitor enabled without ionic free account 
+printf "%s\n" n | ionic start $appName blank --capacitor --type=angular
 
 # enter into demo project folder
 pushd $appName
 
-if true; then
-  # download npm package
-  echo "Downloading blinkid-capacitor module"
-  npm install --save blinkid-capacitor
+if false; then
+  echo "Downloading @microblink/blinkid-capacitor module"
+  npm install --save @microblink/blinkid-capacitor
 else
-  echo "Using blinkid-react-native from this repo instead from NPM"
+  echo "Using @microblink/blinkid-capacitor from this repo instead from NPM"
   # use directly source code from this repo instead of npm package
-  # from RN 0.57 symlink does not work any more
-  npm pack $blink_id_plugin_path
-  npm install --save blinkid-capacitor-5.7.1.tgz
+  npm i $blink_id_plugin_path
 fi
+
+# First we need to build ionic project
+ionic build
+
+# We neeed to add capacitor platforms
+npx cap add ios
+npx cap add android
+
+npx cap sync
 
 # enter into android project folder
 pushd android
 
-# patch the build.gradle to add "maven { url https://maven.microblink.com }"" repository
-# perl -i~ -pe "BEGIN{$/ = undef;} s/maven \{/maven \{ url 'https:\\/\\/maven.microblink.com' }\n        maven {/" build.gradle
+file_MainActivity=app/src/main/java/io/ionic/starter/MainActivity.java
+perl -i~ -pe "BEGIN{$/ = undef;} s/\/\/ Ex: add\(TotallyAwesomePlugin.class\);/\/\/ Ex: add\(TotallyAwesomePlugin.class\);\n      add\(com.microblink.capacitor.MicroblinkPlugin.class\);/" $file_MainActivity
 
 popd
 
 # enter into ios project folder
-pushd ios
+pushd ios/App
 
 # install pod
+pod update
 pod install
 
 if false; then
@@ -46,27 +58,33 @@ if false; then
   rm -rf Microblink.framework
 
   cp -r ~/Downloads/blinkid-ios/Microblink.framework ./
-  #popd
 fi
 
-# go to react native root project
+# go to root
 popd
 
-# # remove index.js
-# rm -f index.js
+pushd $appName
 
-# # remove index.ios.js
-# rm -f index.ios.js
+npm i @ionic/angular@latest --save
 
-# # remove index.android.js
-# rm -f index.android.js
+popd
 
-# cp ../demoApp/index.js ./
+pushd $appName/src/app/home
 
-# # use the same index.js file for Android and iOS
-# cp index.js index.ios.js
-# cp index.js index.android.js
+cp ../../../../SampleFiles/home.page.html ./
+cp ../../../../SampleFiles/home.page.scss ./
+cp ../../../../SampleFiles/home.page.ts ./
 
-echo "Go to Ionic project folder: cd SampleIonic"
-# echo "To run on Android execute: react-native run-android"
-# echo "To run on iOS: go to BlinkIDReactNative/ios and open BlinkIDReactNative.xcworkspace; set your development team and add Privacy - Camera Usage Description key to Your info.plist file and press run"
+popd
+
+pushd $appName
+
+# Ensure that all pages are available for iOS and Android
+ionic capacitor copy ios
+ionic capacitor copy android
+
+popd
+
+echo "Go to Ionic project folder: cd $appName"
+echo "To run on Android: go to $appName and run npx cap open android in terminal and press run"
+echo "To run on iOS: go to $appName and run npx cap open ios in terminal; set your development team and press run"

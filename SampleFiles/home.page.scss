@@ -1,0 +1,18 @@
+#container {
+  display: block;
+  text-align: center;
+  margin: 20px 20px;
+}
+
+#results {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  white-space: pre-wrap
+}
+
+#container {
+  ion-button {
+    display: block;
+  }
+}

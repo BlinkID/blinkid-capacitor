@@ -1,9 +1,9 @@
 declare module '@capacitor/core' {
-  interface PluginRegistry {
-    BlinkId: BlinkIdPlugin;
-  }
+    interface PluginRegistry {
+    	BlinkIDCapacitorPlugin: {
+			scanWithCamera: Function;
+		};
+    }
 }
 
-export interface BlinkIdPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
-}
+export default {}
