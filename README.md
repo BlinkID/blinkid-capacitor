@@ -1,7 +1,18 @@
 # BlinkID SDK Capacitor plugin
 
-This repository contains [Capacitor](https://capacitorjs.com) wrappers for BlinkID native SDKs ([iOS](https://github.com/BlinkID/blinkid-ios)
-and [Android](https://github.com/BlinkID/blinkid-android)). Not all features of native SDKs are available. However, the wrapper is open source so you can add features that you need. For 100% of features and maximum control, consider using native SDKs.
+AI-driven ID scanning software for cross-platform apps built with Capacitor. Keep in mind that for full access to all features and functionalities, you’ll be better off using one of our native SDKs ([iOS](https://github.com/BlinkID/blinkid-ios)
+and [Android](https://github.com/BlinkID/blinkid-android)). Not all features of native SDKs are available. However, the wrapper is open source so you can add the features that you need.
+
+Depending on your use case you can choose the recognizer that fits your needs:
+
+* BlinkID recognizer
+	* Scans and extracts data from the front side of the document as well as any machine readable travel document (MRTD). View list of supported documents [here](https://github.com/BlinkID/blinkid-capacitor/blob/master/documentation/BlinkIDRecognizer.md)
+* BlinkID combined recognizer
+	* For scanning both sides of the supported document as well as any machine readable travel document. Passports and travel visas included. Here’s a [list of documents](https://github.com/BlinkID/blinkid-capacitor/blob/master/documentation/BlinkIDRecognizer.md) that you can scan with BlinkID. For more details about the extracted fields click [here](https://github.com/BlinkID/blinkid-capacitor/blob/master/documentation/BlinkIDRecognizerResult.md).
+* BlinkID IDBarcode recognizer
+	* Extract data from various barcodes found on identity documents. You can find a list of supported documents [here](https://github.com/BlinkID/blinkid-capacitor/blob/master/documentation/IdBarcodeRecognizer.md).
+
+Below, you'll find everything you need to add BlinkID in your Capacitor iOS or Android app ⬇️
 
 ## Minimum software requirements
 
@@ -133,7 +144,6 @@ public class MainActivity extends BridgeActivity {
   }
 }
 ```
-
 
 ## Licensing
 
