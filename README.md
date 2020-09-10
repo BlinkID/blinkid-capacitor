@@ -47,7 +47,7 @@ npm install --save @microblink/blinkid-capacitor
 
 ### Quick start with sample app
 
-Sample app is built with latest [Ionic framework](https://ionicframework.com) and it uses [Angular](https://angular.io). To try BlinkID plugin, you can generate a minimal sample application. To do so run `./initIonicDemoApp.sh` script.
+Sample app is built with latest [Ionic framework](https://ionicframework.com) and it uses [Angular](https://angular.io). To try BlinkID plugin, you can generate a minimal sample application. To do so run `./initIonicSampleApp.sh` script.
 
 To run sample application:
 
@@ -127,7 +127,7 @@ Our `@microblink/blinkid-capacitor` depends on the latest [PPBlinkID pod](https:
 
 #### Android
 
-To use BlinkID plugin on Android you need to add the plugin to the MainActivity.java. Note that our [script](https://github.com/BlinkID/blinkid-capacitor/blob/feature/ios-capacitor/initIonicDemoApp.sh) does this automatically.
+To use BlinkID plugin on Android you need to add the plugin to the MainActivity.java. Note that our [script](https://github.com/BlinkID/blinkid-capacitor/blob/feature/ios-capacitor/initIonicSampleApp.sh) does this automatically.
 
 ```java
 public class MainActivity extends BridgeActivity {

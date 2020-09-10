@@ -7,7 +7,7 @@ npm install
 npm run build
 popd
 
-appName=Sample
+appName=BlinkIDSampleApp
 
 # remove any existing code
 rm -rf $appName
@@ -15,7 +15,7 @@ rm -rf $appName
 # create a sample application with capacitor enabled without ionic free account 
 printf "%s\n" n | ionic start $appName blank --capacitor --type=angular
 
-# enter into demo project folder
+# enter into sample project folder
 pushd $appName
 
 if false; then
