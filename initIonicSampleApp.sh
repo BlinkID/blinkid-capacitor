@@ -7,7 +7,8 @@ npm install
 npm run build
 popd
 
-appName=BlinkIDSampleApp
+appName=sample
+appId=com.microblink.sample
 
 # remove any existing code
 rm -rf $appName
@@ -26,6 +27,9 @@ else
   # use directly source code from this repo instead of npm package
   npm i $blink_id_plugin_path
 fi
+
+# set package name
+sed -i '' s/io.ionic.starter/$appId/g capacitor.config.json
 
 # First we need to build ionic project
 ionic build
@@ -71,9 +75,9 @@ popd
 
 pushd $appName/src/app/home
 
-cp ../../../../SampleFiles/home.page.html ./
-cp ../../../../SampleFiles/home.page.scss ./
-cp ../../../../SampleFiles/home.page.ts ./
+cp ../../../../sample_files/home.page.html ./
+cp ../../../../sample_files/home.page.scss ./
+cp ../../../../sample_files/home.page.ts ./
 
 popd
 

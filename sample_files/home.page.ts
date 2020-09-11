@@ -26,8 +26,8 @@ export class HomePage {
 
     // io.ionic.starter
     const licenseKeys: BlinkID.License = {
-      ios: 'sRwAAAEQaW8uaW9uaWMuc3RhcnRlctOOXHJ8cZk7ufDmqgoofWxXk8xN56gLofT/CuVhdpQ6cM4+FALHNqjvQIhC4SVx6Bhr+cAtPXGqUUSlgHsnHFF184jqfj2pS3h/t88v05xzvRuqllhRIRED63t6VoYar0uq20hydzt3Z56O9RcNL2MxeAVl+A6cI9L0yVAOKJp9zCrbt8dyz78bOyptp+ZK5Gr8czSlNyENh8vePEF1lkwCfvZ09jHIO9wzJ8RTWb8Ag61H8YkDfkhncxPTHP9M5tnZUYBHVL8C',
-      android: 'sRwAAAAQaW8uaW9uaWMuc3RhcnRlcllSTd79IlNktn18BfaTuKfqfr7jOa+dC+iDV4UiZ1q2fykQJVlioifT7FaIQlA7PZkgWIUtb4qQALAQMLrYr1TqjUpYt6n6+GL8D6zKc+3eK95BvrKiTchV29i3qHHRPzmcwbmjVIG4mNWvAp7rhZueA5tpU0ywt6wP7PM1MEQCjm1Dd169k1j8Jk58KQ9EptoXkDUUhdjs+lvvS3Ipee7QH/go61UYbOUnH2nZOfKTAe4FrXFFH04PLUQxoNONVQDaF7uD7rw=',
+      ios: 'sRwAAAEVY29tLm1pY3JvYmxpbmsuc2FtcGxl1BIcP+dpSuS/38LVOOaNNacdy5kvOjARlS+ZYUJequcG+Hqo27AnV1Dsb+chCYtaeZSdPijWBCYJ51tohlnyZoEVBy/6a1OH/bRSNy8cPbh6GEjWK5XsLOJGggpwhNMoId3hXJpEJisHYvwiArC5tvWBUZzgr5rmupFObXTd67RaHytuIBa1ENEiLqT9RRHho05ftVuEcfE0Qk/eKv1vbL+LyowK80VS2pZNoOCd/g8K7iHW5XhGdeCqu0C7izVQ+kROfheTZf8I',
+      android: 'sRwAAAAVY29tLm1pY3JvYmxpbmsuc2FtcGxlU9kJdf5ZkGlTu9W3OPtHZuoNGKKjVJCtgeTniIreKYHlm+vSvgCWTIaeV3b/8PTI1MaUdu55ajYYbb1bNxTKMsPqTbYuXP3HyEjcZqoPC6g4fGVkCtqhecMtUG9FOSsPTWEXIrF8nHVYFmHZcMcasXB6h5u5YwXeIEh1IxrFkq3DFizEuuTWPsRs5iXdxPtTFUFR+1k2J64h88wGuTYLW696bYgSqBmH5p0v36roZC+U+VcKfmWm9Y5+mJvoHyi3fRn/DtK9lMkK',
       showTimeLimitedLicenseKeyWarning: true
     };
 
