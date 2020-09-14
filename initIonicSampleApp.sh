@@ -19,13 +19,14 @@ printf "%s\n" n | ionic start $appName blank --capacitor --type=angular
 # enter into sample project folder
 pushd $appName
 
-if false; then
-  echo "Downloading @microblink/blinkid-capacitor module"
-  npm install --save @microblink/blinkid-capacitor
-else
+IS_LOCAL_BUILD=false || exit 1
+if [ "$IS_LOCAL_BUILD" = true ]; then
   echo "Using @microblink/blinkid-capacitor from this repo instead from NPM"
   # use directly source code from this repo instead of npm package
   npm i $blink_id_plugin_path
+else
+  echo "Downloading @microblink/blinkid-capacitor module"
+  npm install --save @microblink/blinkid-capacitor
 fi
 
 # set package name
@@ -43,7 +44,7 @@ npx cap sync
 # enter into android project folder
 pushd android
 
-file_MainActivity=app/src/main/java/io/ionic/starter/MainActivity.java
+file_MainActivity=app/src/main/java/com/microblink/sample/MainActivity.java
 perl -i~ -pe "BEGIN{$/ = undef;} s/\/\/ Ex: add\(TotallyAwesomePlugin.class\);/\/\/ Ex: add\(TotallyAwesomePlugin.class\);\n      add\(com.microblink.capacitor.MicroblinkPlugin.class\);/" $file_MainActivity
 
 popd
