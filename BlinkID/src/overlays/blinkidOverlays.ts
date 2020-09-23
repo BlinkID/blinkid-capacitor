@@ -87,6 +87,13 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
     showNotSupportedDialog: boolean;
 
     /**
+    * Defines whether glare warning will be displayed when user turn on a flashlight
+    *
+    * Default: true
+    */
+    showFlashlightWarning: boolean;
+
+    /**
     * Option to configure back side scanning timeout.
     *
     * Default: 17000
@@ -176,6 +183,13 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
          * Default: true
         */
         this.showNotSupportedDialog = true;
+
+        /**
+         * Defines whether glare warning will be displayed when user turn on a flashlight
+         *
+         * Default: true
+        */
+        this.showFlashlightWarning = true;
 
         /**
          * Option to configure back side scanning timeout.

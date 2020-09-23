@@ -26,11 +26,17 @@ export class UsdlRecognizerResult extends RecognizerResult {
     /** The first name of the United States driver license owner. */
     firstName: string;
 
+    /** The middle name of the United States driver license owner. */
+    middleName: string;
+
     /** The last name of the United States driver license owner. */
     lastName: string;
 
     /** The full name of the United States driver license owner. */
     fullName: string;
+
+    /** The name suffix of the United States driver license owner. */
+    nameSuffix: string;
 
     /** The full address of the United States driver license owner. */
     address: string;
@@ -88,8 +94,10 @@ export class UsdlRecognizerResult extends RecognizerResult {
         this.uncertain = nativeResult.uncertain;
         this.fields = nativeResult.fields;
         this.firstName = nativeResult.firstName;
+        this.middleName = nativeResult.middleName;
         this.lastName = nativeResult.lastName;
         this.fullName = nativeResult.fullName;
+        this.nameSuffix = nativeResult.nameSuffix;
         this.address = nativeResult.address;
         this.documentNumber = nativeResult.documentNumber;
         this.sex = nativeResult.sex;
