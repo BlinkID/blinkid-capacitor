@@ -79,8 +79,10 @@
     [jsonResult setValue:[NSNumber numberWithBool:self.result.scanningFirstSideDone] forKey:@"scanningFirstSideDone"];
 
     [jsonResult setValue:self.result.firstName forKey:@"firstName"];
+    [jsonResult setValue:self.result.middleName forKey:@"middleName"];
     [jsonResult setValue:self.result.lastName forKey:@"lastName"];
     [jsonResult setValue:self.result.fullName forKey:@"fullName"];
+    [jsonResult setValue:self.result.nameSuffix forKey:@"nameSuffix"];
     [jsonResult setValue:self.result.address forKey:@"address"];
     [jsonResult setValue:self.result.documentNumber forKey:@"documentNumber"];
     [jsonResult setValue:self.result.sex forKey:@"sex"];
