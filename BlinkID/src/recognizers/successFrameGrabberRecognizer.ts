@@ -37,6 +37,6 @@ export class SuccessFrameGrabberRecognizer extends Recognizer {
             throw new Error("Slave recognizer must be Recognizer!");
         }
 
-    	this.createResultFromNative = (nativeResult: any) => { return new SuccessFrameGrabberRecognizerResult(nativeResult, this.slaveRecognizer.createResultFromNative(nativeResult.slaveRecognizerResult)); };
+	this.createResultFromNative = (nativeResult: any) => { return new SuccessFrameGrabberRecognizerResult(nativeResult, this.slaveRecognizer.createResultFromNative(nativeResult.slaveRecognizerResult)); };
     }
 }

@@ -32,6 +32,13 @@ fi
 # set package name
 sed -i '' s/io.ionic.starter/$appId/g capacitor.config.json
 
+# copy files before ionic build
+pushd src/app/home
+cp ../../../../sample_files/home.page.html ./
+cp ../../../../sample_files/home.page.scss ./
+cp ../../../../sample_files/home.page.ts ./
+popd
+
 # First we need to build ionic project
 ionic build
 
@@ -47,6 +54,7 @@ pushd android
 file_MainActivity=app/src/main/java/com/microblink/sample/MainActivity.java
 perl -i~ -pe "BEGIN{$/ = undef;} s/\/\/ Ex: add\(TotallyAwesomePlugin.class\);/\/\/ Ex: add\(TotallyAwesomePlugin.class\);\n      add\(com.microblink.capacitor.MicroblinkPlugin.class\);/" $file_MainActivity
 
+# return from android project folder
 popd
 
 # enter into ios project folder
@@ -61,33 +69,20 @@ if false; then
   # replace pod with custom dev version of BlinkID framework
   pushd Pods/PPBlinkID
   rm -rf Microblink.framework
-
   cp -r ~/Downloads/blinkid-ios/Microblink.framework ./
+  popd
 fi
 
-# go to root
+# return from ios project folder
 popd
-
-pushd $appName
 
 npm i @ionic/angular@latest --save
-
-popd
-
-pushd $appName/src/app/home
-
-cp ../../../../sample_files/home.page.html ./
-cp ../../../../sample_files/home.page.scss ./
-cp ../../../../sample_files/home.page.ts ./
-
-popd
-
-pushd $appName
 
 # Ensure that all pages are available for iOS and Android
 ionic capacitor copy ios
 ionic capacitor copy android
 
+# return to root folder
 popd
 
 echo "Go to Ionic project folder: cd $appName"

@@ -47,15 +47,11 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     
     /**
      * The current age of the document owner in years. It is calculated difference
-         * between now and date of birth. Now is current time on the device.
-         * @return current age of the document owner in years or -1 if date of birth is unknown.
      */
     age: number;
     
     /**
-     * Type of the barcode scanned
-         * 
-         *  @return Type of the barcode
+     * The format of the scanned barcode.
      */
     barcodeType: BarcodeType;
     
@@ -91,8 +87,6 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     
     /**
      * The document type deduced from the recognized barcode
-         * 
-         *  @return Type of the document
      */
     documentType: IdBarcodeDocumentType;
     
@@ -108,12 +102,6 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     
     /**
      * Checks whether the document has expired or not by comparing the current
-         * time on the device with the date of expiry.
-         * 
-         * @return true if the document has expired, false in following cases:
-         * document does not expire (date of expiry is permanent)
-         * date of expiry has passed
-         * date of expiry is unknown and it is not permanent
      */
     expired: boolean;
     
@@ -148,6 +136,11 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     maritalStatus: string;
     
     /**
+     * The middle name of the document owner.
+     */
+    middleName: string;
+    
+    /**
      * The nationality of the documet owner.
      */
     nationality: string;
@@ -178,7 +171,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     race: string;
     
     /**
-     * Byte array with result of the scan
+     * The raw bytes contained inside barcode.
      */
     rawData: string;
     
@@ -188,7 +181,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     religion: string;
     
     /**
-     * The residential stauts of the document owner.
+     * The residential status of the document owner.
      */
     residentialStatus: string;
     
@@ -208,13 +201,12 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     street: string;
     
     /**
-     * Retrieves string content of scanned data
+     * String representation of data inside barcode.
      */
     stringData: string;
     
     /**
-     * Flag indicating uncertain scanning data
-         * E.g obtained from damaged barcode.
+     * True if returned result is uncertain, i.e. if scanned barcode was incomplete (i.e.
      */
     uncertain: boolean;
     
@@ -239,15 +231,11 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         
         /**
          * The current age of the document owner in years. It is calculated difference
-         * between now and date of birth. Now is current time on the device.
-         * @return current age of the document owner in years or -1 if date of birth is unknown.
          */
         this.age = nativeResult.age;
         
         /**
-         * Type of the barcode scanned
-         * 
-         *  @return Type of the barcode
+         * The format of the scanned barcode.
          */
         this.barcodeType = nativeResult.barcodeType;
         
@@ -283,8 +271,6 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         
         /**
          * The document type deduced from the recognized barcode
-         * 
-         *  @return Type of the document
          */
         this.documentType = nativeResult.documentType;
         
@@ -300,12 +286,6 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         
         /**
          * Checks whether the document has expired or not by comparing the current
-         * time on the device with the date of expiry.
-         * 
-         * @return true if the document has expired, false in following cases:
-         * document does not expire (date of expiry is permanent)
-         * date of expiry has passed
-         * date of expiry is unknown and it is not permanent
          */
         this.expired = nativeResult.expired;
         
@@ -340,6 +320,11 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         this.maritalStatus = nativeResult.maritalStatus;
         
         /**
+         * The middle name of the document owner.
+         */
+        this.middleName = nativeResult.middleName;
+        
+        /**
          * The nationality of the documet owner.
          */
         this.nationality = nativeResult.nationality;
@@ -370,7 +355,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         this.race = nativeResult.race;
         
         /**
-         * Byte array with result of the scan
+         * The raw bytes contained inside barcode.
          */
         this.rawData = nativeResult.rawData;
         
@@ -380,7 +365,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         this.religion = nativeResult.religion;
         
         /**
-         * The residential stauts of the document owner.
+         * The residential status of the document owner.
          */
         this.residentialStatus = nativeResult.residentialStatus;
         
@@ -400,13 +385,12 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         this.street = nativeResult.street;
         
         /**
-         * Retrieves string content of scanned data
+         * String representation of data inside barcode.
          */
         this.stringData = nativeResult.stringData;
         
         /**
-         * Flag indicating uncertain scanning data
-         * E.g obtained from damaged barcode.
+         * True if returned result is uncertain, i.e. if scanned barcode was incomplete (i.e.
          */
         this.uncertain = nativeResult.uncertain;
         
@@ -429,6 +413,6 @@ export class IdBarcodeRecognizer extends Recognizer {
         super('IdBarcodeRecognizer');
         
 
-    	this.createResultFromNative = (nativeResult: any) => { return new IdBarcodeRecognizerResult(nativeResult); };
+	this.createResultFromNative = (nativeResult: any) => { return new IdBarcodeRecognizerResult(nativeResult); };
     }
 }
