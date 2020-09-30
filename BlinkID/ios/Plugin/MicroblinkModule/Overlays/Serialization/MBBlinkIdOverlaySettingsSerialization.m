@@ -122,6 +122,13 @@
     }
 
     {
+        id showFlashlightWarning = [jsonOverlaySettings valueForKey:@"showFlashlightWarning"];
+        if (showFlashlightWarning != nil) {
+            sett.showFlashlightWarning = [showFlashlightWarning boolValue];
+        }
+    }
+
+    {
         id backSideScanningTimeoutMilliseconds = [jsonOverlaySettings valueForKey:@"backSideScanningTimeoutMilliseconds"];
         if (backSideScanningTimeoutMilliseconds != nil) {
             sett.backSideScanningTimeout = [backSideScanningTimeoutMilliseconds doubleValue] / 1000.0;

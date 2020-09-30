@@ -72,7 +72,7 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
             return
         }
 
-        MBMicroblinkSDK.shared().setLicenseKey(iOSLicense)
+        MBMicroblinkSDK.shared().setLicenseKey(iOSLicense, errorCallback: nil)
     }
 
     private func sanitizeDictionary(_ dictionary: [String : Any]) -> [String : Any]? {
@@ -93,7 +93,7 @@ extension BlinkIDCapacitorPlugin: MBOverlayViewControllerDelegate {
     public func overlayViewControllerDidFinishScanning(_ overlayViewController: MBOverlayViewController!, state: MBRecognizerResultState) {
 
         defer {
-        	recognizerCollection = nil
+		recognizerCollection = nil
             pluginCall = nil
         }
 
@@ -130,7 +130,7 @@ extension BlinkIDCapacitorPlugin: MBOverlayViewControllerDelegate {
 
     public func overlayDidTapClose(_ overlayViewController: MBOverlayViewController!) {
         defer {
-        	recognizerCollection = nil
+		recognizerCollection = nil
             pluginCall = nil
         }
 
