@@ -72,7 +72,8 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
             return
         }
 
-        MBMicroblinkSDK.shared().setLicenseKey(iOSLicense, errorCallback: nil)
+        MBMicroblinkSDK.shared().setLicenseKey(iOSLicense) { (licenseError) in
+        }
     }
 
     private func sanitizeDictionary(_ dictionary: [String : Any]) -> [String : Any]? {

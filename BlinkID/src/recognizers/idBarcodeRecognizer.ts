@@ -46,11 +46,15 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     
     /**
      * The current age of the document owner in years. It is calculated difference
+         * between now and date of birth. Now is current time on the device.
+         * @return current age of the document owner in years or -1 if date of birth is unknown.
      */
     age: number;
     
     /**
-     * The format of the scanned barcode.
+     * Type of the barcode scanned
+         * 
+         *  @return Type of the barcode
      */
     barcodeType: BarcodeType;
     
@@ -86,6 +90,8 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     
     /**
      * The document type deduced from the recognized barcode
+         * 
+         *  @return Type of the document
      */
     documentType: IdBarcodeDocumentType;
     
@@ -101,6 +107,12 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     
     /**
      * Checks whether the document has expired or not by comparing the current
+         * time on the device with the date of expiry.
+         * 
+         * @return true if the document has expired, false in following cases:
+         * document does not expire (date of expiry is permanent)
+         * date of expiry has passed
+         * date of expiry is unknown and it is not permanent
      */
     expired: boolean;
     
@@ -170,7 +182,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     race: string;
     
     /**
-     * The raw bytes contained inside barcode.
+     * Byte array with result of the scan
      */
     rawData: string;
     
@@ -180,7 +192,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     religion: string;
     
     /**
-     * The residential status of the document owner.
+     * The residential stauts of the document owner.
      */
     residentialStatus: string;
     
@@ -200,12 +212,13 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     street: string;
     
     /**
-     * String representation of data inside barcode.
+     * Retrieves string content of scanned data
      */
     stringData: string;
     
     /**
-     * True if returned result is uncertain, i.e. if scanned barcode was incomplete (i.e.
+     * Flag indicating uncertain scanning data
+         * E.g obtained from damaged barcode.
      */
     uncertain: boolean;
     
@@ -230,11 +243,15 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         
         /**
          * The current age of the document owner in years. It is calculated difference
+         * between now and date of birth. Now is current time on the device.
+         * @return current age of the document owner in years or -1 if date of birth is unknown.
          */
         this.age = nativeResult.age;
         
         /**
-         * The format of the scanned barcode.
+         * Type of the barcode scanned
+         * 
+         *  @return Type of the barcode
          */
         this.barcodeType = nativeResult.barcodeType;
         
@@ -270,6 +287,8 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         
         /**
          * The document type deduced from the recognized barcode
+         * 
+         *  @return Type of the document
          */
         this.documentType = nativeResult.documentType;
         
@@ -285,6 +304,12 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         
         /**
          * Checks whether the document has expired or not by comparing the current
+         * time on the device with the date of expiry.
+         * 
+         * @return true if the document has expired, false in following cases:
+         * document does not expire (date of expiry is permanent)
+         * date of expiry has passed
+         * date of expiry is unknown and it is not permanent
          */
         this.expired = nativeResult.expired;
         
@@ -354,7 +379,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         this.race = nativeResult.race;
         
         /**
-         * The raw bytes contained inside barcode.
+         * Byte array with result of the scan
          */
         this.rawData = nativeResult.rawData;
         
@@ -364,7 +389,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         this.religion = nativeResult.religion;
         
         /**
-         * The residential status of the document owner.
+         * The residential stauts of the document owner.
          */
         this.residentialStatus = nativeResult.residentialStatus;
         
@@ -384,12 +409,13 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         this.street = nativeResult.street;
         
         /**
-         * String representation of data inside barcode.
+         * Retrieves string content of scanned data
          */
         this.stringData = nativeResult.stringData;
         
         /**
-         * True if returned result is uncertain, i.e. if scanned barcode was incomplete (i.e.
+         * Flag indicating uncertain scanning data
+         * E.g obtained from damaged barcode.
          */
         this.uncertain = nativeResult.uncertain;
         
