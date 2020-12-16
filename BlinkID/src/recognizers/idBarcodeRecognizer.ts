@@ -24,7 +24,6 @@ import {
     IdBarcodeDocumentType,
     ClassInfo,
     
-    
 } from '../types'
 
 /* tslint:disable:no-unused-variable */
@@ -54,7 +53,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     
     /**
      * Type of the barcode scanned
-         *
+         * 
          *  @return Type of the barcode
      */
     barcodeType: BarcodeType;
@@ -91,7 +90,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     
     /**
      * The document type deduced from the recognized barcode
-         *
+         * 
          *  @return Type of the document
      */
     documentType: IdBarcodeDocumentType;
@@ -109,7 +108,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     /**
      * Checks whether the document has expired or not by comparing the current
          * time on the device with the date of expiry.
-         *
+         * 
          * @return true if the document has expired, false in following cases:
          * document does not expire (date of expiry is permanent)
          * date of expiry has passed
@@ -251,7 +250,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         
         /**
          * Type of the barcode scanned
-         *
+         * 
          *  @return Type of the barcode
          */
         this.barcodeType = nativeResult.barcodeType;
@@ -288,7 +287,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         
         /**
          * The document type deduced from the recognized barcode
-         *
+         * 
          *  @return Type of the document
          */
         this.documentType = nativeResult.documentType;
@@ -306,7 +305,7 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
         /**
          * Checks whether the document has expired or not by comparing the current
          * time on the device with the date of expiry.
-         *
+         * 
          * @return true if the document has expired, false in following cases:
          * document does not expire (date of expiry is permanent)
          * date of expiry has passed

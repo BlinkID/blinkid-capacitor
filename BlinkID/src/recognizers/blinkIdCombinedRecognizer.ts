@@ -24,7 +24,6 @@ import {
     IdBarcodeDocumentType,
     ClassInfo,
     
-    
 } from '../types'
 
 /* tslint:disable:no-unused-variable */
@@ -126,6 +125,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
     documentNumber: string;
     
     /**
+     * The one more additional number of the document.
+     */
+    documentOptionalAdditionalNumber: string;
+    
+    /**
      * The driver license detailed info.
      */
     driverLicenseDetailedInfo: DriverLicenseDetailedInfo;
@@ -138,7 +142,7 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
     /**
      * Checks whether the document has expired or not by comparing the current
          * time on the device with the date of expiry.
-         *
+         * 
          * @return true if the document has expired, false in following cases:
          * document does not expire (date of expiry is permanent)
          * date of expiry has passed
@@ -362,6 +366,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
         this.documentNumber = nativeResult.documentNumber;
         
         /**
+         * The one more additional number of the document.
+         */
+        this.documentOptionalAdditionalNumber = nativeResult.documentOptionalAdditionalNumber;
+        
+        /**
          * The driver license detailed info.
          */
         this.driverLicenseDetailedInfo = nativeResult.driverLicenseDetailedInfo;
@@ -374,7 +383,7 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
         /**
          * Checks whether the document has expired or not by comparing the current
          * time on the device with the date of expiry.
-         *
+         * 
          * @return true if the document has expired, false in following cases:
          * document does not expire (date of expiry is permanent)
          * date of expiry has passed
@@ -514,55 +523,55 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
     
     /**
      * Defines whether blured frames filtering is allowed
-         *
-         *
+         * 
+         * 
      */
     allowBlurFilter: boolean;
     
     /**
      * Defines whether returning of unparsed MRZ (Machine Readable Zone) results is allowed
-         *
-         *
+         * 
+         * 
      */
     allowUnparsedMrzResults: boolean;
     
     /**
      * Defines whether returning unverified MRZ (Machine Readable Zone) results is allowed
          * Unverified MRZ is parsed, but check digits are incorrect
-         *
-         *
+         * 
+         * 
      */
     allowUnverifiedMrzResults: boolean;
     
     /**
      * Defines whether sensitive data should be removed from images, result fields or both.
          * The setting only applies to certain documents
-         *
-         *
+         * 
+         * 
      */
     anonymizationMode: AnonymizationMode;
     
     /**
      * Property for setting DPI for face images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
      */
     faceImageDpi: number;
     
     /**
      * Property for setting DPI for full document images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
      */
     fullDocumentImageDpi: number;
     
     /**
      * Image extension factors for full document image.
-         *
+         * 
          * @see ImageExtensionFactors
-         *
+         * 
      */
     fullDocumentImageExtensionFactors: ImageExtensionFactors;
     
@@ -570,66 +579,66 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
      * Pading is a minimum distance from the edge of the frame and is defined as a percentage of the frame width. Default value is 0.0f and in that case
          * padding edge and image edge are the same.
          * Recommended value is 0.02f.
-         *
-         *
+         * 
+         * 
      */
     paddingEdge: number;
     
     /**
      * Enable or disable recognition of specific document groups supported by the current license.
-         *
-         *
+         * 
+         * 
      */
     recognitionModeFilter: RecognitionModeFilter;
     
     /**
      * Sets whether face image from ID card should be extracted
-         *
-         *
+         * 
+         * 
      */
     returnFaceImage: boolean;
     
     /**
      * Sets whether full document image of ID card should be extracted.
-         *
-         *
+         * 
+         * 
      */
     returnFullDocumentImage: boolean;
     
     /**
      * Sets whether signature image from ID card should be extracted.
-         *
-         *
+         * 
+         * 
      */
     returnSignatureImage: boolean;
     
     /**
      * Whether or not recognition result should be signed.
-         *
-         *
+         * 
+         * 
      */
     signResult: boolean;
     
     /**
      * Property for setting DPI for signature images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
      */
     signatureImageDpi: number;
     
     /**
      * Skip back side capture and processing step when back side of the document is not supported
-         *
-         *
+         * 
+         * 
      */
     skipUnsupportedBack: boolean;
     
     /**
      * Defines whether result characters validatation is performed.
          * If a result member contains invalid character, the result state cannot be valid
-         *
-         *
+         * 
+         * 
      */
     validateResultCharacters: boolean;
     
@@ -639,55 +648,55 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
         
         /**
          * Defines whether blured frames filtering is allowed
-         *
-         *
+         * 
+         * 
          */
         this.allowBlurFilter = true;
         
         /**
          * Defines whether returning of unparsed MRZ (Machine Readable Zone) results is allowed
-         *
-         *
+         * 
+         * 
          */
         this.allowUnparsedMrzResults = false;
         
         /**
          * Defines whether returning unverified MRZ (Machine Readable Zone) results is allowed
          * Unverified MRZ is parsed, but check digits are incorrect
-         *
-         *
+         * 
+         * 
          */
         this.allowUnverifiedMrzResults = true;
         
         /**
          * Defines whether sensitive data should be removed from images, result fields or both.
          * The setting only applies to certain documents
-         *
-         *
+         * 
+         * 
          */
         this.anonymizationMode = AnonymizationMode.FullResult;
         
         /**
          * Property for setting DPI for face images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
          */
         this.faceImageDpi = 250;
         
         /**
          * Property for setting DPI for full document images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
          */
         this.fullDocumentImageDpi = 250;
         
         /**
          * Image extension factors for full document image.
-         *
+         * 
          * @see ImageExtensionFactors
-         *
+         * 
          */
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
         
@@ -695,66 +704,66 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
          * Pading is a minimum distance from the edge of the frame and is defined as a percentage of the frame width. Default value is 0.0f and in that case
          * padding edge and image edge are the same.
          * Recommended value is 0.02f.
-         *
-         *
+         * 
+         * 
          */
         this.paddingEdge = 0.0;
         
         /**
          * Enable or disable recognition of specific document groups supported by the current license.
-         *
-         *
+         * 
+         * 
          */
         this.recognitionModeFilter = new RecognitionModeFilter();
         
         /**
          * Sets whether face image from ID card should be extracted
-         *
-         *
+         * 
+         * 
          */
         this.returnFaceImage = false;
         
         /**
          * Sets whether full document image of ID card should be extracted.
-         *
-         *
+         * 
+         * 
          */
         this.returnFullDocumentImage = false;
         
         /**
          * Sets whether signature image from ID card should be extracted.
-         *
-         *
+         * 
+         * 
          */
         this.returnSignatureImage = false;
         
         /**
          * Whether or not recognition result should be signed.
-         *
-         *
+         * 
+         * 
          */
         this.signResult = false;
         
         /**
          * Property for setting DPI for signature images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
          */
         this.signatureImageDpi = 250;
         
         /**
          * Skip back side capture and processing step when back side of the document is not supported
-         *
-         *
+         * 
+         * 
          */
         this.skipUnsupportedBack = false;
         
         /**
          * Defines whether result characters validatation is performed.
          * If a result member contains invalid character, the result state cannot be valid
-         *
-         *
+         * 
+         * 
          */
         this.validateResultCharacters = true;
         

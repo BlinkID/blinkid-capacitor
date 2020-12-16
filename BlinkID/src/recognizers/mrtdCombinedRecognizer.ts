@@ -24,7 +24,6 @@ import {
     IdBarcodeDocumentType,
     ClassInfo,
     
-    
 } from '../types'
 
 /* tslint:disable:no-unused-variable */
@@ -132,7 +131,7 @@ export class MrtdCombinedRecognizerResult extends RecognizerResult {
 
 /**
  * MRTD Combined recognizer
- *
+ * 
  * MRTD Combined recognizer is used for scanning both front and back side of generic IDs.
  */
 export class MrtdCombinedRecognizer extends Recognizer {
@@ -140,85 +139,85 @@ export class MrtdCombinedRecognizer extends Recognizer {
     
     /**
      * Whether special characters are allowed
-         *
-         *
+         * 
+         * 
      */
     allowSpecialCharacters: boolean;
     
     /**
      * Whether returning of unparsed results is allowed
-         *
-         *
+         * 
+         * 
      */
     allowUnparsedResults: boolean;
     
     /**
      * Whether returning of unverified results is allowed
          * Unverified result is result that is parsed, but check digits are incorrect.
-         *
-         *
+         * 
+         * 
      */
     allowUnverifiedResults: boolean;
     
     /**
      * Type of document this recognizer will scan.
-         *
-         *
+         * 
+         * 
      */
     detectorType: DocumentFaceDetectorType;
     
     /**
      * Property for setting DPI for face images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
      */
     faceImageDpi: number;
     
     /**
      * Property for setting DPI for full document images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
      */
     fullDocumentImageDpi: number;
     
     /**
      * Image extension factors for full document image.
-         *
+         * 
          * @see ImageExtensionFactors
-         *
+         * 
      */
     fullDocumentImageExtensionFactors: ImageExtensionFactors;
     
     /**
      * Defines how many times the same document should be detected before the detector
          * returns this document as a result of the deteciton
-         *
+         * 
          * Higher number means more reliable detection, but slower processing
-         *
-         *
+         * 
+         * 
      */
     numStableDetectionsThreshold: number;
     
     /**
      * Sets whether face image from ID card should be extracted
-         *
-         *
+         * 
+         * 
      */
     returnFaceImage: boolean;
     
     /**
      * Sets whether full document image of ID card should be extracted.
-         *
-         *
+         * 
+         * 
      */
     returnFullDocumentImage: boolean;
     
     /**
      * Whether or not recognition result should be signed.
-         *
-         *
+         * 
+         * 
      */
     signResult: boolean;
     
@@ -228,85 +227,85 @@ export class MrtdCombinedRecognizer extends Recognizer {
         
         /**
          * Whether special characters are allowed
-         *
-         *
+         * 
+         * 
          */
         this.allowSpecialCharacters = false;
         
         /**
          * Whether returning of unparsed results is allowed
-         *
-         *
+         * 
+         * 
          */
         this.allowUnparsedResults = false;
         
         /**
          * Whether returning of unverified results is allowed
          * Unverified result is result that is parsed, but check digits are incorrect.
-         *
-         *
+         * 
+         * 
          */
         this.allowUnverifiedResults = false;
         
         /**
          * Type of document this recognizer will scan.
-         *
-         *
+         * 
+         * 
          */
         this.detectorType = DocumentFaceDetectorType.TD1;
         
         /**
          * Property for setting DPI for face images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
          */
         this.faceImageDpi = 250;
         
         /**
          * Property for setting DPI for full document images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * 
+         * 
          */
         this.fullDocumentImageDpi = 250;
         
         /**
          * Image extension factors for full document image.
-         *
+         * 
          * @see ImageExtensionFactors
-         *
+         * 
          */
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
         
         /**
          * Defines how many times the same document should be detected before the detector
          * returns this document as a result of the deteciton
-         *
+         * 
          * Higher number means more reliable detection, but slower processing
-         *
-         *
+         * 
+         * 
          */
         this.numStableDetectionsThreshold = 6;
         
         /**
          * Sets whether face image from ID card should be extracted
-         *
-         *
+         * 
+         * 
          */
         this.returnFaceImage = false;
         
         /**
          * Sets whether full document image of ID card should be extracted.
-         *
-         *
+         * 
+         * 
          */
         this.returnFullDocumentImage = false;
         
         /**
          * Whether or not recognition result should be signed.
-         *
-         *
+         * 
+         * 
          */
         this.signResult = false;
         
