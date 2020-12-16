@@ -339,7 +339,21 @@ export const enum Country {
     ElSalvador = 89,
     SriLanka = 90,
     Peru = 91,
-    Uruguay = 92
+    Uruguay = 92,
+    Bahamas = 93,
+    Bermuda = 94,
+    Bolivia = 95,
+    China = 96,
+    EuropeanUnion = 97,
+    Haiti = 98,
+    Honduras = 99,
+    Iceland = 100,
+    Japan = 101,
+    Luxembourg = 102,
+    Montenegro = 103,
+    Nicaragua = 104,
+    SouthKorea = 105,
+    Venezuela = 106
 }
 
 /**
@@ -418,7 +432,16 @@ export const enum Region {
     CiudadDeMexico = 70,
     Jalisco = 71,
     NewfoundlandAndLabrador = 72,
-    NuevoLeon = 73
+    NuevoLeon = 73,
+    BajaCalifornia = 74,
+    Chihuahua = 75,
+    Guanajuato = 76,
+    Guerrero = 77,
+    Mexico = 78,
+    Michoacan = 79,
+    NewYorkCity = 80,
+    Tamaulipas = 81,
+    Veracruz = 82
 }
 
 /**
@@ -451,7 +474,16 @@ export const enum Type {
     SocialSecurityCard = 24,
     HealthInsuranceCard = 25,
     Passport = 26,
-    SPass = 27
+    SPass = 27,
+    AddressCard = 28,
+    AlienId = 29,
+    AlienPassport = 30,
+    GreenCard = 31,
+    MinorsId = 32,
+    PostalId = 33,
+    ProfessionalDl = 34,
+    TaxId = 35,
+    WeaponPermit = 36
 }
 
 /** Defines the data extracted from the barcode. */
@@ -676,6 +708,8 @@ export class VizResult {
     driverLicenseDetailedInfo: DriverLicenseDetailedInfo;
     /** Flag that indicates if barcode result is empty */
     empty: boolean;
+    /** The one more additional number of the document. */
+    documentOptionalAdditionalNumber: string;
 
     constructor(nativeVizResult: any) {
 
@@ -756,6 +790,8 @@ export class VizResult {
 
         /** Flag that indicates if barcode result is empty */
         this.empty = nativeVizResult.empty;
+
+        this.documentOptionalAdditionalNumber = nativeVizResult.documentOptionalAdditionalNumber;
     }
 }
 

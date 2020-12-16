@@ -24,7 +24,6 @@ import {
     IdBarcodeDocumentType,
     ClassInfo,
     
-    
 } from '../types'
 
 /* tslint:disable:no-unused-variable */
@@ -36,22 +35,22 @@ export class PassportRecognizerResult extends RecognizerResult {
 
     
     /**
-     * Digital signature of the recognition result. Available only if enabled with signResult property.
+     * Defines digital signature of recognition results.
      */
     digitalSignature: string;
     
     /**
-     * Version of the digital signature. Available only if enabled with signResult property.
+     * Defines digital signature version.
      */
     digitalSignatureVersion: number;
     
     /**
-     * face image from the document if enabled with returnFaceImage property.
+     * Face image from the document
      */
     faceImage: string;
     
     /**
-     * full document image if enabled with returnFullDocumentImage property.
+     * Image of the full document
      */
     fullDocumentImage: string;
     
@@ -65,22 +64,22 @@ export class PassportRecognizerResult extends RecognizerResult {
         super(nativeResult.resultState);
         
         /**
-         * Digital signature of the recognition result. Available only if enabled with signResult property.
+         * Defines digital signature of recognition results.
          */
         this.digitalSignature = nativeResult.digitalSignature;
         
         /**
-         * Version of the digital signature. Available only if enabled with signResult property.
+         * Defines digital signature version.
          */
         this.digitalSignatureVersion = nativeResult.digitalSignatureVersion;
         
         /**
-         * face image from the document if enabled with returnFaceImage property.
+         * Face image from the document
          */
         this.faceImage = nativeResult.faceImage;
         
         /**
-         * full document image if enabled with returnFullDocumentImage property.
+         * Image of the full document
          */
         this.fullDocumentImage = nativeResult.fullDocumentImage;
         
@@ -99,61 +98,42 @@ export class PassportRecognizer extends Recognizer {
 
     
     /**
-     * Defines whether to anonymize Netherlands MRZ
-         *
-         *
+     * Defines whether the Netherlands MRZ should be anonymized.
      */
     anonymizeNetherlandsMrz: boolean;
     
     /**
-     * Defines if glare detection should be turned on/off.
-         *
-         *
+     * Defines whether glare detector is enabled.
      */
     detectGlare: boolean;
     
     /**
-     * Property for setting DPI for face images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+     * The DPI (Dots Per Inch) for face image that should be returned.
      */
     faceImageDpi: number;
     
     /**
-     * Property for setting DPI for full document images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+     * The DPI (Dots Per Inch) for full document image that should be returned.
      */
     fullDocumentImageDpi: number;
     
     /**
-     * Image extension factors for full document image.
-         *
-         * @see ImageExtensionFactors
-         *
+     * The extension factors for full document image.
      */
     fullDocumentImageExtensionFactors: ImageExtensionFactors;
     
     /**
-     * Sets whether face image from ID card should be extracted
-         *
-         *
+     * Defines whether face image will be available in result.
      */
     returnFaceImage: boolean;
     
     /**
-     * Sets whether full document image of ID card should be extracted.
-         *
-         *
+     * Defines whether full document image will be available in
      */
     returnFullDocumentImage: boolean;
     
     /**
-     * Whether or not recognition result should be signed.
-         *
-         *
+     * Defines whether or not recognition result should be signed.
      */
     signResult: boolean;
     
@@ -162,61 +142,42 @@ export class PassportRecognizer extends Recognizer {
         super('PassportRecognizer');
         
         /**
-         * Defines whether to anonymize Netherlands MRZ
-         *
-         *
+         * Defines whether the Netherlands MRZ should be anonymized.
          */
         this.anonymizeNetherlandsMrz = true;
         
         /**
-         * Defines if glare detection should be turned on/off.
-         *
-         *
+         * Defines whether glare detector is enabled.
          */
         this.detectGlare = true;
         
         /**
-         * Property for setting DPI for face images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * The DPI (Dots Per Inch) for face image that should be returned.
          */
         this.faceImageDpi = 250;
         
         /**
-         * Property for setting DPI for full document images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         *
-         *
+         * The DPI (Dots Per Inch) for full document image that should be returned.
          */
         this.fullDocumentImageDpi = 250;
         
         /**
-         * Image extension factors for full document image.
-         *
-         * @see ImageExtensionFactors
-         *
+         * The extension factors for full document image.
          */
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
         
         /**
-         * Sets whether face image from ID card should be extracted
-         *
-         *
+         * Defines whether face image will be available in result.
          */
         this.returnFaceImage = false;
         
         /**
-         * Sets whether full document image of ID card should be extracted.
-         *
-         *
+         * Defines whether full document image will be available in
          */
         this.returnFullDocumentImage = false;
         
         /**
-         * Whether or not recognition result should be signed.
-         *
-         *
+         * Defines whether or not recognition result should be signed.
          */
         this.signResult = false;
         
