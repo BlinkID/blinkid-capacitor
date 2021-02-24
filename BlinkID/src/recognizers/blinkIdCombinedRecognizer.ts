@@ -23,6 +23,8 @@ import {
     RecognitionMode,
     IdBarcodeDocumentType,
     ClassInfo,
+    BarcodeElements,
+    BarcodeElementKey,
     
 } from '../types'
 
@@ -613,6 +615,14 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
     returnSignatureImage: boolean;
     
     /**
+     * Configure the recognizer to only work on already cropped and dewarped images.
+         * This only works for still images - video feeds will ignore this setting.
+         * 
+         * 
+     */
+    scanCroppedDocumentImage: boolean;
+    
+    /**
      * Whether or not recognition result should be signed.
          * 
          * 
@@ -736,6 +746,14 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
          * 
          */
         this.returnSignatureImage = false;
+        
+        /**
+         * Configure the recognizer to only work on already cropped and dewarped images.
+         * This only works for still images - video feeds will ignore this setting.
+         * 
+         * 
+         */
+        this.scanCroppedDocumentImage = false;
         
         /**
          * Whether or not recognition result should be signed.

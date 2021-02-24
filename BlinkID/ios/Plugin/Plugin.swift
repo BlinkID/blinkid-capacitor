@@ -62,9 +62,9 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
 
     private func setLicenseKey(license: [String:Any]) {
 
-        if (license["showTimeLimitedLicenseKeyWarning"] != nil) {
-            let showTimeLimitedLicenseKeyWarning = license["showTimeLimitedLicenseKeyWarning"] as! Bool
-            MBMicroblinkSDK.shared().showLicenseKeyTimeLimitedWarning = showTimeLimitedLicenseKeyWarning
+        if (license["showTrialLicenseWarning"] != nil) {
+            let showTrialLicenseWarning = license["showTrialLicenseWarning"] as! Bool
+            MBMicroblinkSDK.shared().showTrialLicenseWarning = showTrialLicenseWarning
         }
 
         guard let iOSLicense = license["ios"] as? String else {

@@ -23,6 +23,8 @@ import {
     RecognitionMode,
     IdBarcodeDocumentType,
     ClassInfo,
+    BarcodeElements,
+    BarcodeElementKey,
     
 } from '../types'
 

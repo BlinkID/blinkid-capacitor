@@ -54,8 +54,8 @@ public class MicroblinkPlugin extends Plugin {
     }
 
     private void setLicense(JSObject jsonLicense) {
-        MicroblinkSDK.setShowTimeLimitedLicenseWarning(
-                jsonLicense.optBoolean("showTimeLimitedLicenseKeyWarning", true)
+        MicroblinkSDK.setShowTrialLicenseWarning(
+                jsonLicense.optBoolean("showTrialLicenseKeyWarning", true)
         );
         String androidLicense = jsonLicense.getString("android");
         String licensee = jsonLicense.optString("licensee", null);

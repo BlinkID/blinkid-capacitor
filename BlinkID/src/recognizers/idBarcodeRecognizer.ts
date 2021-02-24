@@ -23,6 +23,8 @@ import {
     RecognitionMode,
     IdBarcodeDocumentType,
     ClassInfo,
+    BarcodeElements,
+    BarcodeElementKey,
     
 } from '../types'
 
@@ -115,6 +117,13 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
          * date of expiry is unknown and it is not permanent
      */
     expired: boolean;
+    
+    /**
+     * Document specific extended elements that contain all barcode fields in their original form.
+         * 
+         * Currently this is only filled for AAMVACompliant documents.
+     */
+    extendedElements: BarcodeElements;
     
     /**
      * The first name of the document owner.
@@ -312,6 +321,13 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
          * date of expiry is unknown and it is not permanent
          */
         this.expired = nativeResult.expired;
+        
+        /**
+         * Document specific extended elements that contain all barcode fields in their original form.
+         * 
+         * Currently this is only filled for AAMVACompliant documents.
+         */
+        this.extendedElements = nativeResult.extendedElements;
         
         /**
          * The first name of the document owner.
