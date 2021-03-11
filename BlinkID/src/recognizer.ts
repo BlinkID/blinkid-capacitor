@@ -51,7 +51,7 @@ export class RecognizerCollection {
     /** Number of miliseconds after first non-empty result becomes available to end scanning with a timeout */
     milisecondsBeforeTimeout: number;
 
-    constructor(recognizerArray: [Recognizer]) {
+    constructor(recognizerArray: Recognizer[]) {
         this.recognizerArray = recognizerArray;
         this.allowMultipleResults = false;
         this.milisecondsBeforeTimeout = 10000;
