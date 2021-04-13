@@ -194,7 +194,7 @@ export const enum AnonymizationMode {
     ImageOnly = 2,
 
     /** Result fields containing sensitive data are removed from result. */
-    ResultFieldsOnly = 3,
+    FieldsOnly = 3,
 
     /** This mode is combination of ImageOnly and ResultFieldsOnly modes. */
     FullResult = 4
@@ -605,7 +605,34 @@ export const enum Region {
     Michoacan = 79,
     NewYorkCity = 80,
     Tamaulipas = 81,
-    Veracruz = 82
+    Veracruz = 82,
+    Chiapas = 83,
+    Coahuila = 84,
+    Durango = 85,
+    GuerreroCocula = 86,
+    GuerreroJuchitan = 87,
+    GuerreroTepecoacuilco = 88,
+    GuerreroTlacoapa = 89,
+    Gujarat = 90,
+    Hidalgo = 91,
+    Karnataka = 92,
+    Kerala = 93,
+    KhyberPakhtunkhwa = 94,
+    MadhyaPradesh = 95,
+    Maharashtra = 96,
+    Morelos = 97,
+    Nayarit = 98,
+    Oaxaca = 99,
+    Puebla = 100,
+    Punjab = 101,
+    Queretaro = 102,
+    SanLuisPotosi = 103,
+    Sinaloa = 104,
+    Sonora = 105,
+    Tabasco = 106,
+    TamilNadu = 107,
+    Yucatan = 108,
+    Zacatecas = 109
 }
 
 /**
@@ -648,7 +675,17 @@ export const enum Type {
     ProfessionalDl = 34,
     TaxId = 35,
     WeaponPermit = 36,
-    Visa = 37
+    Visa = 37,
+    BorderCrossingCard = 38,
+    DriverCard = 39,
+    GlobalEntryCard = 40,
+    Mypolis = 41,
+    NexusCard = 42,
+    PassportCard = 43,
+    ProofOfAgeCard = 44,
+    RefugeeId = 45,
+    TribalId = 46,
+    VeteranId = 47
 }
 
 /** Defines the data extracted from the barcode. */
@@ -2160,6 +2197,8 @@ export class RecognitionModeFilter {
     enableMrzPassport: boolean;
     /** Enable scanning of Photo ID. Setting is taken into account only if the photo_id right is purchased. */
     enablePhotoId: boolean;
+    /** Enable scanning of barcode IDs. Setting is taken into account only if the barcode right to scan that barcode is purchased. */
+    enableBarcodeId: boolean;
     /** Enable full document recognition. Setting is taken into account only if the document right to scan that document is purchased. */
     enableFullDocumentRecognition: boolean;
 
@@ -2172,6 +2211,8 @@ export class RecognitionModeFilter {
         this.enableMrzPassport = true;
         /** Enable scanning of Photo ID. Setting is taken into account only if the photo_id right is purchased. */
         this.enablePhotoId = true;
+        /** Enable scanning of barcode IDs. Setting is taken into account only if the barcode right to scan that barcode is purchased. */
+        this.enableBarcodeId = true;
         /** Enable full document recognition. Setting is taken into account only if the document right to scan that document is purchased. */
         this.enableFullDocumentRecognition = true;
     }
@@ -2243,6 +2284,9 @@ export const enum RecognitionMode {
     PhotoId,
 
     /** Detailed document recognition. */
-    FullRecognition
+    FullRecognition,
+
+    /** Recognition of barcode document. */
+    BarcodeId
 }
 
