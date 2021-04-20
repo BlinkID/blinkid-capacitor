@@ -64,5 +64,8 @@
   },
   "bugs": {
     "url": "https://github.com/BlinkID/blinkid-capacitor/issues"
+  },
+  "dependencies": {
+    "is-core-module": "^2.2.0"
   }
 }
