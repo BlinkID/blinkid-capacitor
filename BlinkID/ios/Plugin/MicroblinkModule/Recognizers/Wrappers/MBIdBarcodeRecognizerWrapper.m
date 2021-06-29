@@ -67,7 +67,6 @@
     [jsonResult setValue:self.result.stringData forKey:@"stringData"];
     [jsonResult setValue:[NSNumber numberWithBool:self.result.uncertain] forKey:@"uncertain"];
     [jsonResult setValue:self.result.vehicleClass forKey:@"vehicleClass"];
-
     return jsonResult;
 }
 

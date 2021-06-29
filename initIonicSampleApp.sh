@@ -29,8 +29,10 @@ else
   npm install --save @microblink/blinkid-capacitor
 fi
 
+npx cap init $appName $appId
+
 # set package name
-sed -i '' s/io.ionic.starter/$appId/g capacitor.config.json
+sed -i '' s/io.ionic.starter/$appId/g capacitor.config.ts
 
 # copy files before ionic build
 pushd src/app/home

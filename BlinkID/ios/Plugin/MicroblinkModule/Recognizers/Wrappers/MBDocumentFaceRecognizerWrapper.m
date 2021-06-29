@@ -76,7 +76,6 @@
     [jsonResult setValue:[MBSerializationUtils encodeMBImage:self.result.faceImage] forKey:@"faceImage"];
     [jsonResult setValue:[MBSerializationUtils serializeMBQuadrangle:self.result.faceLocation] forKey:@"faceLocation"];
     [jsonResult setValue:[MBSerializationUtils encodeMBImage:self.result.fullDocumentImage] forKey:@"fullDocumentImage"];
-
     return jsonResult;
 }
 
