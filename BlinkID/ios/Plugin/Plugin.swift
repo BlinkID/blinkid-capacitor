@@ -56,7 +56,7 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
                     return
             }
             recognizerRunneViewController.modalPresentationStyle = .fullScreen
-            self.bridge?.viewController.present(recognizerRunneViewController, animated: true, completion: nil)
+            self.bridge?.viewController?.present(recognizerRunneViewController, animated: true, completion: nil)
         }
     }
     
