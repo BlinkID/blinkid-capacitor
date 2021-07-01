@@ -6,8 +6,6 @@ import {
     MrtdDocumentType,
     MrzResult,
     DocumentFaceDetectorType,
-    ImageExtensionFactors,
-    DataMatchResult,
     Country,
     Region,
     Type,
@@ -26,6 +24,9 @@ import {
     BarcodeElements,
     BarcodeElementKey,
     
+    
+    ImageExtensionFactors,
+    DataMatchResult,
 } from '../types'
 
 /* tslint:disable:no-unused-variable */

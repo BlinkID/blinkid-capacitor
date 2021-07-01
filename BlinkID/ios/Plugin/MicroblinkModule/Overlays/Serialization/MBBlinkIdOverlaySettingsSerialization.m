@@ -6,6 +6,7 @@
 //
 
 #import "MBBlinkIdOverlaySettingsSerialization.h"
+#import "MBOverlaySerializationUtils.h"
 
 @interface MBBlinkIdOverlaySettingsSerialization ()
 
@@ -29,6 +30,7 @@
     // no settings deserialized at the moment
     MBBlinkIdOverlaySettings *sett = [[MBBlinkIdOverlaySettings alloc] init];
     self.delegate = delegate;
+    [MBOverlaySerializationUtils extractCommonOverlaySettings:jsonOverlaySettings overlaySettings:sett];
 
     {
         id firstSideInstructionsText = [jsonOverlaySettings valueForKey:@"firstSideInstructionsText"];
