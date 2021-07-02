@@ -26,7 +26,7 @@ if [ "$IS_LOCAL_BUILD" = true ]; then
   npm i $blink_id_plugin_path
 else
   echo "Downloading @microblink/blinkid-capacitor module"
-  npm install --save @microblink/blinkid-capacitor
+  npm install --save @microblink/blinkid-capacitor --legacy-peer-deps
 fi
 
 npx cap init $appName $appId
@@ -43,6 +43,9 @@ popd
 
 # First we need to build ionic project
 ionic build
+
+npm install @capacitor/android
+npm install @capacitor/ios
 
 # We neeed to add capacitor platforms
 npx cap add ios
