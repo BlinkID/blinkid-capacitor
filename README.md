@@ -20,12 +20,12 @@ Package depends on [BlinkID SDK](https://microblink.com/products/blinkid) and it
 
 ### Capacitor
 
-BlinkID plugin is developed with Capacitor version 2.4.0.
+BlinkID plugin is developed with Capacitor version 3.0.
 For help with Capacitor, view official [documentation](https://capacitorjs.com/docs).
 
 ### iOS
 
-BlinkID Capacitor plugin supports iOS 11.0 or newer.
+BlinkID Capacitor plugin supports iOS 12.0 or newer.
 
 ### Android
 
