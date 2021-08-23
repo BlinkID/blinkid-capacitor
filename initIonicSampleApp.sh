@@ -14,7 +14,7 @@ appId=com.microblink.sample
 rm -rf $appName
 
 # create a sample application with capacitor enabled without ionic free account 
-printf "%s\n" n | ionic start $appName blank --capacitor --type=angular
+printf "%s\n" n | ionic start $appName blank --package-id=$appId --capacitor --type=angular
 
 # enter into sample project folder
 pushd $appName
@@ -28,11 +28,6 @@ else
   echo "Downloading @microblink/blinkid-capacitor module"
   npm install --save @microblink/blinkid-capacitor --legacy-peer-deps
 fi
-
-npx cap init $appName $appId
-
-# set package name
-sed -i '' s/io.ionic.starter/$appId/g capacitor.config.ts
 
 # copy files before ionic build
 pushd src/app/home
@@ -82,5 +77,5 @@ ionic capacitor copy android
 popd
 
 echo "Go to Ionic project folder: cd $appName"
-echo "To run on Android: go to $appName and run npx cap open android in terminal and press run"
+echo "To run on Android: go to $appName and run > npx cap run android < in terminal"
 echo "To run on iOS: go to $appName and run npx cap open ios in terminal; set your development team and press run"
