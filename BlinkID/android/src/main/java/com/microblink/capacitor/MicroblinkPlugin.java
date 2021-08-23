@@ -4,15 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.activity.result.ActivityResult;
+
 import com.microblink.MicroblinkSDK;
 import com.microblink.entities.recognizers.RecognizerBundle;
 import com.microblink.intent.IntentDataTransferMode;
 import com.microblink.uisettings.UISettings;
-import com.microblink.uisettings.ActivityRunner;
 import com.microblink.capacitor.overlays.OverlaySettingsSerializers;
 import com.microblink.capacitor.recognizers.RecognizerSerializers;
+import com.getcapacitor.annotation.ActivityCallback;
+import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.JSObject;
-import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
@@ -22,13 +24,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-@NativePlugin(
-        name="BlinkIDCapacitorPlugin",
-        requestCodes = {MicroblinkPlugin.REQUEST_CODE
-})
+@CapacitorPlugin(name="BlinkIDCapacitorPlugin")
 public class MicroblinkPlugin extends Plugin {
-
-    static final int REQUEST_CODE = 1453;
 
     private static final String CANCELLED = "cancelled";
     private static final String RESULT_LIST = "resultList";
@@ -42,15 +39,36 @@ public class MicroblinkPlugin extends Plugin {
         JSObject jsRecognizerCollection = call.getObject("recognizerCollection");
         JSObject jsLicenses = call.getObject("license");
 
-        saveCall(call);
-
-        Activity activity = getActivity();
         setLicense(jsLicenses);
 
         recognizerBundle = RecognizerSerializers.INSTANCE.deserializeRecognizerCollection(jsRecognizerCollection);
         UISettings uiSettings = OverlaySettingsSerializers.INSTANCE.getOverlaySettings(getContext(), jsOverlaySettings, recognizerBundle);
 
-        ActivityRunner.startActivityForResult(activity, REQUEST_CODE, uiSettings);
+
+        startActivityForResult(call, "handleScanResult", uiSettings);
+    }
+
+    @ActivityCallback
+    private void handleScanResult(PluginCall call, ActivityResult activityResult) {
+        int resultCode = activityResult.getResultCode();
+        if (resultCode == Activity.RESULT_CANCELED) {
+            JSObject obj = new JSObject();
+            obj.put(CANCELLED, true);
+            call.resolve(obj); 
+        } else if (resultCode == Activity.RESULT_OK) {
+            Intent data = activityResult.getData();
+        
+            JSObject result = new JSObject();
+            result.put(CANCELLED, false);
+
+            recognizerBundle.loadFromIntent(data);
+            JSONArray resultList = RecognizerSerializers.INSTANCE.serializeRecognizerResults(recognizerBundle.getRecognizers());
+            result.put(RESULT_LIST, resultList);
+
+            call.resolve(result);
+        } else {
+            call.reject("Unexpected error");
+        }
     }
 
     private void setLicense(JSObject jsonLicense) {
@@ -68,32 +86,11 @@ public class MicroblinkPlugin extends Plugin {
         MicroblinkSDK.setIntentDataTransferMode(IntentDataTransferMode.PERSISTED_OPTIMISED);
     }
 
-
-    @Override
-    protected void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
-        super.handleOnActivityResult(requestCode, resultCode, data);
-
-        PluginCall savedCall = getSavedCall();
-        if (savedCall == null) {
-            return;
-        }
-
-        if (resultCode == Activity.RESULT_OK) {
-            JSObject result = new JSObject();
-            result.put(CANCELLED, false);
-
-            if (requestCode == REQUEST_CODE) {
-                recognizerBundle.loadFromIntent(data);
-                JSONArray resultList = RecognizerSerializers.INSTANCE.serializeRecognizerResults(recognizerBundle.getRecognizers());
-                result.put(RESULT_LIST, resultList);
-            }
-            savedCall.success(result);
-        } else if (resultCode == Activity.RESULT_CANCELED) {
-            JSObject obj = new JSObject();
-            obj.put(CANCELLED, true);
-            savedCall.success(obj);
-        } else {
-            savedCall.error("Unexpected error");
-        }
+    private void startActivityForResult(PluginCall call, String callbackMethod, UISettings settings) {
+        Activity activity = getActivity();
+        Intent intent = new Intent(activity, settings.getTargetActivity());
+        settings.saveToIntent(intent);
+        startActivityForResult(call, intent, callbackMethod);
     }
+
 }
