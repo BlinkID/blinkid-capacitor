@@ -69,6 +69,8 @@ popd
 
 npm i @ionic/angular@latest --save
 
+pushd $appName
+
 # Ensure that all pages are available for iOS and Android
 ionic capacitor copy ios
 ionic capacitor copy android
