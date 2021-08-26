@@ -19,7 +19,7 @@ printf "%s\n" n | ionic start $appName blank --package-id=$appId --capacitor --t
 # enter into sample project folder
 pushd $appName
 
-IS_LOCAL_BUILD=false || exit 1
+IS_LOCAL_BUILD=true || exit 1
 if [ "$IS_LOCAL_BUILD" = true ]; then
   echo "Using @microblink/blinkid-capacitor from this repo instead from NPM"
   # use directly source code from this repo instead of npm package
@@ -39,8 +39,8 @@ popd
 # First we need to build ionic project
 ionic build
 
-npm install @capacitor/android
-npm install @capacitor/ios
+npm install @capacitor/android@latest
+npm install @capacitor/ios@latest
 
 # We neeed to add capacitor platforms
 npx cap add ios
@@ -80,4 +80,4 @@ popd
 
 echo "Go to Ionic project folder: cd $appName"
 echo "To run on Android: go to $appName and run > npx cap run android < in terminal"
-echo "To run on iOS: go to $appName and run npx cap open ios in terminal; set your development team and press run"
+echo "To run on iOS: go to $appName and run > npx cap run ios < in terminal; set your development team and press run"
