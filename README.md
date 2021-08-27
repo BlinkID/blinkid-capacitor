@@ -59,8 +59,7 @@ To run sample application:
 	* Press `Run`
 
 * Android
-	* Open the app in Android Studio by running ```npx cap open android``` from the sample app's root directory
-	* Press `Run`
+	* Run the app by executing ```npx cap run android``` from the sample app's root directory
 
 ### Plugin usage
 
@@ -127,23 +126,8 @@ Our `@microblink/blinkid-capacitor` depends on the latest [PPBlinkID pod](https:
 
 #### Android
 
-To use BlinkID plugin on Android you need to add the plugin to the MainActivity.java. Note that our [script](https://github.com/BlinkID/blinkid-capacitor/blob/feature/ios-capacitor/initIonicSampleApp.sh) does this automatically.
+BlinkID plugin on Android is ready to use after you've added the dependency.
 
-```java
-public class MainActivity extends BridgeActivity {
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-
-    // Initializes the Bridge
-    this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
-      // Additional plugins you've installed go here
-      // Ex: add(TotallyAwesomePlugin.class);
-      add(com.microblink.capacitor.MicroblinkPlugin.class);
-    }});
-  }
-}
-```
 
 ## Licensing
 
