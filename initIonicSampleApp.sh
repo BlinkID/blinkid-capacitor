@@ -39,8 +39,8 @@ popd
 # First we need to build ionic project
 ionic build
 
-npm install @capacitor/android
-npm install @capacitor/ios
+npm install @capacitor/android@latest
+npm install @capacitor/ios@latest
 
 # We neeed to add capacitor platforms
 npx cap add ios
@@ -80,4 +80,4 @@ popd
 
 echo "Go to Ionic project folder: cd $appName"
 echo "To run on Android: go to $appName and run > npx cap run android < in terminal"
-echo "To run on iOS: go to $appName and run npx cap open ios in terminal; set your development team and press run"
+echo "To run on iOS: go to $appName and run > npx cap run ios < in terminal; set your development team and press run"
