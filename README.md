@@ -52,7 +52,7 @@ Sample app is built with latest [Ionic framework](https://ionicframework.com) an
 To run sample application:
 
 * iOS
-	* Open the app in XCode by running ```npx cap open ios``` from the sample app's root directory
+	* Open the app in Xcode by running ```npx cap open ios``` from the sample app's root directory
 	* Open info.plist and add corresponding permissions to the app
 		* Privacy - Camera Usage Description: To Take Photos and Video
 	* Open `Signing & Capabilities` and set your Team
