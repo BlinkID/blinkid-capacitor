@@ -486,7 +486,7 @@ export const enum Country {
     Sudan = 230,
     Suriname = 231,
     SvalbardAndJanMayen = 232,
-    Eswatini = 233,
+    Swaziland = 233,
     Syria = 234,
     Tajikistan = 235,
     Tanzania = 236,
