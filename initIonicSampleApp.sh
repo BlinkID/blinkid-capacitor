@@ -26,7 +26,7 @@ if [ "$IS_LOCAL_BUILD" = true ]; then
   npm i $blink_id_plugin_path
 else
   echo "Downloading @microblink/blinkid-capacitor module"
-  npm install --save @microblink/blinkid-capacitor --legacy-peer-deps
+  npm install --save @microblink/blinkid-capacitor
 fi
 
 # copy files before ionic build
