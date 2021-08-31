@@ -14,7 +14,7 @@ appId=com.microblink.sample
 rm -rf $appName
 
 # create a sample application with capacitor enabled without ionic free account 
-printf "%s\n" n | ionic start $appName blank --capacitor --type=angular
+printf "%s\n" n | ionic start $appName blank --package-id=$appId --capacitor --type=angular
 
 # enter into sample project folder
 pushd $appName
@@ -29,11 +29,6 @@ else
   npm install --save @microblink/blinkid-capacitor --legacy-peer-deps
 fi
 
-npx cap init $appName $appId
-
-# set package name
-sed -i '' s/io.ionic.starter/$appId/g capacitor.config.ts
-
 # copy files before ionic build
 pushd src/app/home
 cp ../../../../sample_files/home.page.html ./
@@ -44,23 +39,14 @@ popd
 # First we need to build ionic project
 ionic build
 
-npm install @capacitor/android
-npm install @capacitor/ios
+npm install @capacitor/android@latest
+npm install @capacitor/ios@latest
 
 # We neeed to add capacitor platforms
 npx cap add ios
 npx cap add android
 
 npx cap sync
-
-# enter into android project folder
-pushd android
-
-file_MainActivity=app/src/main/java/com/microblink/sample/MainActivity.java
-perl -i~ -pe "BEGIN{$/ = undef;} s/\/\/ Ex: add\(TotallyAwesomePlugin.class\);/\/\/ Ex: add\(TotallyAwesomePlugin.class\);\n      add\(com.microblink.capacitor.MicroblinkPlugin.class\);/" $file_MainActivity
-
-# return from android project folder
-popd
 
 # enter into ios project folder
 pushd ios/App
@@ -83,6 +69,8 @@ popd
 
 npm i @ionic/angular@latest --save
 
+pushd $appName
+
 # Ensure that all pages are available for iOS and Android
 ionic capacitor copy ios
 ionic capacitor copy android
@@ -91,5 +79,5 @@ ionic capacitor copy android
 popd
 
 echo "Go to Ionic project folder: cd $appName"
-echo "To run on Android: go to $appName and run npx cap open android in terminal and press run"
-echo "To run on iOS: go to $appName and run npx cap open ios in terminal; set your development team and press run"
+echo "To run on Android: go to $appName and run > npx cap run android < in terminal"
+echo "To run on iOS: go to $appName and run > npx cap run ios < in terminal; set your development team and press run"

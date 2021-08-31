@@ -5,7 +5,7 @@
 build/
 *.pbxuser
 !default.pbxuser
-
+DerivedData
 xcuserdata
 xcshareddata
 
