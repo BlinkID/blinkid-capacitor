@@ -120,7 +120,9 @@ export const enum MrtdDocumentType {
     /** US Green Card */
     GreenCard = 5,
     /** Malaysian PASS type IMM13P */
-    MalaysianPassIMM13P = 6
+    MalaysianPassIMM13P = 6,
+    /** Border Crossing Card */
+    BorderCrossingCard = 7
 }
 /**
  * Possible types of documents scanned with IdBarcodeRecognizer.
