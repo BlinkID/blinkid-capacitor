@@ -38,22 +38,22 @@ export class DocumentFaceRecognizerResult extends RecognizerResult {
 
     
     /**
-     * Quadrangle represeting corner points of the document within the input image.
+     * The location of document detection in coordinate system of full input frame.
      */
     documentLocation: Quadrilateral;
     
     /**
-     * face image from the document if enabled with returnFaceImage property.
+     * Face image from the document
      */
     faceImage: string;
     
     /**
-     * Quadrangle represeting corner points of the face image within the input image.
+     * The location of face detection in coordinate system of cropped full document image.
      */
     faceLocation: Quadrilateral;
     
     /**
-     * full document image if enabled with returnFullDocumentImage property.
+     * Image of the full document
      */
     fullDocumentImage: string;
     
@@ -62,22 +62,22 @@ export class DocumentFaceRecognizerResult extends RecognizerResult {
         super(nativeResult.resultState);
         
         /**
-         * Quadrangle represeting corner points of the document within the input image.
+         * The location of document detection in coordinate system of full input frame.
          */
         this.documentLocation = nativeResult.documentLocation != null ? new Quadrilateral(nativeResult.documentLocation) : null;
         
         /**
-         * face image from the document if enabled with returnFaceImage property.
+         * Face image from the document
          */
         this.faceImage = nativeResult.faceImage;
         
         /**
-         * Quadrangle represeting corner points of the face image within the input image.
+         * The location of face detection in coordinate system of cropped full document image.
          */
         this.faceLocation = nativeResult.faceLocation != null ? new Quadrilateral(nativeResult.faceLocation) : null;
         
         /**
-         * full document image if enabled with returnFullDocumentImage property.
+         * Image of the full document
          */
         this.fullDocumentImage = nativeResult.fullDocumentImage;
         
@@ -85,65 +85,43 @@ export class DocumentFaceRecognizerResult extends RecognizerResult {
 }
 
 /**
- * Class for configuring Document Face Recognizer Recognizer.
- * 
- * Document Face Recognizer recognizer is used for scanning documents containing face images.
+ * Recognizer for detecting holder's photo on documents containing image.
  */
 export class DocumentFaceRecognizer extends Recognizer {
 
     
     /**
-     * Type of docment this recognizer will scan.
-         * 
-         * 
+     * Currently used detector type.
      */
     detectorType: DocumentFaceDetectorType;
     
     /**
-     * Property for setting DPI for face images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+     * The DPI (Dots Per Inch) for face image that should be returned.
      */
     faceImageDpi: number;
     
     /**
-     * Property for setting DPI for full document images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+     * The DPI (Dots Per Inch) for full document image that should be returned.
      */
     fullDocumentImageDpi: number;
     
     /**
-     * Image extension factors for full document image.
-         * 
-         * @see ImageExtensionFactors
-         * 
+     * The extension factors for full document image.
      */
     fullDocumentImageExtensionFactors: ImageExtensionFactors;
     
     /**
-     * Defines how many times the same document should be detected before the detector
-         * returns this document as a result of the deteciton
-         * 
-         * Higher number means more reliable detection, but slower processing
-         * 
-         * 
+     * Minimum number of stable detections required for detection to be successful.
      */
     numStableDetectionsThreshold: number;
     
     /**
-     * Sets whether face image from ID card should be extracted
-         * 
-         * 
+     * Defines whether face image will be available in result.
      */
     returnFaceImage: boolean;
     
     /**
-     * Sets whether full document image of ID card should be extracted.
-         * 
-         * 
+     * Defines whether full document image will be available in
      */
     returnFullDocumentImage: boolean;
     
@@ -152,57 +130,37 @@ export class DocumentFaceRecognizer extends Recognizer {
         super('DocumentFaceRecognizer');
         
         /**
-         * Type of docment this recognizer will scan.
-         * 
-         * 
+         * Currently used detector type.
          */
         this.detectorType = DocumentFaceDetectorType.TD1;
         
         /**
-         * Property for setting DPI for face images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+         * The DPI (Dots Per Inch) for face image that should be returned.
          */
         this.faceImageDpi = 250;
         
         /**
-         * Property for setting DPI for full document images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+         * The DPI (Dots Per Inch) for full document image that should be returned.
          */
         this.fullDocumentImageDpi = 250;
         
         /**
-         * Image extension factors for full document image.
-         * 
-         * @see ImageExtensionFactors
-         * 
+         * The extension factors for full document image.
          */
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
         
         /**
-         * Defines how many times the same document should be detected before the detector
-         * returns this document as a result of the deteciton
-         * 
-         * Higher number means more reliable detection, but slower processing
-         * 
-         * 
+         * Minimum number of stable detections required for detection to be successful.
          */
         this.numStableDetectionsThreshold = 6;
         
         /**
-         * Sets whether face image from ID card should be extracted
-         * 
-         * 
+         * Defines whether face image will be available in result.
          */
         this.returnFaceImage = false;
         
         /**
-         * Sets whether full document image of ID card should be extracted.
-         * 
-         * 
+         * Defines whether full document image will be available in
          */
         this.returnFullDocumentImage = false;
         
