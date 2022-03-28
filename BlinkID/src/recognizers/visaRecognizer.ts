@@ -17,6 +17,7 @@ import {
     AnonymizationMode,
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
+    VehicleClassInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,
@@ -38,12 +39,12 @@ export class VisaRecognizerResult extends RecognizerResult {
 
     
     /**
-     * face image from the document if enabled with returnFaceImage property.
+     * Face image from the document
      */
     faceImage: string;
     
     /**
-     * full document image if enabled with returnFullDocumentImage property.
+     * Image of the full document
      */
     fullDocumentImage: string;
     
@@ -57,12 +58,12 @@ export class VisaRecognizerResult extends RecognizerResult {
         super(nativeResult.resultState);
         
         /**
-         * face image from the document if enabled with returnFaceImage property.
+         * Face image from the document
          */
         this.faceImage = nativeResult.faceImage;
         
         /**
-         * full document image if enabled with returnFullDocumentImage property.
+         * Image of the full document
          */
         this.fullDocumentImage = nativeResult.fullDocumentImage;
         
@@ -81,47 +82,32 @@ export class VisaRecognizer extends Recognizer {
 
     
     /**
-     * Defines if glare detection should be turned on/off.
-         * 
-         * 
+     * Defines whether glare detector is enabled.
      */
     detectGlare: boolean;
     
     /**
-     * Property for setting DPI for face images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+     * The DPI (Dots Per Inch) for face image that should be returned.
      */
     faceImageDpi: number;
     
     /**
-     * Property for setting DPI for full document images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+     * The DPI (Dots Per Inch) for full document image that should be returned.
      */
     fullDocumentImageDpi: number;
     
     /**
-     * Image extension factors for full document image.
-         * 
-         * @see ImageExtensionFactors
-         * 
+     * The extension factors for full document image.
      */
     fullDocumentImageExtensionFactors: ImageExtensionFactors;
     
     /**
-     * Sets whether face image from ID card should be extracted
-         * 
-         * 
+     * Defines whether face image will be available in result.
      */
     returnFaceImage: boolean;
     
     /**
-     * Sets whether full document image of ID card should be extracted.
-         * 
-         * 
+     * Defines whether full document image will be available in
      */
     returnFullDocumentImage: boolean;
     
@@ -130,47 +116,32 @@ export class VisaRecognizer extends Recognizer {
         super('VisaRecognizer');
         
         /**
-         * Defines if glare detection should be turned on/off.
-         * 
-         * 
+         * Defines whether glare detector is enabled.
          */
         this.detectGlare = true;
         
         /**
-         * Property for setting DPI for face images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+         * The DPI (Dots Per Inch) for face image that should be returned.
          */
         this.faceImageDpi = 250;
         
         /**
-         * Property for setting DPI for full document images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+         * The DPI (Dots Per Inch) for full document image that should be returned.
          */
         this.fullDocumentImageDpi = 250;
         
         /**
-         * Image extension factors for full document image.
-         * 
-         * @see ImageExtensionFactors
-         * 
+         * The extension factors for full document image.
          */
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
         
         /**
-         * Sets whether face image from ID card should be extracted
-         * 
-         * 
+         * Defines whether face image will be available in result.
          */
         this.returnFaceImage = false;
         
         /**
-         * Sets whether full document image of ID card should be extracted.
-         * 
-         * 
+         * Defines whether full document image will be available in
          */
         this.returnFullDocumentImage = false;
         

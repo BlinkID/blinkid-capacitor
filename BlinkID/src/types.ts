@@ -94,6 +94,8 @@ export class DriverLicenseDetailedInfo {
     endorsements: string;
     /** The type of vehicle the driver license owner has privilege to drive. */
     vehicleClass: string;
+    /** The additional information on vehicle class. */
+    vehicleClassesInfo: VehicleClassInfo[];
     /** The driver license conditions. */
     conditions: string;
 
@@ -101,7 +103,30 @@ export class DriverLicenseDetailedInfo {
         this.restrictions = nativeDriverLicenseDetailedInfo.restrictions;
         this.endorsements = nativeDriverLicenseDetailedInfo.endorsements;
         this.vehicleClass = nativeDriverLicenseDetailedInfo.vehicleClass;
+        this.vehicleClassesInfo = nativeDriverLicenseDetailedInfo.vehicleClassesInfo;
         this.conditions = nativeDriverLicenseDetailedInfo.conditions;
+    }
+}
+
+/**
+ * Represents data extracted from the Driver's license.
+ */
+export class VehicleClassInfo {
+
+    /**  The type of vehicle the driver license owner has privilege to drive. */
+    vehicleClass: string;
+    /** The type of driver licence. */
+    licenceType: string;
+    /** The date since licence is effective. */
+    effectiveDate: Date;
+    /** The date of expiry of licence. */
+    expiryDate: Date;
+
+    constructor(nativeVehicleClassInfo: any) {
+        this.vehicleClass = nativeVehicleClassInfo.vehicleClass;
+        this.licenceType = nativeVehicleClassInfo.licenceType;
+        this.effectiveDate = nativeVehicleClassInfo.effectiveDate;
+        this.expiryDate = nativeVehicleClassInfo.expiryDate;
     }
 }
 
@@ -632,7 +657,10 @@ export const enum Region {
     BajaCaliforniaSur = 111,
     Campeche = 112,
     Colima = 113,
-    QuintanaRooBenitoJuarez = 114
+    QuintanaRooBenitoJuarez = 114,
+    QuintanaRoo = 115,
+    QuintanaRooSolidaridad = 116,
+    Tlaxcala = 117
 }
 
 /**
@@ -686,7 +714,8 @@ export const enum Type {
     RefugeeId = 45,
     TribalId = 46,
     VeteranId = 47,
-    CitizenshipCertificate = 48
+    CitizenshipCertificate = 48,
+    MyNumberCard = 49
 }
 
 /** Defines the data extracted from the barcode. */
