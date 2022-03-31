@@ -26,8 +26,8 @@ export class HomePage {
 
     // com.microblink.sample
     const licenseKeys: BlinkID.License = {
-      ios: 'sRwAAAEVY29tLm1pY3JvYmxpbmsuc2FtcGxl1BIcP4FpSuS/38JVOIaKMxwPcbCIyP0vUvPF24aRSqLbl1Ietp3U7rXGfntq9kYtaEtu+SiPPkcbc3UtQH7hP7rgKHUK1+quHABe591IAnoFo7Aw0tfInuVQelUFsaxt0dGWMJgsNO+ujO+P4KsguSQdxI1eZPK+kEHXQbU3WzbeHJjmOUJwqM+0uC6y+Hp/aIlELYc5+n+K5enPZHIC+TtZB1mcSGZp2Ytqd7Aw7GOdCTQM8wrKIDIDYuzc3cv0DTKIoSEhdJZwY9r+jVzGyV4N0R8OlW9Av5kSZhc+YMj1R82RZ3jYCZGPLVQ+s2Ia5iF783NmG1srXLMm0GdGnW/7',
-      android: 'sRwAAAAVY29tLm1pY3JvYmxpbmsuc2FtcGxlU9kJdZhZkGlTu9U3OJtAYGbizcXhV5K1maxiDMJFmnmLT3IzuOot5d+g5HVnoLFduWFtl9egla46EkGtuAdJd1p0a67N0Q2JnbcTqZB5h6ksNpjPsrmcY9OLjmlul2n9rcunJkM1cxu96HES75tdPBQvPz+WBbdx8Tz1y8ZyW7sNjqzemaZ5oqGZEQPj/NrWl2nHjeFxectQG9iOVTmHUNaSPZN4bsYYAeD7v6bGrXG2sv1FrkMjPIQ7Ic50r/drJmq+qhMNPZOJ+M9PfyO5zGuZN+uChv5k4lxcRRZ/sYgxNvuA6plBiFcg3uYugkuIDTD1fVyCYE5BSUzOGQjyacgH',
+      ios: 'sRwAAAEVY29tLm1pY3JvYmxpbmsuc2FtcGxl1BIcP4FpSuS/38KlP3avmLzrsviBmV88MupFPd0dvU7q90na2QxX62I2xowx1Wi9J9I6I5k4V2p1z917NGvULzZqkh1lDbt9eO6M3+Ki1138TbG6imO8S8XFZ+VjaDqUHv/hrjG1e1p8pxtjCPMqJvo8lzQHkjaF+ej4hc8xp5ZSzD+RUI9gxBrVrPewo6v5ug96yWSlD2NqO5XTDsdx71Z/GyXgVvWRdz5Lhl3y7p1HLDpk5cknfWM6Q9xOmiMErMPuiwsWtrQY7X2xm+IVvhnUEW8jDDiNmcJG1W9V9IwVKHl233QUu2mOamKgUjy1VjBYKq235Ui66NqCEkNFvvg=',
+      android: 'sRwAAAAVY29tLm1pY3JvYmxpbmsuc2FtcGxlU9kJdZhZkGlTu9XHP2tly7tSD2ZBhUN9mBJgzB+kfcYY69dFpZaHtMkS44AAdMj7JJpg5dTgYeWbstEWDHNjqL0tvLOjYPeS0tfPZz7c3euhPFSj7MJHzxZMYG5wR3mAsGo2iNqv4B3+C5NLQOCc0QNNmWFAG1B3GNCqufRZGxtMiJxrxYrM5WreJ7dl6+TV9zfL2WSc6Uk1VPfVaa/T1VfEu4AGnBte8c4IJA48mvEOWKyh/qwU7joalKv/gJXJknGuUdSzJiOdmeKq+iTRGUoNmp8SL15RV47dZuyaPgE8evDECqGO6GMaz2HOJ/ZqtaYhWR3xHwiKesjsogGr5lo=',
       showTrialLicenseWarning: true
     };
 
@@ -66,6 +66,8 @@ function getIdResultsString(result: BlinkID.BlinkIdCombinedRecognizerResult) {
       buildResult(result.address, 'Address') +
       buildResult(
           result.additionalAddressInformation, 'Additional address info') +
+      buildResult(
+          result.additionalOptionalAddressInformation, 'Additional optional address info') +
       buildResult(result.documentNumber, 'Document number') +
       buildResult(
           result.documentAdditionalNumber, 'Additional document number') +
@@ -127,10 +129,16 @@ function buildIntResult(result, key) {
 
 function buildDriverLicenceResult(result) {
   if (result) {
+    var vehicleClassesInfoString = '';
+    if (result.vehicleClassesInfo) {
+      for (let i=0; i<result.vehicleClassesInfo.length; i++) {
+            vehicleClassesInfoString += buildResult(result.vehicleClassesInfo[i].vehicleClass, 'Vehicle class') +  buildResult(result.vehicleClassesInfo[i].licenceType, 'License type') +  buildDateResult(result.vehicleClassesInfo[i].effectiveDate, 'Effective date') +  buildDateResult(result.vehicleClassesInfo[i].expiryDate, 'Expiry date');
+        }
+    }
     return buildResult(result.restrictions, 'Restrictions') +
         buildResult(result.endorsements, 'Endorsements') +
         buildResult(result.vehicleClass, 'Vehicle class') +
-        buildResult(result.conditions, 'Conditions');
+        buildResult(result.conditions, 'Conditions') + vehicleClassesInfoString;
   }
   return '';
 }

@@ -1815,6 +1815,8 @@ export class VizResult {
     address: string;
     /** The additional address information of the document owner. */
     additionalAddressInformation: string;
+    /** The one more additional address information of the document owner. */
+    additionalOptionalAddressInformation: string;
     /** The place of birth of the document owner. */
     placeOfBirth: string;
     /** The nationality of the documet owner. */
@@ -1878,6 +1880,9 @@ export class VizResult {
 
         /** The additional address information of the document owner. */
         this.additionalAddressInformation = nativeVizResult.additionalAddressInformation;
+
+        /** The one more additional address information of the document owner. */
+        this.additionalOptionalAddressInformation = nativeVizResult.additionalOptionalAddressInformation;
 
         /** The place of birth of the document owner. */
         this.placeOfBirth = nativeVizResult.placeOfBirth;
