@@ -132,7 +132,10 @@ function buildDriverLicenceResult(result) {
     var vehicleClassesInfoString = '';
     if (result.vehicleClassesInfo) {
       for (let i=0; i<result.vehicleClassesInfo.length; i++) {
-            vehicleClassesInfoString += buildResult(result.vehicleClassesInfo[i].vehicleClass, 'Vehicle class') +  buildResult(result.vehicleClassesInfo[i].licenceType, 'License type') +  buildDateResult(result.vehicleClassesInfo[i].effectiveDate, 'Effective date') +  buildDateResult(result.vehicleClassesInfo[i].expiryDate, 'Expiry date');
+            vehicleClassesInfoString += buildResult(result.vehicleClassesInfo[i].vehicleClass, 'Vehicle class') + 
+            buildResult(result.vehicleClassesInfo[i].licenceType, 'License type') + 
+            buildDateResult(result.vehicleClassesInfo[i].effectiveDate, 'Effective date') + 
+            buildDateResult(result.vehicleClassesInfo[i].expiryDate, 'Expiry date');
         }
     }
     return buildResult(result.restrictions, 'Restrictions') +
