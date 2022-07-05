@@ -18,6 +18,7 @@ import {
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
     VehicleClassInfo,
+    DataMatchDetailedInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,
@@ -97,6 +98,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
      * The document class information.
      */
     classInfo: ClassInfo;
+    
+    /**
+     * Detailed info on data match.
+     */
+    dataMatchDetailedInfo: DataMatchDetailedInfo;
     
     /**
      * The date of birth of the document owner.
@@ -356,6 +362,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
          * The document class information.
          */
         this.classInfo = nativeResult.classInfo;
+        
+        /**
+         * Detailed info on data match.
+         */
+        this.dataMatchDetailedInfo = nativeResult.dataMatchDetailedInfo;
         
         /**
          * The date of birth of the document owner.

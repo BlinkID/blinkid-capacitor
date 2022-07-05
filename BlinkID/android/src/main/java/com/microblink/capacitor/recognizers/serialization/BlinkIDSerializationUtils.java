@@ -4,6 +4,7 @@ import com.microblink.capacitor.SerializationUtils;
 
 import com.microblink.entities.recognizers.blinkid.mrtd.MrzResult;
 import com.microblink.entities.recognizers.blinkid.generic.DriverLicenseDetailedInfo;
+import com.microblink.entities.recognizers.blinkid.generic.DataMatchDetailedInfo;
 import com.microblink.entities.recognizers.blinkid.generic.VehicleClassInfo;
 import com.microblink.entities.recognizers.blinkid.generic.classinfo.ClassInfo;
 import com.microblink.entities.recognizers.blinkid.generic.imageanalysis.ImageAnalysisResult;
@@ -45,6 +46,15 @@ public abstract class BlinkIDSerializationUtils {
         jsonMrz.put("mrzParsed", mrzResult.isMrzParsed());
         jsonMrz.put("mrzVerified", mrzResult.isMrzVerified());
         return jsonMrz;
+    }
+
+    public static JSONObject serializeDataMatchDetailedInfo(DataMatchDetailedInfo dmDetailedInfo) throws JSONException {
+        JSONObject jsonDataMatchDetailedInfo = new JSONObject();
+        jsonDataMatchDetailedInfo.put("dataMatchResult", SerializationUtils.serializeEnum(dmDetailedInfo.getDataMatchResult()));
+        jsonDataMatchDetailedInfo.put("dateOfExpiry", SerializationUtils.serializeEnum(dmDetailedInfo.getDateOfExpiry()));
+        jsonDataMatchDetailedInfo.put("dateOfBirth", SerializationUtils.serializeEnum(dmDetailedInfo.getDateOfBirth()));
+        jsonDataMatchDetailedInfo.put("documentNumber", SerializationUtils.serializeEnum(dmDetailedInfo.getDocumentNumber()));
+        return jsonDataMatchDetailedInfo;
     }
 
     public static JSONObject serializeDriverLicenseDetailedInfo(DriverLicenseDetailedInfo dlDetailedInfo) throws JSONException {

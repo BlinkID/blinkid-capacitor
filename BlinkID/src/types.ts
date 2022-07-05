@@ -131,6 +131,27 @@ export class VehicleClassInfo {
 }
 
 /**
+ * Gives more info on data match
+ */
+export class DataMatchDetailedInfo {
+    /** Data match result. */
+    dataMatchResult: DataMatchResult;
+    /** Date of birth result */
+    dateOfBirth: DataMatchResult;
+    /** Date of expiry result */
+    dateOfExpiry: DataMatchResult;
+    /** Document number result */
+    documentNumber: DataMatchResult;
+
+    constructor(nativeDataMatchDetailedInfo: any) {
+        this.dataMatchResult = nativeDataMatchDetailedInfo.dataMatchResult;
+        this.dateOfBirth = nativeDataMatchDetailedInfo.dateOfBirth;
+        this.dateOfExpiry = nativeDataMatchDetailedInfo.dateOfExpiry;
+        this.documentNumber = nativeDataMatchDetailedInfo.documentNumber;
+    }
+}
+
+/**
  * Possible types of Machine Readable Travel Documents (MRTDs).
  */
 export const enum MrtdDocumentType {

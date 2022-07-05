@@ -239,13 +239,6 @@ export class UsdlCombinedRecognizer extends Recognizer {
      */
     numStableDetectionsThreshold: number;
 
-    /**
-     * Whether or not recognition result should be signed.
-     *
-     *
-     */
-    signResult: boolean;
-
     constructor() {
         super('UsdlCombinedRecognizer');
         this.faceImageDpi = 250;
@@ -254,7 +247,6 @@ export class UsdlCombinedRecognizer extends Recognizer {
         this.returnFullDocumentImage = false;
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
         this.numStableDetectionsThreshold = 6;
-        this.signResult = false;
     }
 
     createResultFromNative = (nativeResult: any) => { return new UsdlCombinedRecognizerResult(nativeResult); }
