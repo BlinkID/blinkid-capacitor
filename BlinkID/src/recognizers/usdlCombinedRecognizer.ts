@@ -11,16 +11,6 @@ import {
 export class UsdlCombinedRecognizerResult extends RecognizerResult {
 
         /**
-         * Digital signature of the recognition result. Available only if enabled with signResult property.
-         */
-        digitalSignature: string;
-
-        /**
-         * Version of the digital signature. Available only if enabled with signResult property.
-         */
-        digitalSignatureVersion: number;
-
-        /**
          * Returns true if data from scanned parts/sides of the document match,
          * false otherwise. For example if date of expiry is scanned from the front and back side
          * of the document and values do not match, this method will return false. Result will
@@ -111,16 +101,6 @@ export class UsdlCombinedRecognizerResult extends RecognizerResult {
 
     constructor(nativeResult: any) {
         super(nativeResult.resultState);
-
-        /**
-         * Digital signature of the recognition result. Available only if enabled with signResult property.
-         */
-        this.digitalSignature = nativeResult.digitalSignature;
-
-        /**
-         * Version of the digital signature. Available only if enabled with signResult property.
-         */
-        this.digitalSignatureVersion = nativeResult.digitalSignatureVersion;
 
         /**
          * Returns true if data from scanned parts/sides of the document match,
@@ -259,13 +239,6 @@ export class UsdlCombinedRecognizer extends Recognizer {
      */
     numStableDetectionsThreshold: number;
 
-    /**
-     * Whether or not recognition result should be signed.
-     *
-     *
-     */
-    signResult: boolean;
-
     constructor() {
         super('UsdlCombinedRecognizer');
         this.faceImageDpi = 250;
@@ -274,7 +247,6 @@ export class UsdlCombinedRecognizer extends Recognizer {
         this.returnFullDocumentImage = false;
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
         this.numStableDetectionsThreshold = 6;
-        this.signResult = false;
     }
 
     createResultFromNative = (nativeResult: any) => { return new UsdlCombinedRecognizerResult(nativeResult); }

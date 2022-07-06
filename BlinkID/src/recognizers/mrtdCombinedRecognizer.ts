@@ -17,6 +17,8 @@ import {
     AnonymizationMode,
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
+    VehicleClassInfo,
+    DataMatchDetailedInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,
@@ -36,16 +38,6 @@ import {
  */
 export class MrtdCombinedRecognizerResult extends RecognizerResult {
 
-    
-    /**
-     * Digital signature of the recognition result. Available only if enabled with signResult property.
-     */
-    digitalSignature: string;
-    
-    /**
-     * Version of the digital signature. Available only if enabled with signResult property.
-     */
-    digitalSignatureVersion: number;
     
     /**
      * Returns DataMatchResultSuccess if data from scanned parts/sides of the document match,
@@ -84,16 +76,6 @@ export class MrtdCombinedRecognizerResult extends RecognizerResult {
 
     constructor(nativeResult: any) {
         super(nativeResult.resultState);
-        
-        /**
-         * Digital signature of the recognition result. Available only if enabled with signResult property.
-         */
-        this.digitalSignature = nativeResult.digitalSignature;
-        
-        /**
-         * Version of the digital signature. Available only if enabled with signResult property.
-         */
-        this.digitalSignatureVersion = nativeResult.digitalSignatureVersion;
         
         /**
          * Returns DataMatchResultSuccess if data from scanned parts/sides of the document match,
@@ -217,13 +199,6 @@ export class MrtdCombinedRecognizer extends Recognizer {
      */
     returnFullDocumentImage: boolean;
     
-    /**
-     * Whether or not recognition result should be signed.
-         * 
-         * 
-     */
-    signResult: boolean;
-    
 
     constructor() {
         super('MrtdCombinedRecognizer');
@@ -304,13 +279,6 @@ export class MrtdCombinedRecognizer extends Recognizer {
          * 
          */
         this.returnFullDocumentImage = false;
-        
-        /**
-         * Whether or not recognition result should be signed.
-         * 
-         * 
-         */
-        this.signResult = false;
         
 
 	this.createResultFromNative = (nativeResult: any) => { return new MrtdCombinedRecognizerResult(nativeResult); };

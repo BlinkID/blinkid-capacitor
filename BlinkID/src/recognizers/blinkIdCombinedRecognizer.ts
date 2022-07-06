@@ -17,6 +17,8 @@ import {
     AnonymizationMode,
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
+    VehicleClassInfo,
+    DataMatchDetailedInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,
@@ -48,6 +50,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
     additionalNameInformation: string;
     
     /**
+     * The one more additional address information of the document owner.
+     */
+    additionalOptionalAddressInformation: string;
+    
+    /**
      * The address of the document owner.
      */
     address: string;
@@ -58,6 +65,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
          * @return current age of the document owner in years or -1 if date of birth is unknown.
      */
     age: number;
+    
+    /**
+     * The back raw camera frame.
+     */
+    backCameraFrame: string;
     
     /**
      * Defines possible color and moire statuses determined from scanned back image.
@@ -75,6 +87,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
     backVizResult: VizResult;
     
     /**
+     * The barcode raw camera frame.
+     */
+    barcodeCameraFrame: string;
+    
+    /**
      * Defines the data extracted from the barcode.
      */
     barcodeResult: BarcodeResult;
@@ -83,6 +100,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
      * The classification information.
      */
     classInfo: ClassInfo;
+    
+    /**
+     * Detailed info on data match.
+     */
+    dataMatchDetailedInfo: DataMatchDetailedInfo;
     
     /**
      * The date of birth of the document owner.
@@ -103,16 +125,6 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
      * The date of issue of the document.
      */
     dateOfIssue: Date;
-    
-    /**
-     * Digital signature of the recognition result. Available only if enabled with signResult property.
-     */
-    digitalSignature: string;
-    
-    /**
-     * Version of the digital signature. Available only if enabled with signResult property.
-     */
-    digitalSignatureVersion: number;
     
     /**
      * The additional number of the document.
@@ -172,6 +184,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
      * The first name of the document owner.
      */
     firstName: string;
+    
+    /**
+     * The front raw camera frame.
+     */
+    frontCameraFrame: string;
     
     /**
      * Defines possible color and moire statuses determined from scanned front image.
@@ -309,6 +326,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
         this.additionalNameInformation = nativeResult.additionalNameInformation;
         
         /**
+         * The one more additional address information of the document owner.
+         */
+        this.additionalOptionalAddressInformation = nativeResult.additionalOptionalAddressInformation;
+        
+        /**
          * The address of the document owner.
          */
         this.address = nativeResult.address;
@@ -319,6 +341,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
          * @return current age of the document owner in years or -1 if date of birth is unknown.
          */
         this.age = nativeResult.age;
+        
+        /**
+         * The back raw camera frame.
+         */
+        this.backCameraFrame = nativeResult.backCameraFrame;
         
         /**
          * Defines possible color and moire statuses determined from scanned back image.
@@ -336,6 +363,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
         this.backVizResult = nativeResult.backVizResult;
         
         /**
+         * The barcode raw camera frame.
+         */
+        this.barcodeCameraFrame = nativeResult.barcodeCameraFrame;
+        
+        /**
          * Defines the data extracted from the barcode.
          */
         this.barcodeResult = nativeResult.barcodeResult;
@@ -344,6 +376,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
          * The classification information.
          */
         this.classInfo = nativeResult.classInfo;
+        
+        /**
+         * Detailed info on data match.
+         */
+        this.dataMatchDetailedInfo = nativeResult.dataMatchDetailedInfo;
         
         /**
          * The date of birth of the document owner.
@@ -364,16 +401,6 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
          * The date of issue of the document.
          */
         this.dateOfIssue = nativeResult.dateOfIssue != null ? new Date(nativeResult.dateOfIssue) : null;
-        
-        /**
-         * Digital signature of the recognition result. Available only if enabled with signResult property.
-         */
-        this.digitalSignature = nativeResult.digitalSignature;
-        
-        /**
-         * Version of the digital signature. Available only if enabled with signResult property.
-         */
-        this.digitalSignatureVersion = nativeResult.digitalSignatureVersion;
         
         /**
          * The additional number of the document.
@@ -433,6 +460,11 @@ export class BlinkIdCombinedRecognizerResult extends RecognizerResult {
          * The first name of the document owner.
          */
         this.firstName = nativeResult.firstName;
+        
+        /**
+         * The front raw camera frame.
+         */
+        this.frontCameraFrame = nativeResult.frontCameraFrame;
         
         /**
          * Defines possible color and moire statuses determined from scanned front image.
@@ -671,19 +703,20 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
     returnSignatureImage: boolean;
     
     /**
+     * Configure the recognizer to save the raw camera frames.
+         * This significantly increases memory consumption.
+         * 
+         * 
+     */
+    saveCameraFrames: boolean;
+    
+    /**
      * Configure the recognizer to only work on already cropped and dewarped images.
          * This only works for still images - video feeds will ignore this setting.
          * 
          * 
      */
     scanCroppedDocumentImage: boolean;
-    
-    /**
-     * Whether or not recognition result should be signed.
-         * 
-         * 
-     */
-    signResult: boolean;
     
     /**
      * Property for setting DPI for signature images
@@ -819,19 +852,20 @@ export class BlinkIdCombinedRecognizer extends Recognizer {
         this.returnSignatureImage = false;
         
         /**
+         * Configure the recognizer to save the raw camera frames.
+         * This significantly increases memory consumption.
+         * 
+         * 
+         */
+        this.saveCameraFrames = false;
+        
+        /**
          * Configure the recognizer to only work on already cropped and dewarped images.
          * This only works for still images - video feeds will ignore this setting.
          * 
          * 
          */
         this.scanCroppedDocumentImage = false;
-        
-        /**
-         * Whether or not recognition result should be signed.
-         * 
-         * 
-         */
-        this.signResult = false;
         
         /**
          * Property for setting DPI for signature images
