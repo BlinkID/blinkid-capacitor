@@ -10,7 +10,7 @@ end
 target 'Plugin' do
   capacitor_pods
 
-  pod 'PPBlinkID', '~> 5.15.0'
+  pod 'PPBlinkID', '~> 5.17.0'
 end
 
 target 'PluginTests' do
