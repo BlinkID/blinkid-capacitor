@@ -141,8 +141,8 @@ extension BlinkIDCapacitorPlugin: MBOverlayViewControllerDelegate {
             pluginCall = nil
         }
         pluginCall?.resolve([
-			"cancelled": true
-		])
+            "cancelled": true
+        ])
         overlayViewController.dismiss(animated: true, completion: nil)
     }
 }

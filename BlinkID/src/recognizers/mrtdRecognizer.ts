@@ -17,6 +17,8 @@ import {
     AnonymizationMode,
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
+    VehicleClassInfo,
+    DataMatchDetailedInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,

@@ -17,6 +17,8 @@ import {
     AnonymizationMode,
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
+    VehicleClassInfo,
+    DataMatchDetailedInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,
@@ -38,16 +40,6 @@ export class PassportRecognizerResult extends RecognizerResult {
 
     
     /**
-     * Digital signature of the recognition result. Available only if enabled with signResult property.
-     */
-    digitalSignature: string;
-    
-    /**
-     * Version of the digital signature. Available only if enabled with signResult property.
-     */
-    digitalSignatureVersion: number;
-    
-    /**
      * face image from the document if enabled with returnFaceImage property.
      */
     faceImage: string;
@@ -65,16 +57,6 @@ export class PassportRecognizerResult extends RecognizerResult {
 
     constructor(nativeResult: any) {
         super(nativeResult.resultState);
-        
-        /**
-         * Digital signature of the recognition result. Available only if enabled with signResult property.
-         */
-        this.digitalSignature = nativeResult.digitalSignature;
-        
-        /**
-         * Version of the digital signature. Available only if enabled with signResult property.
-         */
-        this.digitalSignatureVersion = nativeResult.digitalSignatureVersion;
         
         /**
          * face image from the document if enabled with returnFaceImage property.
@@ -152,13 +134,6 @@ export class PassportRecognizer extends Recognizer {
      */
     returnFullDocumentImage: boolean;
     
-    /**
-     * Whether or not recognition result should be signed.
-         * 
-         * 
-     */
-    signResult: boolean;
-    
 
     constructor() {
         super('PassportRecognizer');
@@ -214,13 +189,6 @@ export class PassportRecognizer extends Recognizer {
          * 
          */
         this.returnFullDocumentImage = false;
-        
-        /**
-         * Whether or not recognition result should be signed.
-         * 
-         * 
-         */
-        this.signResult = false;
         
 
 	this.createResultFromNative = (nativeResult: any) => { return new PassportRecognizerResult(nativeResult); };
