@@ -10,7 +10,7 @@ Depending on your use case you can choose the recognizer that fits your needs:
 * BlinkIDMultiSide recognizer
 	* For scanning both sides of the supported document as well as any machine readable travel document. Passports and travel visas included. Here’s a [list of documents](https://github.com/BlinkID/blinkid-android/blob/master/documentation/BlinkIDRecognizer.md) that you can scan with BlinkID. For more details about the extracted fields click [here](https://github.com/BlinkID/blinkid-android/blob/master/documentation/BlinkIDRecognizerResult.md).
 * BlinkID IDBarcode recognizer
-	* Extract data from various barcodes found on identity documents. You can find a list of supported documents [here](https://github.com/BlinkID/blinkid-capacitor/blob/master/documentation/IdBarcodeRecognizer.md).
+	* Extract data from various barcodes found on identity documents. You can find a list of supported documents [here](https://github.com/BlinkID/blinkid-android/blob/master/documentation/IdBarcodeRecognizer.md)
 
 Below, you'll find everything you need to add BlinkID in your Capacitor iOS or Android app ⬇️
 
