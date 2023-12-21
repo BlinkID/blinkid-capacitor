@@ -86,8 +86,8 @@ To run sample application:
 		
 		// Initialize wanted recognizer
 		const blinkIdMultisideRecognizer = new BlinkID.BlinkIdMultiSideRecognizer();
-		blinkIdCombinedRecognizer.returnFullDocumentImage = true;
-		blinkIdCombinedRecognizer.returnFaceImage = true;
+        blinkIdMultisideRecognizer.returnFullDocumentImage = true;
+        blinkIdMultisideRecognizer.returnFaceImage = true;
 	
 		// Initialize license 
 		const licenseKeys: BlinkID.License = {
