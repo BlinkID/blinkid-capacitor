@@ -5,12 +5,12 @@ and [Android](https://github.com/BlinkID/blinkid-android)). Not all features of 
 
 Depending on your use case you can choose the recognizer that fits your needs:
 
-* BlinkID recognizer
-	* Scans and extracts data from the front side of the document as well as any machine readable travel document (MRTD). View list of supported documents [here](https://github.com/BlinkID/blinkid-capacitor/blob/master/documentation/BlinkIDRecognizer.md)
-* BlinkID combined recognizer
-	* For scanning both sides of the supported document as well as any machine readable travel document. Passports and travel visas included. Here’s a [list of documents](https://github.com/BlinkID/blinkid-capacitor/blob/master/documentation/BlinkIDRecognizer.md) that you can scan with BlinkID. For more details about the extracted fields click [here](https://github.com/BlinkID/blinkid-capacitor/blob/master/documentation/BlinkIDRecognizerResult.md).
+* BlinkIDSingleSide recognizer
+	* Scans and extracts data from the front side of the document as well as any machine readable travel document (MRTD). View list of supported documents [here](https://github.com/BlinkID/blinkid-android/blob/master/documentation/BlinkIDRecognizer.md)
+* BlinkIDMultiSide recognizer
+	* For scanning both sides of the supported document as well as any machine readable travel document. Passports and travel visas included. Here’s a [list of documents](https://github.com/BlinkID/blinkid-android/blob/master/documentation/BlinkIDRecognizer.md) that you can scan with BlinkID. For more details about the extracted fields click [here](https://github.com/BlinkID/blinkid-android/blob/master/documentation/BlinkIDRecognizerResult.md).
 * BlinkID IDBarcode recognizer
-	* Extract data from various barcodes found on identity documents. You can find a list of supported documents [here](https://github.com/BlinkID/blinkid-capacitor/blob/master/documentation/IdBarcodeRecognizer.md).
+	* Extract data from various barcodes found on identity documents. You can find a list of supported documents [here](https://github.com/BlinkID/blinkid-android/blob/master/documentation/IdBarcodeRecognizer.md)
 
 Below, you'll find everything you need to add BlinkID in your Capacitor iOS or Android app ⬇️
 
@@ -20,16 +20,16 @@ Package depends on [BlinkID SDK](https://microblink.com/products/blinkid) and it
 
 ### Capacitor
 
-BlinkID plugin is developed with Capacitor version 3.2.0.
+BlinkID plugin is developed with Capacitor version 5.6.0.
 For help with Capacitor, view official [documentation](https://capacitorjs.com/docs).
 
 ### iOS
 
-BlinkID Capacitor plugin supports iOS 12.0 or newer.
+BlinkID Capacitor plugin supports iOS 13.0 or newer.
 
 ### Android
 
-BlinkID Capacitor plugin support Android Android 5.0 (API level 21) or newer.
+BlinkID Capacitor plugin support Android Android 5.1 (API level 22) or newer.
 
 ## Getting Started
 
@@ -85,9 +85,9 @@ To run sample application:
 		const plugin = new BlinkID.BlinkIDPlugin();
 		
 		// Initialize wanted recognizer
-		const blinkIdCombinedRecognizer = new BlinkID.BlinkIdCombinedRecognizer();
-		blinkIdCombinedRecognizer.returnFullDocumentImage = true;
-		blinkIdCombinedRecognizer.returnFaceImage = true;
+		const blinkIdMultisideRecognizer = new BlinkID.BlinkIdMultiSideRecognizer();
+        blinkIdMultisideRecognizer.returnFullDocumentImage = true;
+        blinkIdMultisideRecognizer.returnFaceImage = true;
 	
 		// Initialize license 
 		const licenseKeys: BlinkID.License = {
@@ -99,7 +99,7 @@ To run sample application:
 		// Perform scan and gather results
 		const scanningResults = await plugin.scanWithCamera(
 			new BlinkID.BlinkIdOverlaySettings(),
-			new BlinkID.RecognizerCollection([blinkIdCombinedRecognizer]),
+			new BlinkID.RecognizerCollection([blinkIdMultisideRecognizer]),
 			licenseKeys
 		);
   	}

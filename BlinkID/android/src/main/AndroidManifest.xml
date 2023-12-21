@@ -1,6 +1,6 @@
 
   <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.microblink.blinkid.capacitor.blinkidcapacitor">
+      >
 
       <application>
     <activity android:name="com.microblink.activity.DocumentScanActivity" android:noHistory="true" />

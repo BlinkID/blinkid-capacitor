@@ -112,6 +112,26 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
     */
     errorDocumentTooCloseToEdge: string;
 
+    /**
+     * String: title of the dialog which is shown when the data on the document is not matching.
+     * If null, default value will be used.
+    */
+    showOnboardingInfo: boolean;
+
+    /**
+    * Defines whether introduction dialog is turned on by default.
+    *
+    * Default: false
+    */
+    showIntroductionDialog: boolean;
+    
+    /**
+    * Option to configure onboarding button tooltip delay time.
+    *
+    * Default: 12000
+    */
+    onboardingButtonTooltipDelay: number;
+
     constructor() {
         super('BlinkIdOverlaySettings');
         /**
@@ -210,6 +230,25 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
         */
         this.errorDocumentTooCloseToEdge = null;
 
+        /**
+        * String: title of the dialog which is shown when the data on the document is not matching.
+        * If null, default value will be used.
+        */
+        this.showOnboardingInfo = true;
+
+        /**
+        * Defines whether introduction dialog is turned on by default.
+        *
+        * Default: false
+        */
+        this.showIntroductionDialog = false;
+
+        /**
+        * Option to configure onboarding button tooltip delay time.
+        *
+        * Default: 12000
+        */
+        this.onboardingButtonTooltipDelay = 12000;
     }
 }
 

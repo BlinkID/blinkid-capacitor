@@ -9,10 +9,10 @@ import * as BlinkID from '@microblink/blinkid-capacitor';
 })
 export class HomePage {
 
-  Results: string;
-  DocumentFront: string;
-  DocumentBack: string;
-  DocumentFace: string;
+  Results?: string;
+  DocumentFront?: string;
+  DocumentBack?: string;
+  DocumentFace?: string;
 
   constructor() {}
 
@@ -20,20 +20,22 @@ export class HomePage {
 
     const plugin = new BlinkID.BlinkIDPlugin();
 
-    const blinkIdCombinedRecognizer = new BlinkID.BlinkIdCombinedRecognizer();
-    blinkIdCombinedRecognizer.returnFullDocumentImage = true;
-    blinkIdCombinedRecognizer.returnFaceImage = true;
+    const blinkIdMultisideRecognizer = new BlinkID.BlinkIdMultiSideRecognizer();
+    blinkIdMultisideRecognizer.returnFullDocumentImage = true;
+    blinkIdMultisideRecognizer.returnFaceImage = true;
 
     // com.microblink.sample
     const licenseKeys: BlinkID.License = {
-      ios: 'sRwAAAEVY29tLm1pY3JvYmxpbmsuc2FtcGxl1BIcP4FpSuS/38KlOx6IMzWbmaGEGiaL7eNSyKVwZjeUMW3Ax8aKh+quw2aZ4K4wKk+HtsAqjaGiGJSKWfeqZ/hXXpX3Kd7PRq/86AF3lpVWOZPN6FzUB6FVm7jYfVBUag4hYYxvq70616zMDQyaAItml02PvEL8OKbKbBxEYmVzBVpq3ew4JoHyRAaOJQfc9WEKrP4HYd8q4s15+HB/KO24IUVBabZggHMj2hOyAEM7p9dWpA/Q+n6C49w35xLfmcJrjSP0qE25bdTUMMEwhu6xiYmYdtMrqJkwCEIjzEQ04bEB3XWskZl3+AD5kUQH8qyhuEELR/mvbmvwxMBpwpM=',
-      android: 'sRwAAAAVY29tLm1pY3JvYmxpbmsuc2FtcGxlU9kJdZhZkGlTu9XHO8NDZ5etowTvAoM3PXg5QKNOMEzS+WzcCNYkGg0p7csI0R/oydYtBy2pDTTG1MHqYaFvnxUnpSu1mcXUVUOiddboBBWBXu6Z9Pq5iYIdZ3/HuZFmW1V4PK7S0WiUzzlYDHFNMH+KnaDNnJawX7D7X1S7i9KriklziYyNkX59wv1uOaExxS7FuftzTBtqxMjzOmuwglSXXzrqUE4uwNnAijs9b9Jqr/2Y72qkE+SiBY45N5E0BLpG9ex0NFT/uiLhmd1BEZBrKWouCOPogSmKBE30mawHpesSS/4XsjAZH8a5FqQdsL4QXbeYeHsAcSyDhoiwPw0="',
+      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTURNd056Y3hORFkzT1RJc0lrTnlaV0YwWldSR2IzSWlPaUkwT1RabFpEQXpaUzAwT0RBeExUUXpZV1F0WVRrMU5DMDBNemMyWlRObU9UTTVNR1FpZlE9PYPwAuE88FDjP95RyiGUewj+e6SGUoHitmTt0i2T87nVbH79ynAtPdmuQV49+U4ulln6j4ku3momxVE2igI9howeOZwxK5IbpMVG3ooDibChEXUccclpCCv08w3gEUwsP7hGOIBbA4HP45vru2nkan74SUYXWVU=',
+      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTURNd056Y3lNRE0xTWpnc0lrTnlaV0YwWldSR2IzSWlPaUkwT1RabFpEQXpaUzAwT0RBeExUUXpZV1F0WVRrMU5DMDBNemMyWlRObU9UTTVNR1FpZlE9PY6A6Eq56GBOfiH4PZYVCf1vcY3/GuHCOkdOhF5rUKHodDOB3Q01339g0q22TM/fWv5f06CvIiAamEhg1m8xAYWSQt2VVSsVJaAncz+bGexcASnuhlHA+LTLnSZGIxSgnNKBJbizQypDRsyFKKpBq7K2SfVi+gM=',
       showTrialLicenseWarning: true
     };
+ 
+    const settings = new BlinkID.BlinkIdOverlaySettings();
 
     const scanningResults = await plugin.scanWithCamera(
-      new BlinkID.BlinkIdOverlaySettings(),
-      new BlinkID.RecognizerCollection([blinkIdCombinedRecognizer]),
+      settings,
+      new BlinkID.RecognizerCollection([blinkIdMultisideRecognizer]),
       licenseKeys
     );
 
@@ -42,7 +44,8 @@ export class HomePage {
     }
 
     for (const result of scanningResults) {
-      if (result instanceof BlinkID.BlinkIdCombinedRecognizerResult) {
+      if (result instanceof BlinkID.BlinkIdMultiSideRecognizerResult) {
+
         this.Results = getIdResultsString(result);
         this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
         this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
@@ -57,95 +60,128 @@ export class HomePage {
   }
 }
 
-function getIdResultsString(result: BlinkID.BlinkIdCombinedRecognizerResult) {
-  return buildResult(result.firstName, 'First name') +
-      buildResult(result.lastName, 'Last name') +
-      buildResult(result.fullName, 'Full name') +
-      buildResult(result.localizedName, 'Localized name') +
-      buildResult(result.additionalNameInformation, 'Additional name info') +
-      buildResult(result.address, 'Address') +
+function getIdResultsString(result: BlinkID.BlinkIdMultiSideRecognizerResult) {
+  return buildResult(result.firstName?.description, 'First name') +
+      buildResult(result.lastName?.description, 'Last name') +
+      buildResult(result.fullName?.description, 'Full name') +
+      buildResult(result.localizedName?.description, 'Localized name') +
+      buildResult(result.additionalNameInformation?.description, 'Additional name info') +
+      buildResult(result.address?.description, 'Address') +
       buildResult(
-          result.additionalAddressInformation, 'Additional address info') +
+          result.additionalAddressInformation?.description, 'Additional address info') +
       buildResult(
-          result.additionalOptionalAddressInformation, 'Additional optional address info') +
-      buildResult(result.documentNumber, 'Document number') +
+          result.additionalOptionalAddressInformation?.description, 'Additional optional address info') +
+      buildResult(result.documentNumber?.description, 'Document number') +
       buildResult(
-          result.documentAdditionalNumber, 'Additional document number') +
-      buildResult(result.sex, 'Sex') +
-      buildResult(result.issuingAuthority, 'Issuing authority') +
-      buildResult(result.nationality, 'Nationality') +
-      buildDateResult(result.dateOfBirth, 'Date of birth') +
-      buildIntResult(result.age, 'Age') +
-      buildDateResult(result.dateOfIssue, 'Date of issue') +
-      buildDateResult(result.dateOfExpiry, 'Date of expiry') +
-      buildResult(result.dateOfExpiryPermanent.toString(),
+          result.documentAdditionalNumber?.description, 'Additional document number') +
+      buildResult(result.sex?.description, 'Sex') +
+      buildResult(result.issuingAuthority?.description, 'Issuing authority') +
+      buildResult(result.nationality?.description, 'Nationality') +
+      buildDateResult(result?.dateOfBirth, 'Date of birth') +
+      buildIntResult(result?.age, 'Age') +
+      buildDateResult(result?.dateOfIssue, 'Date of issue') +
+      buildDateResult(result?.dateOfExpiry, 'Date of expiry') +
+      buildResult(result.dateOfExpiryPermanent?.toString(),
           'Date of expiry permanent') +
-      buildResult(result.maritalStatus, 'Martial status') +
-      buildResult(result.personalIdNumber, 'Personal Id Number') +
-      buildResult(result.profession, 'Profession') +
-      buildResult(result.race, 'Race') +
-      buildResult(result.religion, 'Religion') +
-      buildResult(result.residentialStatus, 'Residential Status') +
+      buildResult(result.maritalStatus?.description, 'Martial status') +
+      buildResult(result.personalIdNumber?.description, 'Personal Id Number') +
+      buildResult(result.profession?.description, 'Profession') +
+      buildResult(result.race?.description, 'Race') +
+      buildResult(result.religion?.description, 'Religion') +
+      buildResult(result.residentialStatus?.description, 'Residential Status') +
+      buildResult(result.processingStatus, "Processing status") +
+      buildResult(result.recognitionMode, "Recognition mode") +
       buildDriverLicenceResult(result.driverLicenseDetailedInfo) +
-      buildResult(result.dataMatchDetailedInfo.dataMatchResult, "Data match result") +
-      buildResult(result.dataMatchDetailedInfo.dateOfExpiry, "dateOfExpiry") +
-      buildResult(result.dataMatchDetailedInfo.dateOfBirth, "dateOfBirth") +
-      buildResult(result.dataMatchDetailedInfo.documentNumber, "documentNumber");
+      buildDataMatchResult(result.dataMatch) +
+      buildAdditionalProcessingInfoResult(result.frontAdditionalProcessingInfo, "Front additional processing info") +
+      buildAdditionalProcessingInfoResult(result.backAdditionalProcessingInfo, "Back additional processing info");
 }
 
 function getMrzResultsString(result: BlinkID.MrtdCombinedRecognizerResult) {
   const mrzResult = result.mrzResult;
-  return buildResult(mrzResult.primaryId, 'Primary ID') +
-      buildResult(mrzResult.secondaryId, 'Secondary ID') +
-      buildResult(mrzResult.gender, 'Gender') +
-      buildResult(mrzResult.issuer, 'Issuer') +
-      buildResult(mrzResult.nationality, 'Nationality') +
-      buildDateResult(mrzResult.dateOfBirth, 'Date of birth') +
-      buildIntResult(mrzResult.age, 'Age') +
-      buildDateResult(mrzResult.dateOfExpiry, 'Date of expiry') +
-      buildResult(mrzResult.documentCode, 'Document code') +
-      buildResult(mrzResult.documentType, 'Document type') +
-      buildResult(mrzResult.opt1, 'Optional 1') +
-      buildResult(mrzResult.opt2, 'Optional 2') +
-      buildResult(mrzResult.mrzText, 'MRZ Text');
+  return buildResult(mrzResult?.primaryId, 'Primary ID') +
+      buildResult(mrzResult?.secondaryId, 'Secondary ID') +
+      buildResult(mrzResult?.gender, 'Gender') +
+      buildResult(mrzResult?.issuer, 'Issuer') +
+      buildResult(mrzResult?.nationality, 'Nationality') +
+      buildDateResult(mrzResult?.dateOfBirth, 'Date of birth') +
+      buildIntResult(mrzResult?.age, 'Age') +
+      buildDateResult(mrzResult?.dateOfExpiry, 'Date of expiry') +
+      buildResult(mrzResult?.documentCode, 'Document code') +
+      buildResult(mrzResult?.documentType, 'Document type') +
+      buildResult(mrzResult?.opt1, 'Optional 1') +
+      buildResult(mrzResult?.opt2, 'Optional 2') +
+      buildResult(mrzResult?.mrzText, 'MRZ Text');
 }
 
-function buildResult(result, key) {
+function buildResult(result: any, key: string) {
   if (result && result !== '') {
     return `${key}: ${result}\n`;
   }
   return '';
 }
 
-function buildDateResult(result, key) {
+function buildDateResult(result: any, key: string) {
   if (result && result.year !== 0) {
     return buildResult(`${result.day}.${result.month}.${result.year}`, key);
   }
   return '';
 }
 
-function buildIntResult(result, key) {
+function buildIntResult(result: any, key: string) {
   if (result >= 0) {
     return buildResult(result.toString(), key);
   }
   return '';
 }
 
-function buildDriverLicenceResult(result) {
-  if (result) {
-    var vehicleClassesInfoString = '';
-    if (result.vehicleClassesInfo) {
-      for (let i=0; i<result.vehicleClassesInfo.length; i++) {
-            vehicleClassesInfoString += buildResult(result.vehicleClassesInfo[i].vehicleClass, 'Vehicle class') + 
-            buildResult(result.vehicleClassesInfo[i].licenceType, 'License type') + 
-            buildDateResult(result.vehicleClassesInfo[i].effectiveDate, 'Effective date') + 
-            buildDateResult(result.vehicleClassesInfo[i].expiryDate, 'Expiry date');
-        }
-    }
-    return buildResult(result.restrictions, 'Restrictions') +
-        buildResult(result.endorsements, 'Endorsements') +
-        buildResult(result.vehicleClass, 'Vehicle class') +
-        buildResult(result.conditions, 'Conditions') + vehicleClassesInfoString;
+function buildDataMatchResult(result?: BlinkID.DataMatchResult) {
+  if (result == null) {
+    return '';
+  }
+
+  return buildResult(result.states[0].state, "Data match date of birth") +
+    buildResult(result.states[1].state, "Data match date Of Expiry") +
+    buildResult(result.states[2].state, "Data match document Number") +
+    buildResult(result.stateForWholeDocument, "Data match state for the whole document")
+}
+
+function buildAdditionalProcessingInfoResult(result?: BlinkID.AdditionalProcessingInfo, key?: string) {
+if (result == null || result.missingMandatoryFields.length == 0) {
+  return `${key}: ${"empty"}\n`
+}
+
+const missingMandatoryFields = result.missingMandatoryFields;
+var additionalProcessingInfo = '';
+
+if (missingMandatoryFields.length > 0) {
+  additionalProcessingInfo = key + ":\n";
+
+  for (var i = 0; i < missingMandatoryFields.length; i++) {
+    additionalProcessingInfo += missingMandatoryFields[i] + "\n";
+  }
+}
+
+return `${additionalProcessingInfo}\n`;
+}
+
+function buildDriverLicenceResult(result?: BlinkID.DriverLicenseDetailedInfo) {
+  var licenceInfo = result;
+  if (licenceInfo) {
+      var vehicleClassesInfoString = '';
+      if (licenceInfo.vehicleClassesInfo) {
+        for (let i=0; i<licenceInfo.vehicleClassesInfo.length; i++) {
+              vehicleClassesInfoString += buildResult(licenceInfo.vehicleClassesInfo[i].vehicleClass.description, 'Vehicle class') +  
+              buildResult(licenceInfo.vehicleClassesInfo[i].licenceType.description, 'License type') +  
+              buildDateResult(licenceInfo.vehicleClassesInfo[i].effectiveDate.description, 'Effective date') + 
+              buildDateResult(licenceInfo.vehicleClassesInfo[i].expiryDate, 'Expiry date');
+          }
+      }
+      return buildResult(licenceInfo.restrictions.description, "Restrictions") +
+          buildResult(licenceInfo.endorsements.description, "Endorsements") +
+          buildResult(licenceInfo.vehicleClass.description, "Vehicle class") +
+          buildResult(licenceInfo.conditions.description, "Conditions") + 
+          vehicleClassesInfoString;
   }
   return '';
 }

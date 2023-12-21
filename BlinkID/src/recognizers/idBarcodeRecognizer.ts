@@ -18,13 +18,20 @@ import {
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
     VehicleClassInfo,
-    DataMatchDetailedInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,
+    DataMatchState,
     ClassInfo,
     BarcodeElements,
     BarcodeElementKey,
+    Rectangle,
+    Side,
+    ClassAnonymizationSettings,
+    DateResult,
+    StringResult,
+    AdditionalProcessingInfo,
+    DocumentSide,
     
     
     ImageExtensionFactors,
@@ -42,73 +49,73 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
     /**
      * The additional name information of the document owner.
      */
-    additionalNameInformation: string;
+    additionalNameInformation?: string;
     
     /**
      * The address of the document owner.
      */
-    address: string;
+    address?: string;
     
     /**
      * The current age of the document owner in years. It is calculated difference
          * between now and date of birth. Now is current time on the device.
          * @return current age of the document owner in years or -1 if date of birth is unknown.
      */
-    age: number;
+    age?: number;
     
     /**
      * Type of the barcode scanned
          * 
          *  @return Type of the barcode
      */
-    barcodeType: BarcodeType;
+    barcodeType?: BarcodeType;
     
     /**
      * The city address portion of the document owner.
      */
-    city: string;
+    city?: string;
     
     /**
      * The date of birth of the document owner.
      */
-    dateOfBirth: Date;
+    dateOfBirth?: Date;
     
     /**
      * The date of expiry of the document.
      */
-    dateOfExpiry: Date;
+    dateOfExpiry?: Date;
     
     /**
      * The date of issue of the document.
      */
-    dateOfIssue: Date;
+    dateOfIssue?: Date;
     
     /**
      * The additional number of the document.
      */
-    documentAdditionalNumber: string;
+    documentAdditionalNumber?: string;
     
     /**
      * The document number.
      */
-    documentNumber: string;
+    documentNumber?: string;
     
     /**
      * The document type deduced from the recognized barcode
          * 
          *  @return Type of the document
      */
-    documentType: IdBarcodeDocumentType;
+    documentType?: IdBarcodeDocumentType;
     
     /**
      * The employer of the document owner.
      */
-    employer: string;
+    employer?: string;
     
     /**
      * The additional privileges granted to the driver license owner.
      */
-    endorsements: string;
+    endorsements?: string;
     
     /**
      * Checks whether the document has expired or not by comparing the current
@@ -119,125 +126,125 @@ export class IdBarcodeRecognizerResult extends RecognizerResult {
          * date of expiry has passed
          * date of expiry is unknown and it is not permanent
      */
-    expired: boolean;
+    expired?: boolean;
     
     /**
      * Document specific extended elements that contain all barcode fields in their original form.
          * 
          * Currently this is only filled for AAMVACompliant documents.
      */
-    extendedElements: BarcodeElements;
+    extendedElements?: BarcodeElements;
     
     /**
      * The first name of the document owner.
      */
-    firstName: string;
+    firstName?: string;
     
     /**
      * The full name of the document owner.
      */
-    fullName: string;
+    fullName?: string;
     
     /**
      * The issuing authority of the document.
      */
-    issuingAuthority: string;
+    issuingAuthority?: string;
     
     /**
      * The jurisdiction code address portion of the document owner.
      */
-    jurisdiction: string;
+    jurisdiction?: string;
     
     /**
      * The last name of the document owner.
      */
-    lastName: string;
+    lastName?: string;
     
     /**
      * The marital status of the document owner.
      */
-    maritalStatus: string;
+    maritalStatus?: string;
     
     /**
      * The middle name of the document owner.
      */
-    middleName: string;
+    middleName?: string;
     
     /**
      * The nationality of the documet owner.
      */
-    nationality: string;
+    nationality?: string;
     
     /**
      * The personal identification number.
      */
-    personalIdNumber: string;
+    personalIdNumber?: string;
     
     /**
      * The place of birth of the document owner.
      */
-    placeOfBirth: string;
+    placeOfBirth?: string;
     
     /**
      * The postal code address portion of the document owner.
      */
-    postalCode: string;
+    postalCode?: string;
     
     /**
      * The profession of the document owner.
      */
-    profession: string;
+    profession?: string;
     
     /**
      * The race of the document owner.
      */
-    race: string;
+    race?: string;
     
     /**
      * Byte array with result of the scan
      */
-    rawData: string;
+    rawData?: string;
     
     /**
      * The religion of the document owner.
      */
-    religion: string;
+    religion?: string;
     
     /**
      * The residential stauts of the document owner.
      */
-    residentialStatus: string;
+    residentialStatus?: string;
     
     /**
      * The restrictions to driving privileges for the driver license owner.
      */
-    restrictions: string;
+    restrictions?: string;
     
     /**
      * The sex of the document owner.
      */
-    sex: string;
+    sex?: string;
     
     /**
      * The street address portion of the document owner.
      */
-    street: string;
+    street?: string;
     
     /**
      * Retrieves string content of scanned data
      */
-    stringData: string;
+    stringData?: string;
     
     /**
      * Flag indicating uncertain scanning data
          * E.g obtained from damaged barcode.
      */
-    uncertain: boolean;
+    uncertain?: boolean;
     
     /**
      * The type of vehicle the driver license owner has privilege to drive.
      */
-    vehicleClass: string;
+    vehicleClass?: string;
     
 
     constructor(nativeResult: any) {

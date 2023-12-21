@@ -18,13 +18,20 @@ import {
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
     VehicleClassInfo,
-    DataMatchDetailedInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,
+    DataMatchState,
     ClassInfo,
     BarcodeElements,
     BarcodeElementKey,
+    Rectangle,
+    Side,
+    ClassAnonymizationSettings,
+    DateResult,
+    StringResult,
+    AdditionalProcessingInfo,
+    DocumentSide,
     
     
     ImageExtensionFactors,
@@ -42,17 +49,17 @@ export class PassportRecognizerResult extends RecognizerResult {
     /**
      * face image from the document if enabled with returnFaceImage property.
      */
-    faceImage: string;
+    faceImage?: string;
     
     /**
      * full document image if enabled with returnFullDocumentImage property.
      */
-    fullDocumentImage: string;
+    fullDocumentImage?: string;
     
     /**
      * The data extracted from the machine readable zone.
      */
-    mrzResult: MrzResult;
+    mrzResult?: MrzResult;
     
 
     constructor(nativeResult: any) {

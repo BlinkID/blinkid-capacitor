@@ -1,3 +1,20 @@
+## 6.4.0
+- We have updated the plugin to [Android SDK v6.4.0](https://github.com/BlinkID/blinkid-android/releases/tag/v6.4.0) and [iOS SDK v6.4.0](https://github.com/BlinkID/blinkid-ios/releases/tag/v6.4.0)
+
+### Breaking API changes
+
+- The plugin was built with v5.6.0 Capacitor
+- The SDK we can scan IDs with Arabic and Cyrillic scripts.
+- Renamed `BlinkIdRecognier` to **`BlinkIdSingleSideRecognizer`**
+- Renamed `BlinkIdCombinedRecognizer` to **`BlinkIdMultiSideRecognizer`**
+- Added new classes: `StringResult`, `DateResult`, `Date`
+    - If a recognizer supports multiple alphabets, its result class will return `StringResult` for results that previously returned `String`.
+- `DataMatchResult` and `DataMatchDetailedInfo` are now merged into `DataMatchResult`
+- Added new `ClassAnonymizationSettings` setting that enables custom anonymization for any field per country, region, and type of document
+- Added new  `AdditionalProcessingInfo` result type that provides information about `missingMandatoryFields`, `invalidCharacterFields`, and `extraPresentFields`
+- Added support for a lot of new documents, which can be found [here](https://github.com/BlinkID/blinkid-android/blob/master/documentation/BlinkIDRecognizer.md)
+- Added new values to `Country`, `Region` and `Type` enums.
+
 ## 5.17.0
 
 We have updated plugin to [Android SDK v5.17.0](https://github.com/BlinkID/blinkid-android/releases/tag/v5.17.0) and [iOS SDK v5.17.0](https://github.com/BlinkID/blinkid-ios/releases/tag/v5.17.0)

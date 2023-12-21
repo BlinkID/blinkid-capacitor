@@ -15,10 +15,10 @@ export class Recognizer {
 }
 
 export const enum RecognizerResultState {
-    empty = 1,
-    uncertain = 2,
-    valid = 3,
-    stageValid = 4
+    empty = 0,
+    uncertain = 1,
+    valid = 2,
+    stageValid = 3
 }
 
 /**
