@@ -18,13 +18,20 @@ import {
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
     VehicleClassInfo,
-    DataMatchDetailedInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,
+    DataMatchState,
     ClassInfo,
     BarcodeElements,
     BarcodeElementKey,
+    Rectangle,
+    Side,
+    ClassAnonymizationSettings,
+    DateResult,
+    StringResult,
+    AdditionalProcessingInfo,
+    DocumentSide,
     
     
     ImageExtensionFactors,
@@ -42,12 +49,12 @@ export class MrtdRecognizerResult extends RecognizerResult {
     /**
      * full document image if enabled with returnFullDocumentImage property.
      */
-    fullDocumentImage: string;
+    fullDocumentImage?: string;
     
     /**
      * Returns the Data extracted from the machine readable zone.
      */
-    mrzResult: MrzResult;
+    mrzResult?: MrzResult;
     
 
     constructor(nativeResult: any) {

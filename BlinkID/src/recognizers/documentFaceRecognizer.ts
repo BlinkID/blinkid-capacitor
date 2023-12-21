@@ -18,13 +18,20 @@ import {
     RecognitionModeFilter,
     DriverLicenseDetailedInfo,
     VehicleClassInfo,
-    DataMatchDetailedInfo,
     BarcodeType,
     RecognitionMode,
     IdBarcodeDocumentType,
+    DataMatchState,
     ClassInfo,
     BarcodeElements,
     BarcodeElementKey,
+    Rectangle,
+    Side,
+    ClassAnonymizationSettings,
+    DateResult,
+    StringResult,
+    AdditionalProcessingInfo,
+    DocumentSide,
     
     
     ImageExtensionFactors,
@@ -42,22 +49,22 @@ export class DocumentFaceRecognizerResult extends RecognizerResult {
     /**
      * Quadrangle represeting corner points of the document within the input image.
      */
-    documentLocation: Quadrilateral;
+    documentLocation?: Quadrilateral;
     
     /**
      * face image from the document if enabled with returnFaceImage property.
      */
-    faceImage: string;
+    faceImage?: string;
     
     /**
      * Quadrangle represeting corner points of the face image within the input image.
      */
-    faceLocation: Quadrilateral;
+    faceLocation?: Quadrilateral;
     
     /**
      * full document image if enabled with returnFullDocumentImage property.
      */
-    fullDocumentImage: string;
+    fullDocumentImage?: string;
     
 
     constructor(nativeResult: any) {
