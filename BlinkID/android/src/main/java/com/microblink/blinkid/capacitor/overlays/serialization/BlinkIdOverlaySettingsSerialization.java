@@ -107,6 +107,8 @@ public final class BlinkIdOverlaySettingsSerialization implements OverlaySetting
             String country = getStringFromJSONObject(jsonUISettings, "country");
             if (country != null) {
                 LanguageUtils.setLanguageAndCountry(language, country, context);
+            } else {
+                LanguageUtils.setLanguageAndCountry(language, "", context);
             }
         }
 

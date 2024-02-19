@@ -132,6 +132,20 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
     */
     onboardingButtonTooltipDelay: number;
 
+    /**
+    * Option to configure the language of the UI
+    * 
+    * Default: The language set on the device. If the language is not supported, the English language will be used.
+    */
+    language: string;
+
+    /**
+    * Option to set the country locale, used with the language variable
+    * 
+    * Default: The country locale set on the device
+    */
+    country: string;
+
     constructor() {
         super('BlinkIdOverlaySettings');
         /**
@@ -249,6 +263,20 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
         * Default: 12000
         */
         this.onboardingButtonTooltipDelay = 12000;
+
+        /** 
+         * (optional) if default overlay contains textual information, text will be localized to this language. Otherwise device langauge will be used 
+         * 
+         * example: "en" 
+         */
+         this.language = null;
+
+         /**
+          * (optional) to be used with language variable, it defines the country locale 
+          * 
+          * example: "US" to use "en_US" on Android and en-US on iOS 
+          */
+         this.country = null;
     }
 }
 

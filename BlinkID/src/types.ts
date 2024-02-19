@@ -369,6 +369,16 @@ export const enum  CardRotation {
     None = 4
 }
 
+/// Defines possible card orientations
+export const enum  CardOrientation {
+    /** Horizontal card orientation */
+    Horizontal = 0,
+    /** Vertical card orientation */
+    Vertical = 1,
+    /** Detection was not performed */
+    NotAvailable = 2
+}
+
 /**
  * Define level of anonymization performed on recognizer result.
  */
@@ -436,6 +446,8 @@ export class ImageAnalysisResult {
     barcodeDetectionStatus: ImageAnalysisDetectionStatus;
     /** Document card rotation status determined from the scanned image. */
     cardRotation: CardRotation;
+    /** Orientation determined from the scanned image. */
+    cardOrientation: CardOrientation;
 
     constructor(nativeImageAnalysisResult: any) {
         this.blurred = nativeImageAnalysisResult.blurred;
@@ -445,6 +457,7 @@ export class ImageAnalysisResult {
         this.mrzDetectionStatus = nativeImageAnalysisResult.mrzDetectionStatus;
         this.barcodeDetectionStatus = nativeImageAnalysisResult.barcodeDetectionStatus;
         this.cardRotation = nativeImageAnalysisResult.cardRotation;
+        this.cardOrientation = nativeImageAnalysisResult.cardOrientation;
     }
 }
 

@@ -12,6 +12,7 @@ import com.microblink.blinkid.intent.IntentDataTransferMode;
 import com.microblink.blinkid.uisettings.UISettings;
 import com.microblink.blinkid.capacitor.overlays.OverlaySettingsSerializers;
 import com.microblink.blinkid.capacitor.recognizers.RecognizerSerializers;
+import com.microblink.blinkid.locale.LanguageUtils;
 import com.getcapacitor.annotation.ActivityCallback;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.JSObject;
@@ -84,6 +85,14 @@ public class MicroblinkPlugin extends Plugin {
             MicroblinkSDK.setLicenseKey(androidLicense, licensee, context);
         }
         MicroblinkSDK.setIntentDataTransferMode(IntentDataTransferMode.PERSISTED_OPTIMISED);
+    }
+
+    private void setLanguage(JSONObject jsonOverlaySettings) {
+        try {
+            LanguageUtils.setLanguageAndCountry(jsonOverlaySettings.getString("language"),
+                    jsonOverlaySettings.getString("country"),
+                    getContext());
+        } catch (Exception e) {}
     }
 
     private void startActivityForResult(PluginCall call, String callbackMethod, UISettings settings) {
