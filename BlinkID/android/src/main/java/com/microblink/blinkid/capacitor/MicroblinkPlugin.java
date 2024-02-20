@@ -41,6 +41,7 @@ public class MicroblinkPlugin extends Plugin {
         JSObject jsLicenses = call.getObject("license");
 
         setLicense(jsLicenses);
+        setLanguage(jsOverlaySettings);
 
         recognizerBundle = RecognizerSerializers.INSTANCE.deserializeRecognizerCollection(jsRecognizerCollection);
         UISettings uiSettings = OverlaySettingsSerializers.INSTANCE.getOverlaySettings(getContext(), jsOverlaySettings, recognizerBundle);
