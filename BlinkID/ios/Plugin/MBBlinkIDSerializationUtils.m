@@ -214,7 +214,8 @@
              @"faceDetectionStatus" : [NSNumber numberWithInteger:(imageAnalysisResult.faceDetectionStatus)],
              @"mrzDetectionStatus" : [NSNumber numberWithInteger:(imageAnalysisResult.mrzDetectionStatus)],
              @"barcodeDetectionStatus" : [NSNumber numberWithInteger:(imageAnalysisResult.barcodeDetectionStatus)],
-             @"cardRotation" : [NSNumber numberWithInteger:(imageAnalysisResult.cardRotation)]
+             @"cardRotation" : [NSNumber numberWithInteger:(imageAnalysisResult.cardRotation)],
+             @"cardOrientation" : [NSNumber numberWithInteger:(imageAnalysisResult.cardOrientation)]
         };
 }
 
