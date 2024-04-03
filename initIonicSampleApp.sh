@@ -29,6 +29,9 @@ else
   npm install --save @microblink/blinkid-capacitor
 fi
 
+# @capacitor/camera plugin needed only for sample application with DirectAPI to get the document images
+npm install @capacitor/camera
+
 # copy files before ionic build
 pushd src/app/home
 cp ../../../../sample_files/home.page.html ./
@@ -79,6 +82,12 @@ ionic capacitor copy android
 sed -i '' 's#compileSdkVersion = 30#compileSdkVersion = 31#g' ./android/variables.gradle
 sed -i '' 's#targetSdkVersion = 30#targetSdkVersion = 31#g' ./android/variables.gradle
 sed -i '' 's#android:name="com.microblink.sample.MainActivity"#android:name="com.microblink.sample.MainActivity" android:exported="true"#g' ./android/app/src/main/AndroidManifest.xml
+
+# Add permissions to AndroidManifest.xml
+sed -i '' '/<\/manifest>/i \
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> \
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> \
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> \' ./android/app/src/main/AndroidManifest.xml
 
 # return to root folder
 popd

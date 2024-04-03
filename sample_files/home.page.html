@@ -14,7 +14,9 @@
   </ion-header>
 
   <div id="container">
-    <ion-button (click)="scan()">Scan</ion-button>
+    <ion-button (click)="scan()">Scan with camera</ion-button>
+    <ion-button (click)="directApiMultiSide()">DirectApi MultiSide</ion-button>
+    <ion-button (click)="directApiSingleSide()">DirectApi SingleSide</ion-button>    
     <div id="results">
       {{Results}}
       <img [src]="DocumentFront"/>
