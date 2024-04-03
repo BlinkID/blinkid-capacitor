@@ -146,6 +146,20 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
     */
     country: string;
 
+    /**
+    * Defines whether torch button used for turning the flashlight on and off is shown on the screen during the scanning session.
+    *
+    * Default: true
+    */
+    showTorchButton: boolean;
+
+    /**
+    * Defines whether exit (cancel) button used for cancelling the scan is shown on the screen during the scanning session.
+    *
+    * Default: true
+    */
+    showCancelButton: boolean;
+
     constructor() {
         super('BlinkIdOverlaySettings');
         /**
@@ -206,41 +220,41 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
         this.retryButtonText = null;
 
         /**
-         * If true, BlinkIdCombinedRecognizer will check if sides do match when scanning is finished
-         * Default: true
-         */
+        * If true, BlinkIdCombinedRecognizer will check if sides do match when scanning is finished
+        * Default: true
+        */
         this.requireDocumentSidesDataMatch = true;
 
         /**
-         * Defines whether Document Not Supported dialog will be displayed in UI.
-         *
-         * Default: true
+        * Defines whether Document Not Supported dialog will be displayed in UI.
+        *
+        * Default: true
         */
         this.showNotSupportedDialog = true;
 
         /**
-         * Defines whether glare warning will be displayed when user turn on a flashlight
-         *
-         * Default: true
+        * Defines whether glare warning will be displayed when user turn on a flashlight
+        *
+        * Default: true
         */
         this.showFlashlightWarning = true;
 
         /**
-         * Option to configure back side scanning timeout.
-         *
-         * Default: 17000
+        * Option to configure back side scanning timeout.
+        *
+        * Default: 17000
         */
         this.backSideScanningTimeoutMilliseconds = 17000;
 
        /**
-        * Message that is shown while scanning the barcode.
-        * If null, default value will be used.
+       * Message that is shown while scanning the barcode.
+       * If null, default value will be used.
        */
        this.scanBarcodeText = null;
 
         /**
-         * Instructions for the user to move the document from the edge.
-         * If null, default value will be used.
+        * Instructions for the user to move the document from the edge.
+        * If null, default value will be used.
         */
         this.errorDocumentTooCloseToEdge = null;
 
@@ -264,7 +278,7 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
         */
         this.onboardingButtonTooltipDelay = 12000;
 
-        /** 
+         /** 
          * (optional) if default overlay contains textual information, text will be localized to this language. Otherwise device langauge will be used 
          * 
          * example: "en" 
@@ -272,11 +286,25 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
          this.language = null;
 
          /**
-          * (optional) to be used with language variable, it defines the country locale 
-          * 
-          * example: "US" to use "en_US" on Android and en-US on iOS 
-          */
+         * (optional) to be used with language variable, it defines the country locale 
+         * 
+         * example: "US" to use "en_US" on Android and en-US on iOS 
+         */
          this.country = null;
+
+        /**
+        * Defines whether torch button used for turning the flashlight on and off is shown on the screen during the scanning session.
+        *
+        * Default: true
+        */
+        this.showTorchButton = true;
+
+        /**
+        * Defines whether exit (cancel) button used for cancelling the scan is shown on the screen during the scanning session.
+        *
+        * Default: true
+        */
+        this.showCancelButton = true;
     }
 }
 

@@ -32,10 +32,10 @@ import {
     StringResult,
     AdditionalProcessingInfo,
     DocumentSide,
+    DataMatchResult,
     
     
     ImageExtensionFactors,
-    DataMatchResult,
 } from '../types'
 
 /* tslint:disable:no-unused-variable */
@@ -87,6 +87,11 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
      * Defines the data extracted from the barcode.
      */
     barcodeResult?: BarcodeResult;
+    
+    /**
+     * The blood type of the document owner.
+     */
+    bloodType?: StringResult;
     
     /**
      * The raw camera frame.
@@ -280,6 +285,11 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
     signatureImage?: string;
     
     /**
+     * The sponsor of the document owner.
+     */
+    sponsor?: StringResult;
+    
+    /**
      * Defines the data extracted from the visual inspection zone
      */
     vizResult?: VizResult;
@@ -329,6 +339,11 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
          * Defines the data extracted from the barcode.
          */
         this.barcodeResult = nativeResult.barcodeResult;
+        
+        /**
+         * The blood type of the document owner.
+         */
+        this.bloodType = nativeResult.bloodType;
         
         /**
          * The raw camera frame.
@@ -520,6 +535,11 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
          * image of the signature if enabled with returnSignatureImage property.
          */
         this.signatureImage = nativeResult.signatureImage;
+        
+        /**
+         * The sponsor of the document owner.
+         */
+        this.sponsor = nativeResult.sponsor;
         
         /**
          * Defines the data extracted from the visual inspection zone
