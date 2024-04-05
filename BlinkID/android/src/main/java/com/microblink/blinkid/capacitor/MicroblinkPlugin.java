@@ -101,7 +101,7 @@ public class MicroblinkPlugin extends Plugin {
                         } else if (recognitionSuccessType != RecognitionSuccessType.UNSUCCESSFUL){
                             handleDirectApiResult(recognitionSuccessType, call);
                         } else {
-                            handleDirectApiError("Could not extract the information from the front image and the back image is empty!", call);
+                            handleDirectApiError("Could not extract the information from the front side and back side is empty!", call);
                         }
                     } catch (Exception e) {
                         throw new RuntimeException(e);
@@ -124,7 +124,7 @@ public class MicroblinkPlugin extends Plugin {
         if (!jsFrontImage.isEmpty()) {
             processImage(jsFrontImage, mScanResultListenerFrontSide, call);
         } else {
-            handleDirectApiError("First side image is empty!", call);
+            handleDirectApiError("The provided image for the 'frontImage' parameter is empty!", call);
         }
     }
     private void setupRecognizerRunner(JSONObject jsonRecognizerCollection, FirstSideRecognitionCallback mFirstSideRecognitionCallback, PluginCall call) {

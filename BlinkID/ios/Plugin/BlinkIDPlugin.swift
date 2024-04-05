@@ -82,7 +82,7 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
         }
         
         guard let frontImageObject = call.getString("frontImage") else {
-            call.reject("The first side image is empty!")
+            call.reject("The provided image for the 'frontImage' parameter is empty!")
             return
         }
         
@@ -292,7 +292,7 @@ extension BlinkIDCapacitorPlugin: MBFirstSideFinishedRecognizerRunnerDelegate, M
         if (state != .empty && state != .stageValid) {
             handleDirectApiResult()
         } else if (state == .empty) {
-            pluginCall?.reject("Could not extract the information the information with DirectAPI!")
+            pluginCall?.reject("Could not extract the information with DirectAPI!")
         }
     }
 }
