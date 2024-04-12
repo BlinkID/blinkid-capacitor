@@ -13,7 +13,7 @@
     - `recognizerCollection`, which is a collection of Recognizers used for document scanning
     - `frontImage`, which would represent the front image of the document in the Base64 format string
     - `backImage`,  which would represent the back image of the document in the Base64 format string
-        - the `backImage` parameter is optional when using the `BlinkIdSingleSideRecognizer`, and can be passed as `null` or an empty string (`””`)
+        - the `backImage` parameter is optional when using the `BlinkIdSingleSideRecognizer`, and can be left out from the implementation or passed as an empty string (`””`)
 - An example of its usage can be found in the [sample application](https://github.com/BlinkID/blinkid-capacitor/blob/master/sample_files/home.page.ts) , both for the Multiside and Singleside scanning. 
 - More information about the DirectAPI scanning can be found here in the native documentation for [Android](https://github.com/BlinkID/blinkid-android?tab=readme-ov-file#direct-api) and [iOS](https://github.com/BlinkID/blinkid-ios?tab=readme-ov-file#direct-api-processing)
 - We still recommend using our ‘regular’ way of scanning with the camera, as static images can sometimes be in lower-quality which can cause SDK extraction error. It would be best to use the `scanWithDirectApi` method when using the device’s camera is not an option.

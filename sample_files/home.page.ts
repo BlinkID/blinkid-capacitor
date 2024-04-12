@@ -123,6 +123,8 @@ export class HomePage {
     }
   }
 
+  /* BlinkID scanning with DirectAPI and the BlinkIDSingleSide recognizer.
+  Best used for getting the information from only one side from various documents */
   async directApiSingleSide() {
 
     const plugin = new BlinkID.BlinkIDPlugin();
@@ -134,7 +136,7 @@ export class HomePage {
     blinkIdSingleSideRecognizer.returnFullDocumentImage = true;
     blinkIdSingleSideRecognizer.returnFaceImage = true;
 
-    /* Uncomment line 140 if you're using DirectAPI and you are sending cropped images for processing.
+    /* Uncomment line 142 if you're using DirectAPI and you are sending cropped images for processing.
     The processing will most likely not work if cropped images are being sent with the scanCroppedDocumentImage property being set to false */
             
     //blinkIdSingleSideRecognizer.scanCroppedDocumentImage = true;
@@ -177,6 +179,7 @@ export class HomePage {
       this.DocumentFace = "";
     }
   }
+
   // A helper method to obtain the base64 image for DirectAPI processing
   async pickImage(): Promise<string> {
     const image = await Camera.getPhoto({
