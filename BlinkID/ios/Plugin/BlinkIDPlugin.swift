@@ -276,13 +276,8 @@ extension BlinkIDCapacitorPlugin: MBOverlayViewControllerDelegate {
 extension BlinkIDCapacitorPlugin: MBFirstSideFinishedRecognizerRunnerDelegate, MBScanningRecognizerRunnerDelegate {
     
     public func recognizerRunnerDidFinishRecognition(ofFirstSide recognizerRunner: MBRecognizerRunner) {
-        if let backImage = backImage {
-            let image = convertBase64ToImage(backImage)
-            if let image = image {
-                processImage(image)
-            } else {
-                handleDirectApiResult()
-            }
+        if let backImage = backImage, let image = convertBase64ToImage(backImage) {
+            processImage(image)
         } else {
             handleDirectApiResult()
         }

@@ -448,6 +448,8 @@ export class ImageAnalysisResult {
     cardRotation: CardRotation;
     /** Orientation determined from the scanned image. */
     cardOrientation: CardOrientation;
+    /** RealID detection status determined from the scanned image. */
+    realIdDetectionStatus: ImageAnalysisDetectionStatus;
 
     constructor(nativeImageAnalysisResult: any) {
         this.blurred = nativeImageAnalysisResult.blurred;
@@ -458,6 +460,7 @@ export class ImageAnalysisResult {
         this.barcodeDetectionStatus = nativeImageAnalysisResult.barcodeDetectionStatus;
         this.cardRotation = nativeImageAnalysisResult.cardRotation;
         this.cardOrientation = nativeImageAnalysisResult.cardOrientation;
+        this.realIdDetectionStatus = nativeImageAnalysisResult.realIdDetectionStatus;
     }
 }
 
@@ -2488,13 +2491,41 @@ export class RecognitionModeFilter {
     }
 }
 
+/**
+ * ClassAnonymizationSettings is used to anonymize specific documents and fields.
+ * It can be modified with countries, regions, document types, document fields and the partial document number anonymization. 
+ * See Country, Region, Type, FieldType and DocumentNumberAnonymizationSettings objects to get more information which settings can be anonymized.
+ * Setting is taken into account if AnonymizationMode is set to ImageOnly,ResultFieldsOnly or FullResult.
+ */
 export class ClassAnonymizationSettings {
+    /** Documents from the set country will be anonymized */
     country?: Country;
+    /** Documents from the set region will be anonymized */
     region?: Region;
+    /** Document type that will be anonymized */
     type?: Type;
+    /** Document fields that will be anonymized */
     fields?: FieldType[];
+    /** Partial document number anonymization */
+    documentNumberAnonymizationSettings?: DocumentNumberAnonymizationSettings;
+
+    constructor() {}
+}
+
+/** 
+ * DocumentNumberAnonymizationSettings is implemented with ClassAnonymizationSettings class.
+ * It can partially anonymize the document number from the scanned document. 
+*/
+export class DocumentNumberAnonymizationSettings {
+
+    /** Defines how many digits at the beginning of the card number remain visible after anonymization. */
+    prefixDigitsVisible: number;
+    /** Defines how many digits at the end of the card number remain visible after anonymization. */
+    suffixDigitsVisible: number;
 
     constructor() {
+        this.prefixDigitsVisible = 0;
+        this.suffixDigitsVisible = 0;
     }
 }
 
@@ -2546,7 +2577,10 @@ export const enum ProcessingStatus {
     AwaitingOtherSide,
 
     /** Side not scanned. */
-    NotScanned
+    NotScanned,
+
+    /** Detection of the barcode failed.  */
+    BarcodeDetectionFailed
 }
 
 /** Define level of anonymization performed on recognizer result */

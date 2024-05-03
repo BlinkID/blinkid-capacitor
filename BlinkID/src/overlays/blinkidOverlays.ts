@@ -74,7 +74,7 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
     retryButtonText: string;
 
     /**
-    * If true, BlinkIdCombinedRecognizer will check if sides do match when scanning is finished
+    * If true, BlinkIdMultiSideRecognizer will check if sides do match when scanning is finished
     * Default: true
     */
     requireDocumentSidesDataMatch: boolean;
