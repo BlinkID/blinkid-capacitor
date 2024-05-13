@@ -32,10 +32,10 @@ import {
     StringResult,
     AdditionalProcessingInfo,
     DocumentSide,
+    DataMatchResult,
     
     
     ImageExtensionFactors,
-    DataMatchResult,
 } from '../types'
 
 /* tslint:disable:no-unused-variable */

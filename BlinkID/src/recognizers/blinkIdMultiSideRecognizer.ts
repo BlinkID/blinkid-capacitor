@@ -32,10 +32,10 @@ import {
     StringResult,
     AdditionalProcessingInfo,
     DocumentSide,
+    DataMatchResult,
     
     
     ImageExtensionFactors,
-    DataMatchResult,
 } from '../types'
 
 /* tslint:disable:no-unused-variable */
@@ -109,6 +109,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
     barcodeResult?: BarcodeResult;
     
     /**
+     * The blood type of the document owner.
+     */
+    bloodType?: StringResult;
+    
+    /**
      * The classification information.
      */
     classInfo?: ClassInfo;
@@ -142,6 +147,14 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
      * The additional number of the document.
      */
     documentAdditionalNumber?: StringResult;
+    
+    /**
+     * Returns DataMatchStateSuccess if data from scanned parts/sides of the document match,
+         * DataMatchStateFailed otherwise. For example if date of expiry is scanned from the front and back side
+         * of the document and values do not match, this method will return DataMatchStateFailed. Result will
+         * be DataMatchStateSuccess only if scanned values for all fields that are compared are the same.
+     */
+    documentDataMatch?: DataMatchState;
     
     /**
      * The document number.
@@ -330,6 +343,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
      */
     signatureImage?: string;
     
+    /**
+     * The sponsor of the document owner.
+     */
+    sponsor?: StringResult;
+    
 
     constructor(nativeResult: any) {
         super(nativeResult.resultState);
@@ -397,6 +415,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
         this.barcodeResult = nativeResult.barcodeResult;
         
         /**
+         * The blood type of the document owner.
+         */
+        this.bloodType = nativeResult.bloodType;
+        
+        /**
          * The classification information.
          */
         this.classInfo = nativeResult.classInfo;
@@ -430,6 +453,14 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
          * The additional number of the document.
          */
         this.documentAdditionalNumber = nativeResult.documentAdditionalNumber;
+        
+        /**
+         * Returns DataMatchStateSuccess if data from scanned parts/sides of the document match,
+         * DataMatchStateFailed otherwise. For example if date of expiry is scanned from the front and back side
+         * of the document and values do not match, this method will return DataMatchStateFailed. Result will
+         * be DataMatchStateSuccess only if scanned values for all fields that are compared are the same.
+         */
+        this.documentDataMatch = nativeResult.documentDataMatch;
         
         /**
          * The document number.
@@ -617,6 +648,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
          * image of the signature if enabled with returnSignatureImage property.
          */
         this.signatureImage = nativeResult.signatureImage;
+        
+        /**
+         * The sponsor of the document owner.
+         */
+        this.sponsor = nativeResult.sponsor;
         
     }
 }

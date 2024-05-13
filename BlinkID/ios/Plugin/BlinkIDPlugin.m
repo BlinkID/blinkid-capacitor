@@ -5,4 +5,5 @@
 // each method the plugin supports using the CAP_PLUGIN_METHOD macro.
 CAP_PLUGIN(BlinkIDCapacitorPlugin, "BlinkIDCapacitorPlugin",
            CAP_PLUGIN_METHOD(scanWithCamera, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(scanWithDirectApi, CAPPluginReturnPromise);
 )

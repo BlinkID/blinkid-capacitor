@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as BlinkID from '@microblink/blinkid-capacitor';
-
+import { CameraResultType, Camera } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +16,7 @@ export class HomePage {
 
   constructor() {}
 
+  /* BlinkID scanning with camera */
   async scan() {
 
     const plugin = new BlinkID.BlinkIDPlugin();
@@ -26,8 +27,8 @@ export class HomePage {
 
     // com.microblink.sample
     const licenseKeys: BlinkID.License = {
-      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTURnd09EUTFNamM1TnpJc0lrTnlaV0YwWldSR2IzSWlPaUkwT1RabFpEQXpaUzAwT0RBeExUUXpZV1F0WVRrMU5DMDBNemMyWlRObU9UTTVNR1FpZlE9PTYmqMAMVMiFzaNDv15W9/CxDFVRDWRjok+uP0GtswDV4XTVGmhbivKDEb9Gtk2iMzf29qFWF8aUjIES4QSQFJG0xfBXZhluSk7lt4A959aHAZ0+BWgDnqZUPJAF2jZd0Pl2Kt1oDxLtqtf8V/RR+dPYzUV0PEA=',
-      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTURnd09EUTNNelkxTmprc0lrTnlaV0YwWldSR2IzSWlPaUkwT1RabFpEQXpaUzAwT0RBeExUUXpZV1F0WVRrMU5DMDBNemMyWlRObU9UTTVNR1FpZlE9PRIv5OawGAVdpvmuz+999CsJyIAgtV3h96BJo1Fq+xBZnKDoKhL01jBUrxC0E4+EeWoTuEtPPcDte2KHgjOP7Z4y+Mk9ihWDHTjgANWfFwG2Gd7HYJxgwcYQsTvICqS1CBklIILTfbXahwtD4ZKh0ghaxUJf7gU=',
+      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRRM016STRPRE0zTnpVc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PT4PFNbaGYbx8lz0VdMw0rwMahZJsnnMY0+blCuN/m+QolwrXwoZIVhisfNF7p9UPmh44A6nnFILPB2z3pyoV0mmbTrZ/6/sfoWf4v2SlJjpwM5pBxCooWZr4IAmv5YT6Ef3x4iC6U1gL8zUB0T53LpWoY9+CElD',
+      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRNNE5qWXdNVEE1TURnc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PYrV4CMxsRU+iUM/SeDbRDbjxRQsXIYuDXKzh5n0zmLHgSdRllWR/wE/J2MZ2MkpDdegbPTLRoJV+59G9F1QY8gIW7ua07A6f7wzTGq4laEyCo+f1rOOUBTZfKBIzqUJtR9NZIkb6YMkfLY5cmmNb5vnwIM+9BNI',
       showTrialLicenseWarning: true
     };
  
@@ -57,44 +58,184 @@ export class HomePage {
         this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
       }
     }
+
   }
+
+  /* BlinkID scanning with DirectAPI and the BlinkIDMultiSide recognizer.
+  Best used for getting the information from both front and backside information from various documents */
+  async directApiMultiSide() {
+
+    const plugin = new BlinkID.BlinkIDPlugin();
+
+   // Select the front side of the document and return the Base64 string
+    const frontImage = await this.pickImage();
+
+   // Select the back side of the document and return the Base64 string
+   const backImage = await this.pickImage();
+
+    const blinkIdMultisideRecognizer = new BlinkID.BlinkIdMultiSideRecognizer();
+    blinkIdMultisideRecognizer.returnFullDocumentImage = true;
+    blinkIdMultisideRecognizer.returnFaceImage = true;
+
+    /* Uncomment line 83 if you're using DirectAPI and you are sending cropped images for processing.
+    The processing will most likely not work if cropped images are being sent with the scanCroppedDocumentImage property being set to false */
+            
+    //blinkIdMultisideRecognizer.scanCroppedDocumentImage = true;
+
+    // com.microblink.sample
+    const licenseKeys: BlinkID.License = {
+      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRRM016STRPRE0zTnpVc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PT4PFNbaGYbx8lz0VdMw0rwMahZJsnnMY0+blCuN/m+QolwrXwoZIVhisfNF7p9UPmh44A6nnFILPB2z3pyoV0mmbTrZ/6/sfoWf4v2SlJjpwM5pBxCooWZr4IAmv5YT6Ef3x4iC6U1gL8zUB0T53LpWoY9+CElD',
+      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRNNE5qWXdNVEE1TURnc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PYrV4CMxsRU+iUM/SeDbRDbjxRQsXIYuDXKzh5n0zmLHgSdRllWR/wE/J2MZ2MkpDdegbPTLRoJV+59G9F1QY8gIW7ua07A6f7wzTGq4laEyCo+f1rOOUBTZfKBIzqUJtR9NZIkb6YMkfLY5cmmNb5vnwIM+9BNI',
+      showTrialLicenseWarning: true
+    };
+    try {
+
+      const scanningResults = await plugin.scanWithDirectApi(
+        licenseKeys,
+        new BlinkID.RecognizerCollection([blinkIdMultisideRecognizer]),
+        frontImage,
+        backImage
+      );
+  
+      if (scanningResults.length === 0) {
+        return;
+      }
+  
+      for (const result of scanningResults) {
+        if (result instanceof BlinkID.BlinkIdMultiSideRecognizerResult) {
+  
+          this.Results = getIdResultsString(result);
+          this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
+          this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
+          this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
+        } else if (result instanceof BlinkID.MrtdCombinedRecognizerResult) {
+          this.Results = getMrzResultsString(result);
+          this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
+          this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
+          this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
+        }
+      }
+    } catch (scanningError: any) {
+      this.Results = scanningError.message || 'An unknown error occurred';
+      this.DocumentFront = "";
+      this.DocumentBack = "";
+      this.DocumentFace = "";
+    }
+  }
+
+  /* BlinkID scanning with DirectAPI and the BlinkIDSingleSide recognizer.
+  Best used for getting the information from only one side from various documents */
+  async directApiSingleSide() {
+
+    const plugin = new BlinkID.BlinkIDPlugin();
+
+    // Select a document image (either front or the backside) and return the Base64 string
+    const image = await this.pickImage();
+
+    const blinkIdSingleSideRecognizer = new BlinkID.BlinkIdSingleSideRecognizer();
+    blinkIdSingleSideRecognizer.returnFullDocumentImage = true;
+    blinkIdSingleSideRecognizer.returnFaceImage = true;
+
+    /* Uncomment line 142 if you're using DirectAPI and you are sending cropped images for processing.
+    The processing will most likely not work if cropped images are being sent with the scanCroppedDocumentImage property being set to false */
+            
+    //blinkIdSingleSideRecognizer.scanCroppedDocumentImage = true;
+
+    // com.microblink.sample
+    const licenseKeys: BlinkID.License = {
+      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRRM016STRPRE0zTnpVc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PT4PFNbaGYbx8lz0VdMw0rwMahZJsnnMY0+blCuN/m+QolwrXwoZIVhisfNF7p9UPmh44A6nnFILPB2z3pyoV0mmbTrZ/6/sfoWf4v2SlJjpwM5pBxCooWZr4IAmv5YT6Ef3x4iC6U1gL8zUB0T53LpWoY9+CElD',
+      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRNNE5qWXdNVEE1TURnc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PYrV4CMxsRU+iUM/SeDbRDbjxRQsXIYuDXKzh5n0zmLHgSdRllWR/wE/J2MZ2MkpDdegbPTLRoJV+59G9F1QY8gIW7ua07A6f7wzTGq4laEyCo+f1rOOUBTZfKBIzqUJtR9NZIkb6YMkfLY5cmmNb5vnwIM+9BNI',
+      showTrialLicenseWarning: true
+    };
+    try {
+      const scanningResults = await plugin.scanWithDirectApi(
+        licenseKeys,
+        new BlinkID.RecognizerCollection([blinkIdSingleSideRecognizer]),
+        image
+      );
+  
+      if (scanningResults.length === 0) {
+        return;
+      }
+  
+      for (const result of scanningResults) {
+        if (result instanceof BlinkID.BlinkIdMultiSideRecognizerResult) {
+  
+          this.Results = getIdResultsString(result);
+          this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
+          this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
+          this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
+        } else if (result instanceof BlinkID.BlinkIdSingleSideRecognizerResult) {
+          this.Results = getIdResultsString(result);
+          this.DocumentFront = result.fullDocumentImage ? `data:image/jpg;base64,${result.fullDocumentImage}` : undefined;
+          this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
+          this.DocumentBack = "";
+        }
+      }
+    } catch (scanningError: any) {
+      this.Results = scanningError.message || 'An unknown error occurred';
+      this.DocumentFront = "";
+      this.DocumentBack = "";
+      this.DocumentFace = "";
+    }
+  }
+
+  // A helper method to obtain the base64 image for DirectAPI processing
+  async pickImage(): Promise<string> {
+    const image = await Camera.getPhoto({
+        quality: 100,
+        allowEditing: false,
+        resultType: CameraResultType.Base64,
+    });
+
+    return image.base64String ?? '';
+}
 }
 
-function getIdResultsString(result: BlinkID.BlinkIdMultiSideRecognizerResult) {
-  return buildResult(result.firstName?.description, 'First name') +
-      buildResult(result.lastName?.description, 'Last name') +
-      buildResult(result.fullName?.description, 'Full name') +
-      buildResult(result.localizedName?.description, 'Localized name') +
-      buildResult(result.additionalNameInformation?.description, 'Additional name info') +
-      buildResult(result.address?.description, 'Address') +
-      buildResult(
-          result.additionalAddressInformation?.description, 'Additional address info') +
-      buildResult(
-          result.additionalOptionalAddressInformation?.description, 'Additional optional address info') +
-      buildResult(result.documentNumber?.description, 'Document number') +
-      buildResult(
-          result.documentAdditionalNumber?.description, 'Additional document number') +
-      buildResult(result.sex?.description, 'Sex') +
-      buildResult(result.issuingAuthority?.description, 'Issuing authority') +
-      buildResult(result.nationality?.description, 'Nationality') +
-      buildDateResult(result?.dateOfBirth, 'Date of birth') +
-      buildIntResult(result?.age, 'Age') +
-      buildDateResult(result?.dateOfIssue, 'Date of issue') +
-      buildDateResult(result?.dateOfExpiry, 'Date of expiry') +
-      buildResult(result.dateOfExpiryPermanent?.toString(),
-          'Date of expiry permanent') +
-      buildResult(result.maritalStatus?.description, 'Martial status') +
-      buildResult(result.personalIdNumber?.description, 'Personal Id Number') +
-      buildResult(result.profession?.description, 'Profession') +
-      buildResult(result.race?.description, 'Race') +
-      buildResult(result.religion?.description, 'Religion') +
-      buildResult(result.residentialStatus?.description, 'Residential Status') +
-      buildResult(result.processingStatus, "Processing status") +
-      buildResult(result.recognitionMode, "Recognition mode") +
-      buildDriverLicenceResult(result.driverLicenseDetailedInfo) +
-      buildDataMatchResult(result.dataMatch) +
+function getIdResultsString(result: BlinkID.RecognizerResult) {
+  var stringResult = "";
+
+  if (result instanceof BlinkID.BlinkIdMultiSideRecognizerResult ||  result instanceof BlinkID.BlinkIdSingleSideRecognizerResult) {
+    stringResult = buildResult(result.firstName?.description, 'First name') +
+    buildResult(result.lastName?.description, 'Last name') +
+    buildResult(result.fullName?.description, 'Full name') +
+    buildResult(result.localizedName?.description, 'Localized name') +
+    buildResult(result.additionalNameInformation?.description, 'Additional name info') +
+    buildResult(result.address?.description, 'Address') +
+    buildResult(
+        result.additionalAddressInformation?.description, 'Additional address info') +
+    buildResult(
+        result.additionalOptionalAddressInformation?.description, 'Additional optional address info') +
+    buildResult(result.documentNumber?.description, 'Document number') +
+    buildResult(
+        result.documentAdditionalNumber?.description, 'Additional document number') +
+    buildResult(result.sex?.description, 'Sex') +
+    buildResult(result.issuingAuthority?.description, 'Issuing authority') +
+    buildResult(result.nationality?.description, 'Nationality') +
+    buildDateResult(result?.dateOfBirth, 'Date of birth') +
+    buildIntResult(result?.age, 'Age') +
+    buildDateResult(result?.dateOfIssue, 'Date of issue') +
+    buildDateResult(result?.dateOfExpiry, 'Date of expiry') +
+    buildResult(result.dateOfExpiryPermanent?.toString(),
+        'Date of expiry permanent') +
+    buildResult(result.maritalStatus?.description, 'Martial status') +
+    buildResult(result.personalIdNumber?.description, 'Personal Id Number') +
+    buildResult(result.profession?.description, 'Profession') +
+    buildResult(result.race?.description, 'Race') +
+    buildResult(result.religion?.description, 'Religion') +
+    buildResult(result.residentialStatus?.description, 'Residential Status') +
+    buildResult(result.processingStatus, "Processing status") +
+    buildResult(result.recognitionMode, "Recognition mode") +
+    buildDriverLicenceResult(result.driverLicenseDetailedInfo);
+    if (result instanceof BlinkID.BlinkIdMultiSideRecognizerResult) {
+      stringResult += buildDataMatchResult(result.dataMatch) +
       buildAdditionalProcessingInfoResult(result.frontAdditionalProcessingInfo, "Front additional processing info") +
       buildAdditionalProcessingInfoResult(result.backAdditionalProcessingInfo, "Back additional processing info");
+    } else {
+      stringResult += buildAdditionalProcessingInfoResult(result.additionalProcessingInfo, "Additional processing info");
+    }
+  }
+  return stringResult;
 }
 
 function getMrzResultsString(result: BlinkID.MrtdCombinedRecognizerResult) {
