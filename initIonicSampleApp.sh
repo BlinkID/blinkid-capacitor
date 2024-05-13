@@ -79,8 +79,8 @@ ionic capacitor copy ios
 ionic capacitor copy android
 
 #update compile and target sdk versions to 31, add android:exported="true" to manifest
-sed -i '' 's#compileSdkVersion = 30#compileSdkVersion = 31#g' ./android/variables.gradle
-sed -i '' 's#targetSdkVersion = 30#targetSdkVersion = 31#g' ./android/variables.gradle
+sed -i '' 's#compileSdkVersion = 30#compileSdkVersion = 34#g' ./android/variables.gradle
+sed -i '' 's#targetSdkVersion = 30#targetSdkVersion = 34#g' ./android/variables.gradle
 sed -i '' 's#android:name="com.microblink.sample.MainActivity"#android:name="com.microblink.sample.MainActivity" android:exported="true"#g' ./android/app/src/main/AndroidManifest.xml
 
 # Add permissions to AndroidManifest.xml
