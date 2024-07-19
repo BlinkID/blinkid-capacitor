@@ -33,6 +33,8 @@ import {
     AdditionalProcessingInfo,
     DocumentSide,
     DataMatchResult,
+    StrictnessLevel,
+    CustomClassRules,
     
     
     ImageExtensionFactors,
@@ -165,6 +167,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
      * The one more additional number of the document.
      */
     documentOptionalAdditionalNumber?: StringResult;
+    
+    /**
+     * The transcription of the document subtype.
+     */
+    documentSubtype?: StringResult;
     
     /**
      * The driver license detailed info.
@@ -323,6 +330,16 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
     religion?: StringResult;
     
     /**
+     * The remarks on the residence permit.
+     */
+    remarks?: StringResult;
+    
+    /**
+     * The residence permit type.
+     */
+    residencePermitType?: StringResult;
+    
+    /**
      * The residential stauts of the document owner.
      */
     residentialStatus?: StringResult;
@@ -347,6 +364,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
      * The sponsor of the document owner.
      */
     sponsor?: StringResult;
+    
+    /**
+     * The visa type.
+     */
+    visaType?: StringResult;
     
 
     constructor(nativeResult: any) {
@@ -471,6 +493,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
          * The one more additional number of the document.
          */
         this.documentOptionalAdditionalNumber = nativeResult.documentOptionalAdditionalNumber;
+        
+        /**
+         * The transcription of the document subtype.
+         */
+        this.documentSubtype = nativeResult.documentSubtype;
         
         /**
          * The driver license detailed info.
@@ -629,6 +656,16 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
         this.religion = nativeResult.religion;
         
         /**
+         * The remarks on the residence permit.
+         */
+        this.remarks = nativeResult.remarks;
+        
+        /**
+         * The residence permit type.
+         */
+        this.residencePermitType = nativeResult.residencePermitType;
+        
+        /**
          * The residential stauts of the document owner.
          */
         this.residentialStatus = nativeResult.residentialStatus;
@@ -654,6 +691,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
          */
         this.sponsor = nativeResult.sponsor;
         
+        /**
+         * The visa type.
+         */
+        this.visaType = nativeResult.visaType;
+        
     }
 }
 
@@ -667,13 +709,6 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
      * Additional anonymization settings.
      */
     additionalAnonymization: ClassAnonymizationSettings[];
-    
-    /**
-     * Defines whether blured frames filtering is allowed
-         * 
-         * 
-     */
-    allowBlurFilter: boolean;
     
     /**
      * Proceed with scanning the back side even if the front side result is uncertain.
@@ -707,6 +742,32 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
     anonymizationMode: AnonymizationMode;
     
     /**
+     * Strictness level for blur detection.
+         * 
+         * 
+     */
+    blurStrictnessLevel: StrictnessLevel;
+    
+    /**
+     * Get custom class rules.
+     */
+    customClassRules: CustomClassRules[];
+    
+    /**
+     * Skip processing of the blurred frames.
+         * 
+         * 
+     */
+    enableBlurFilter: boolean;
+    
+    /**
+     * Skip processing of the glared frames.
+         * 
+         * 
+     */
+    enableGlareFilter: boolean;
+    
+    /**
      * Property for setting DPI for face images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
          * 
@@ -729,6 +790,13 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
          * 
      */
     fullDocumentImageExtensionFactors: ImageExtensionFactors;
+    
+    /**
+     * Strictness level for glare detection.
+         * 
+         * 
+     */
+    glareStrictnessLevel: StrictnessLevel;
     
     /**
      * Configure the number of characters per field that are allowed to be inconsistent in data match.
@@ -823,13 +891,6 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
         this.additionalAnonymization = [];
         
         /**
-         * Defines whether blured frames filtering is allowed
-         * 
-         * 
-         */
-        this.allowBlurFilter = true;
-        
-        /**
          * Proceed with scanning the back side even if the front side result is uncertain.
          * This only works for still images - video feeds will ignore this setting.
          * 
@@ -861,6 +922,32 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
         this.anonymizationMode = AnonymizationMode.FullResult;
         
         /**
+         * Strictness level for blur detection.
+         * 
+         * 
+         */
+        this.blurStrictnessLevel = StrictnessLevel.Normal;
+        
+        /**
+         * Get custom class rules.
+         */
+        this.customClassRules = [];
+        
+        /**
+         * Skip processing of the blurred frames.
+         * 
+         * 
+         */
+        this.enableBlurFilter = true;
+        
+        /**
+         * Skip processing of the glared frames.
+         * 
+         * 
+         */
+        this.enableGlareFilter = true;
+        
+        /**
          * Property for setting DPI for face images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
          * 
@@ -883,6 +970,13 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
          * 
          */
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
+        
+        /**
+         * Strictness level for glare detection.
+         * 
+         * 
+         */
+        this.glareStrictnessLevel = StrictnessLevel.Normal;
         
         /**
          * Configure the number of characters per field that are allowed to be inconsistent in data match.

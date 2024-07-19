@@ -128,6 +128,19 @@ export class Side {
   }
 
 /**
+* Represents all of the alphabet types that BlinkID supports extracting.
+*/
+export const enum AlphabetType {
+    /** The Latin alphabet type. */
+    Latin = 0,
+    /** The Arabic alphabet type. */
+    Arabic = 1,
+    /** The Cyrillic alphabet type. */
+    Cyrillic = 2,
+}
+
+
+/**
 * Represents string results for three alphabets
 */
 export class StringResult {
@@ -380,6 +393,20 @@ export const enum  CardOrientation {
 }
 
 /**
+ * Defines possible strictness levels for blur are glare detection.
+ */
+export const enum StrictnessLevel {
+    /** The most strict level for blur are glare detection. */
+    Strict = 0,
+
+    /** The default strictness level for blur are glare detection. */
+    Normal = 1,
+
+    /** The least strict level for blur are glare detection. */
+    Relaxed = 2
+}
+
+/**
  * Define level of anonymization performed on recognizer result.
  */
 export const enum AnonymizationMode {
@@ -431,9 +458,6 @@ export class ClassInfo {
  * Defines possible color and moire statuses determined from scanned image.
  */
 export class ImageAnalysisResult {
-
-    /**  Whether the image is blurred. */
-    blurred: boolean;
     /** he color status determined from scanned image. */
     documentImageColorStatus: DocumentImageColorStatus;
     /** The Moire pattern detection status determined from the scanned image. */
@@ -450,9 +474,12 @@ export class ImageAnalysisResult {
     cardOrientation: CardOrientation;
     /** RealID detection status determined from the scanned image. */
     realIdDetectionStatus: ImageAnalysisDetectionStatus;
+    /**  Whether the image is blurred. */
+    blurDetected: boolean;
+    /**  Whether the image is blurred. */
+    glareDetected: boolean;
 
     constructor(nativeImageAnalysisResult: any) {
-        this.blurred = nativeImageAnalysisResult.blurred;
         this.documentImageColorStatus = nativeImageAnalysisResult.documentImageColorStatus;
         this.documentImageMoireStatus = nativeImageAnalysisResult.documentImageMoireStatus;
         this.faceDetectionStatus = nativeImageAnalysisResult.faceDetectionStatus;
@@ -461,6 +488,8 @@ export class ImageAnalysisResult {
         this.cardRotation = nativeImageAnalysisResult.cardRotation;
         this.cardOrientation = nativeImageAnalysisResult.cardOrientation;
         this.realIdDetectionStatus = nativeImageAnalysisResult.realIdDetectionStatus;
+        this.blurDetected = nativeImageAnalysisResult.blurDetected;
+        this.glareDetected = nativeImageAnalysisResult.glareDetected;
     }
 }
 
@@ -867,7 +896,8 @@ export const enum Region {
     Goias = 134,
     GuerreroAcapulcoDeJuarez = 135,
     Haryana = 136,
-    Sergipe = 137
+    Sergipe = 137,
+    Alagos = 138,
 }
 
 /**
@@ -940,7 +970,11 @@ export const enum Type {
     MainlandTravelPermitTaiwan = 63,
     NbiClearance = 64,
     ProofOfRegistration = 65,
-    TemporaryProtectionPermit = 66
+    TemporaryProtectionPermit = 66,
+    AfghanCitizenCard = 67,
+    EId = 68,
+    Pass = 69,
+    SisId = 70,
 }
 
 export const enum FieldType {
@@ -981,7 +1015,11 @@ export const enum FieldType {
     Sex = 34,
     VehicleClass = 35,
     BloodType = 36,
-    Sponsor = 37
+    Sponsor = 37,
+    VisaType = 38,
+    DocumentSubtype = 39,
+    Remarks = 40,
+    ResidencePermitType = 41
 }
 
 /** Defines the data extracted from the barcode. */
@@ -2508,14 +2546,12 @@ export class ClassAnonymizationSettings {
     fields?: FieldType[];
     /** Partial document number anonymization */
     documentNumberAnonymizationSettings?: DocumentNumberAnonymizationSettings;
-
-    constructor() {}
 }
 
 /** 
  * DocumentNumberAnonymizationSettings is implemented with ClassAnonymizationSettings class.
  * It can partially anonymize the document number from the scanned document. 
-*/
+ */
 export class DocumentNumberAnonymizationSettings {
 
     /** Defines how many digits at the beginning of the card number remain visible after anonymization. */
@@ -2527,6 +2563,37 @@ export class DocumentNumberAnonymizationSettings {
         this.prefixDigitsVisible = 0;
         this.suffixDigitsVisible = 0;
     }
+}
+
+/**
+ * CustomClassRules represent custom rules of mandatory fields for each class of a document.
+ * Setting the fields in the CustomClassRules will make them mandatory.
+ * If CustomClassRules are not set, all of the default fields are mandatory.
+ */
+export class CustomClassRules {
+    /** Documents from the set country will be used with CustomClassRules */
+    country?: Country;
+    /** Documents from the set region will be used with CustomClassRules */
+    region?: Region;
+    /** Document type that will be used with CustomClassRules */
+    type?: Type;
+    /** An array of the document fields and alphabets that will be used with CustomClassRules. See DetailedFieldType for more information. */
+    detailedFieldTypes: DetailedFieldType[];
+
+    constructor() {
+        this.detailedFieldTypes = [];
+    }
+}
+
+/**
+ * DetailedFieldType represents a detailed field type used for custom mandatory fields.
+ * Used with CustomClassRules. A field type (see FieldType for all fields) along with Alphabet type (see AlphabetType for all alphabets) is required.
+ */
+export class DetailedFieldType {
+    /** Field type that will be optional for extraction for CustomClassRules. */
+    fieldType?: FieldType;
+    /** Alphabet type connected with the field type that will be optional for extraction for CustomClassRules. */
+    alphabetType?: AlphabetType;
 }
 
 /** Defines status of the last recognition process. */
@@ -2647,4 +2714,53 @@ export enum DataMatchState {
     Failed = 1,
     /** Data match. */
     Success = 2
+}
+
+/**
+ * Defines possible Android device camera video resolution preset 
+ */
+export enum AndroidCameraResolutionPreset {
+    /** Will choose camera video resolution which is best for current device */
+    PresetDefault = 0,
+
+    /** Attempts to choose camera video resolution as closely as 480p */
+    Preset480p = 1,
+    
+    /** Attempts to choose camera video resolution as closely as 720p */
+    Preset720p = 2,
+    
+    /** Attempts to choose camera video resolution as closely as 1080p */
+    Preset1080p = 3,
+
+    /** Attempts to choose camera video resolution as closely as 2160p */
+    Preset2160p = 4,
+
+    /** Will choose max available camera video resolution */
+    PresetMaxAvailable = 5
+}
+
+/**
+ * Defines possible iOS device camera video resolution preset 
+ */
+export enum iOSCameraResolutionPreset {
+    /** 480p video will always be used */
+    Preset480p = 0,
+
+    /** 720p video will always be used */
+    Preset720p = 1,
+    
+    /** 1080p video will always be used */
+    Preset1080p = 2,
+    
+    /** 4K video will always be used */
+    Preset4K = 3,
+
+    /** The library will calculate optimal resolution based on the use case and device used */
+    PresetOptimal = 4,
+
+    /** Device's maximal video resolution will be used */
+    PresetMax = 5,
+
+    /** Device's photo preview resolution will be used */
+    PresetPhoto = 6
 }

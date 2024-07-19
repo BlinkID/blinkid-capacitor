@@ -43,24 +43,25 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
             return
         }
 
-        setLicenseKey(license: jsonLicense)
-        setLanguage(jsonOverlaySettings?["language"] ?? "en",
-                    jsonOverlaySettings?["country"] ?? "")
-        
-        recognizerCollection = MBRecognizerSerializers.sharedInstance()?.deserializeRecognizerCollection(jsonRecognizerCollection)
+        if (setLicenseKey(license: jsonLicense)) {
+            setLanguage(jsonOverlaySettings?["language"] ?? "en",
+                        jsonOverlaySettings?["country"] ?? "")
+            
+            recognizerCollection = MBRecognizerSerializers.sharedInstance()?.deserializeRecognizerCollection(jsonRecognizerCollection)
 
-        DispatchQueue.main.async {
-            guard let overlayVC = MBOverlaySettingsSerializers.sharedInstance()?.createOverlayViewController(jsonOverlaySettings, recognizerCollection: self.recognizerCollection, delegate: self) else {
-                call.reject("Unsupported overlay view controller!")
-                return
-            }
-
-            guard let recognizerRunneViewController: UIViewController =
-                MBViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: overlayVC) else {
+            DispatchQueue.main.async {
+                guard let overlayVC = MBOverlaySettingsSerializers.sharedInstance()?.createOverlayViewController(jsonOverlaySettings, recognizerCollection: self.recognizerCollection, delegate: self) else {
+                    call.reject("Unsupported overlay view controller!")
                     return
+                }
+
+                guard let recognizerRunneViewController: UIViewController =
+                    MBViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: overlayVC) else {
+                        return
+                }
+                recognizerRunneViewController.modalPresentationStyle = .fullScreen
+                self.bridge?.viewController?.present(recognizerRunneViewController, animated: true, completion: nil)
             }
-            recognizerRunneViewController.modalPresentationStyle = .fullScreen
-            self.bridge?.viewController?.present(recognizerRunneViewController, animated: true, completion: nil)
         }
     }
     
@@ -96,13 +97,14 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
         
         backImage = backImageObject
         
-        setLicenseKey(license: jsonLicense)
-        setupRecognizerRunner(jsonRecognizerCollection)
-        let frontImage = convertBase64ToImage(frontImageObject)
-        if let frontImage = frontImage {
-            processImage(frontImage)
-        } else {
-            handleDirectApiError("Could not decode the Base64 image!", call)
+        if(setLicenseKey(license: jsonLicense)) {
+            setupRecognizerRunner(jsonRecognizerCollection)
+            let frontImage = convertBase64ToImage(frontImageObject)
+            if let frontImage = frontImage {
+                processImage(frontImage)
+            } else {
+                handleDirectApiError("Could not decode the Base64 image!", call)
+            }
         }
     }
     private func setupRecognizerRunner(_ recognizerCollectionObject: [String : Any]?) {
@@ -144,8 +146,8 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
         call.resolve()
     }
 
-    private func setLicenseKey(license: [String:Any]) {
-
+    private func setLicenseKey(license: [String:Any]) -> Bool {
+        var isLicenseKeyValid = true
         if (license["showTrialLicenseWarning"] != nil) {
             let showTrialLicenseWarning = license["showTrialLicenseWarning"] as! Bool
             MBMicroblinkSDK.shared().showTrialLicenseWarning = showTrialLicenseWarning
@@ -153,10 +155,39 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
 
         guard let iOSLicense = license["ios"] as? String else {
             pluginCall?.reject("You must provide iOS License for Microblink SDK")
-            return
+            return false
         }
 
         MBMicroblinkSDK.shared().setLicenseKey(iOSLicense) { (licenseError) in
+            self.pluginCall?.reject(self.getLicenseErrorString(licenseError))
+            isLicenseKeyValid = false
+        }
+        return isLicenseKeyValid
+    }
+    
+    private func getLicenseErrorString(_ licenseError: MBLicenseError) -> String {
+        var licenseKeyErrorString = "iOS license key error: "
+        switch licenseError {
+        case .networkRequired:
+            return licenseKeyErrorString + "network required"
+        case .unableToDoRemoteLicenceCheck:
+            return licenseKeyErrorString + "unable to do remote licence check"
+        case .licenseIsLocked:
+            return licenseKeyErrorString + "license is locked"
+        case .licenseCheckFailed:
+            return licenseKeyErrorString + "license check failed";
+        case .invalidLicense:
+            return licenseKeyErrorString + "invalid license"
+        case .permissionExpired:
+            return licenseKeyErrorString + "permission expired"
+        case .payloadCorrupted:
+            return licenseKeyErrorString + "payload corrupted"
+        case .payloadSignatureVerificationFailed:
+            return licenseKeyErrorString + "payload signature verification failed"
+        case .incorrectTokenState:
+            return licenseKeyErrorString + "incorrect token state"
+        @unknown default:
+            return licenseKeyErrorString + "unknown error"
         }
     }
     
