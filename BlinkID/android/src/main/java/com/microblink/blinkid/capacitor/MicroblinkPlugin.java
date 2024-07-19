@@ -25,6 +25,7 @@ import com.microblink.blinkid.hardware.orientation.Orientation;
 import com.microblink.blinkid.metadata.recognition.FirstSideRecognitionCallback;
 import com.microblink.blinkid.recognition.RecognitionSuccessType;
 import com.microblink.blinkid.metadata.MetadataCallbacks;
+import com.microblink.blinkid.licence.exception.LicenceKeyException;
 import com.getcapacitor.annotation.ActivityCallback;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.JSObject;
@@ -53,14 +54,13 @@ public class MicroblinkPlugin extends Plugin {
         JSObject jsRecognizerCollection = call.getObject("recognizerCollection");
         JSObject jsLicenses = call.getObject("license");
 
-        setLicense(jsLicenses);
-        setLanguage(jsOverlaySettings);
+        if(setLicense(jsLicenses, call)) {
+            setLanguage(jsOverlaySettings);
+            recognizerBundle = RecognizerSerializers.INSTANCE.deserializeRecognizerCollection(jsRecognizerCollection);
+            UISettings uiSettings = OverlaySettingsSerializers.INSTANCE.getOverlaySettings(getContext(), jsOverlaySettings, recognizerBundle);
 
-        recognizerBundle = RecognizerSerializers.INSTANCE.deserializeRecognizerCollection(jsRecognizerCollection);
-        UISettings uiSettings = OverlaySettingsSerializers.INSTANCE.getOverlaySettings(getContext(), jsOverlaySettings, recognizerBundle);
-
-
-        startActivityForResult(call, "handleScanResult", uiSettings);
+            startActivityForResult(call, "handleScanResult", uiSettings);
+        }
     }
 
     @PluginMethod
@@ -70,61 +70,63 @@ public class MicroblinkPlugin extends Plugin {
         JSObject jsLicenses = call.getObject("license");
         String jsFrontImage = call.getString("frontImage");
         String jsBackImage = call.getString("backImage");
-        setLicense(jsLicenses);
-        ScanResultListener mScanResultListenerBackSide = new ScanResultListener() {
-            @Override
-            public void onScanningDone(@NonNull RecognitionSuccessType recognitionSuccessType) {
-                mFirstSideScanned = false;
-                handleDirectApiResult(recognitionSuccessType, call);
-            }
-            @Override
-            public void onUnrecoverableError(@NonNull Throwable throwable) {
-                call.reject(throwable.getMessage());
-            }
-        };
 
-        FirstSideRecognitionCallback  mFirstSideRecognitionCallback = new FirstSideRecognitionCallback() {
-            @Override
-            public void onFirstSideRecognitionFinished() {
-                mFirstSideScanned = true;
-            }
-        };
-
-        ScanResultListener mScanResultListenerFrontSide = new ScanResultListener() {
-            @Override
-            public void onScanningDone(@NonNull RecognitionSuccessType recognitionSuccessType) {
-                if (mFirstSideScanned) {
-                    //multiside recognizer used
-                    try {
-                        if (!jsBackImage.isEmpty()) {
-                            processImage(jsBackImage, mScanResultListenerBackSide, call);
-                        } else if (recognitionSuccessType != RecognitionSuccessType.UNSUCCESSFUL){
-                            handleDirectApiResult(recognitionSuccessType, call);
-                        } else {
-                            handleDirectApiError("Could not extract the information from the front side and back side is empty!", call);
-                        }
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                } else if (!mFirstSideScanned && recognitionSuccessType != RecognitionSuccessType.UNSUCCESSFUL){
-                    //singleside recognizer used
-                    handleDirectApiResult(recognitionSuccessType, call);
-                } else {
+        if (setLicense(jsLicenses, call)) {
+            ScanResultListener mScanResultListenerBackSide = new ScanResultListener() {
+                @Override
+                public void onScanningDone(@NonNull RecognitionSuccessType recognitionSuccessType) {
                     mFirstSideScanned = false;
-                    handleDirectApiError("Could not extract the information with DirectAPI!", call);
+                    handleDirectApiResult(recognitionSuccessType, call);
                 }
-            }
-            @Override
-            public void onUnrecoverableError(@NonNull Throwable throwable) {
-                handleDirectApiError(throwable.getMessage(), call);
-            }
-        };
+                @Override
+                public void onUnrecoverableError(@NonNull Throwable throwable) {
+                    call.reject(throwable.getMessage());
+                }
+            };
 
-        setupRecognizerRunner(jsRecognizerCollection, mFirstSideRecognitionCallback, call);
-        if (!jsFrontImage.isEmpty()) {
-            processImage(jsFrontImage, mScanResultListenerFrontSide, call);
-        } else {
-            handleDirectApiError("The provided image for the 'frontImage' parameter is empty!", call);
+            FirstSideRecognitionCallback  mFirstSideRecognitionCallback = new FirstSideRecognitionCallback() {
+                @Override
+                public void onFirstSideRecognitionFinished() {
+                    mFirstSideScanned = true;
+                }
+            };
+
+            ScanResultListener mScanResultListenerFrontSide = new ScanResultListener() {
+                @Override
+                public void onScanningDone(@NonNull RecognitionSuccessType recognitionSuccessType) {
+                    if (mFirstSideScanned) {
+                        //multiside recognizer used
+                        try {
+                            if (!jsBackImage.isEmpty()) {
+                                processImage(jsBackImage, mScanResultListenerBackSide, call);
+                            } else if (recognitionSuccessType != RecognitionSuccessType.UNSUCCESSFUL){
+                                handleDirectApiResult(recognitionSuccessType, call);
+                            } else {
+                                handleDirectApiError("Could not extract the information from the front side and back side is empty!", call);
+                            }
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else if (!mFirstSideScanned && recognitionSuccessType != RecognitionSuccessType.UNSUCCESSFUL){
+                        //singleside recognizer used
+                        handleDirectApiResult(recognitionSuccessType, call);
+                    } else {
+                        mFirstSideScanned = false;
+                        handleDirectApiError("Could not extract the information with DirectAPI!", call);
+                    }
+                }
+                @Override
+                public void onUnrecoverableError(@NonNull Throwable throwable) {
+                    handleDirectApiError(throwable.getMessage(), call);
+                }
+            };
+
+            setupRecognizerRunner(jsRecognizerCollection, mFirstSideRecognitionCallback, call);
+            if (!jsFrontImage.isEmpty()) {
+                processImage(jsFrontImage, mScanResultListenerFrontSide, call);
+            } else {
+                handleDirectApiError("The provided image for the 'frontImage' parameter is empty!", call);
+            }
         }
     }
     private void setupRecognizerRunner(JSONObject jsonRecognizerCollection, FirstSideRecognitionCallback mFirstSideRecognitionCallback, PluginCall call) {
@@ -215,7 +217,7 @@ public class MicroblinkPlugin extends Plugin {
         }
     }
 
-    private void setLicense(JSObject jsonLicense) {
+    private boolean setLicense(JSObject jsonLicense, PluginCall call) {
         MicroblinkSDK.setShowTrialLicenseWarning(
                 jsonLicense.optBoolean("showTrialLicenseKeyWarning", true)
         );
@@ -223,11 +225,22 @@ public class MicroblinkPlugin extends Plugin {
         String licensee = jsonLicense.optString("licensee", null);
         Context context = getContext();
         if (licensee == null) {
-            MicroblinkSDK.setLicenseKey(androidLicense, context);
+            try {
+                MicroblinkSDK.setLicenseKey(androidLicense, context);
+            } catch (LicenceKeyException licenceKeyException) {
+                call.reject("Android license key error: " + licenceKeyException.toString());
+                return false;
+            }
         } else {
-            MicroblinkSDK.setLicenseKey(androidLicense, licensee, context);
+            try {
+                MicroblinkSDK.setLicenseKey(androidLicense, licensee, context);
+            } catch (LicenceKeyException licenceKeyException) {
+                call.reject("Android license key error: " + licenceKeyException.toString());
+                return false;
+            }
         }
         MicroblinkSDK.setIntentDataTransferMode(IntentDataTransferMode.PERSISTED_OPTIMISED);
+        return true;
     }
 
     private void setLanguage(JSONObject jsonOverlaySettings) {

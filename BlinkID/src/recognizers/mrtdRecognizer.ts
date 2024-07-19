@@ -33,6 +33,8 @@ import {
     AdditionalProcessingInfo,
     DocumentSide,
     DataMatchResult,
+    StrictnessLevel,
+    CustomClassRules,
     
     
     ImageExtensionFactors,

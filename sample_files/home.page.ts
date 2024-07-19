@@ -13,59 +13,62 @@ export class HomePage {
   DocumentFront?: string;
   DocumentBack?: string;
   DocumentFace?: string;
+  
+  // license key is needed to unlock the BlinkID SDK
+  // com.microblink.sample
+  licenseKeys: BlinkID.License = {
+    ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTWpFek9EVTRNVEEyTlRFc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PWEJrlgmmQ9VywX915J8m1TjF2GrO750y/ksBB6HA6EHBHcRe3cQ6hS2IL6rSnxw2rb3foQSv3L7LxjTiJiKtO23Rb5a3xHvNoe7A8BlX7iCT39OB48Cx8pkDmRFQ/vgwDrO6j4GqNCP8u//M0fMoE9XG2nI9PVY',
+    android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTWpFek9EVTNOak0xTmpRc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PWKzGRpwZ0Yg81/n2kQ09RrtiQhs5K8k+Mjawaer1MOcxgeLaIhkBn5CpPi4cbtqTdTj9h7vrE6cxFRbrqpYyfoIAAFut1hI/f7zN3CFouAebHnqS38/Ocwk8xIafUumdpdtpBtU1er+p6Z+CeUnzr6c84A9xjxK',
+    showTrialLicenseWarning: true
+  };
 
   constructor() {}
 
   /* BlinkID scanning with camera */
   async scan() {
+    try {
+      const plugin = new BlinkID.BlinkIDPlugin();
 
-    const plugin = new BlinkID.BlinkIDPlugin();
-
-    const blinkIdMultisideRecognizer = new BlinkID.BlinkIdMultiSideRecognizer();
-    blinkIdMultisideRecognizer.returnFullDocumentImage = true;
-    blinkIdMultisideRecognizer.returnFaceImage = true;
-
-    // com.microblink.sample
-    const licenseKeys: BlinkID.License = {
-      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRRM016STRPRE0zTnpVc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PT4PFNbaGYbx8lz0VdMw0rwMahZJsnnMY0+blCuN/m+QolwrXwoZIVhisfNF7p9UPmh44A6nnFILPB2z3pyoV0mmbTrZ/6/sfoWf4v2SlJjpwM5pBxCooWZr4IAmv5YT6Ef3x4iC6U1gL8zUB0T53LpWoY9+CElD',
-      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRNNE5qWXdNVEE1TURnc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PYrV4CMxsRU+iUM/SeDbRDbjxRQsXIYuDXKzh5n0zmLHgSdRllWR/wE/J2MZ2MkpDdegbPTLRoJV+59G9F1QY8gIW7ua07A6f7wzTGq4laEyCo+f1rOOUBTZfKBIzqUJtR9NZIkb6YMkfLY5cmmNb5vnwIM+9BNI',
-      showTrialLicenseWarning: true
-    };
- 
-    const settings = new BlinkID.BlinkIdOverlaySettings();
-
-    const scanningResults = await plugin.scanWithCamera(
-      settings,
-      new BlinkID.RecognizerCollection([blinkIdMultisideRecognizer]),
-      licenseKeys
-    );
-
-    if (scanningResults.length === 0) {
-      return;
-    }
-
-    for (const result of scanningResults) {
-      if (result instanceof BlinkID.BlinkIdMultiSideRecognizerResult) {
-
-        this.Results = getIdResultsString(result);
-        this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
-        this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
-        this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
-      } else if (result instanceof BlinkID.MrtdCombinedRecognizerResult) {
-        this.Results = getMrzResultsString(result);
-        this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
-        this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
-        this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
+      const blinkIdMultisideRecognizer = new BlinkID.BlinkIdMultiSideRecognizer();
+      blinkIdMultisideRecognizer.returnFullDocumentImage = true;
+      blinkIdMultisideRecognizer.returnFaceImage = true;
+   
+      const settings = new BlinkID.BlinkIdOverlaySettings();
+  
+      const scanningResults = await plugin.scanWithCamera(
+        settings,
+        new BlinkID.RecognizerCollection([blinkIdMultisideRecognizer]),
+        this.licenseKeys
+      );
+  
+      if (scanningResults.length === 0) {
+        return;
       }
+  
+      for (const result of scanningResults) {
+        if (result instanceof BlinkID.BlinkIdMultiSideRecognizerResult) {
+  
+          this.Results = getIdResultsString(result);
+          this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
+          this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
+          this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
+        } else if (result instanceof BlinkID.MrtdCombinedRecognizerResult) {
+          this.Results = getMrzResultsString(result);
+          this.DocumentFront = result.fullDocumentFrontImage ? `data:image/jpg;base64,${result.fullDocumentFrontImage}` : undefined;
+          this.DocumentBack = result.fullDocumentBackImage ? `data:image/jpg;base64,${result.fullDocumentBackImage}` : undefined;
+          this.DocumentFace = result.faceImage ? `data:image/jpg;base64,${result.faceImage}` : undefined;
+        }
+      }
+    } catch (scanningError: any) {
+      this.Results = scanningError.message;
     }
-
   }
 
   /* BlinkID scanning with DirectAPI and the BlinkIDMultiSide recognizer.
   Best used for getting the information from both front and backside information from various documents */
   async directApiMultiSide() {
-
-    const plugin = new BlinkID.BlinkIDPlugin();
+    try {
+      const plugin = new BlinkID.BlinkIDPlugin();
 
    // Select the front side of the document and return the Base64 string
     const frontImage = await this.pickImage();
@@ -77,21 +80,15 @@ export class HomePage {
     blinkIdMultisideRecognizer.returnFullDocumentImage = true;
     blinkIdMultisideRecognizer.returnFaceImage = true;
 
-    /* Uncomment line 83 if you're using DirectAPI and you are sending cropped images for processing.
+    /* Uncomment line 86 if you're using DirectAPI and you are sending cropped images for processing.
     The processing will most likely not work if cropped images are being sent with the scanCroppedDocumentImage property being set to false */
             
     //blinkIdMultisideRecognizer.scanCroppedDocumentImage = true;
 
-    // com.microblink.sample
-    const licenseKeys: BlinkID.License = {
-      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRRM016STRPRE0zTnpVc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PT4PFNbaGYbx8lz0VdMw0rwMahZJsnnMY0+blCuN/m+QolwrXwoZIVhisfNF7p9UPmh44A6nnFILPB2z3pyoV0mmbTrZ/6/sfoWf4v2SlJjpwM5pBxCooWZr4IAmv5YT6Ef3x4iC6U1gL8zUB0T53LpWoY9+CElD',
-      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRNNE5qWXdNVEE1TURnc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PYrV4CMxsRU+iUM/SeDbRDbjxRQsXIYuDXKzh5n0zmLHgSdRllWR/wE/J2MZ2MkpDdegbPTLRoJV+59G9F1QY8gIW7ua07A6f7wzTGq4laEyCo+f1rOOUBTZfKBIzqUJtR9NZIkb6YMkfLY5cmmNb5vnwIM+9BNI',
-      showTrialLicenseWarning: true
-    };
     try {
 
       const scanningResults = await plugin.scanWithDirectApi(
-        licenseKeys,
+        this.licenseKeys,
         new BlinkID.RecognizerCollection([blinkIdMultisideRecognizer]),
         frontImage,
         backImage
@@ -121,35 +118,32 @@ export class HomePage {
       this.DocumentBack = "";
       this.DocumentFace = "";
     }
+    } catch(scanningError: any) {
+      this.Results = scanningError.message;
+    }
   }
 
   /* BlinkID scanning with DirectAPI and the BlinkIDSingleSide recognizer.
   Best used for getting the information from only one side from various documents */
   async directApiSingleSide() {
-
-    const plugin = new BlinkID.BlinkIDPlugin();
-
-    // Select a document image (either front or the backside) and return the Base64 string
-    const image = await this.pickImage();
-
-    const blinkIdSingleSideRecognizer = new BlinkID.BlinkIdSingleSideRecognizer();
-    blinkIdSingleSideRecognizer.returnFullDocumentImage = true;
-    blinkIdSingleSideRecognizer.returnFaceImage = true;
-
-    /* Uncomment line 142 if you're using DirectAPI and you are sending cropped images for processing.
-    The processing will most likely not work if cropped images are being sent with the scanCroppedDocumentImage property being set to false */
-            
-    //blinkIdSingleSideRecognizer.scanCroppedDocumentImage = true;
-
-    // com.microblink.sample
-    const licenseKeys: BlinkID.License = {
-      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRRM016STRPRE0zTnpVc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PT4PFNbaGYbx8lz0VdMw0rwMahZJsnnMY0+blCuN/m+QolwrXwoZIVhisfNF7p9UPmh44A6nnFILPB2z3pyoV0mmbTrZ/6/sfoWf4v2SlJjpwM5pBxCooWZr4IAmv5YT6Ef3x4iC6U1gL8zUB0T53LpWoY9+CElD',
-      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRNNE5qWXdNVEE1TURnc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PYrV4CMxsRU+iUM/SeDbRDbjxRQsXIYuDXKzh5n0zmLHgSdRllWR/wE/J2MZ2MkpDdegbPTLRoJV+59G9F1QY8gIW7ua07A6f7wzTGq4laEyCo+f1rOOUBTZfKBIzqUJtR9NZIkb6YMkfLY5cmmNb5vnwIM+9BNI',
-      showTrialLicenseWarning: true
-    };
+    
     try {
+      const plugin = new BlinkID.BlinkIDPlugin();
+
+      // Select a document image (either front or the backside) and return the Base64 string
+      const image = await this.pickImage();
+
+      const blinkIdSingleSideRecognizer = new BlinkID.BlinkIdSingleSideRecognizer();
+      blinkIdSingleSideRecognizer.returnFullDocumentImage = true;
+      blinkIdSingleSideRecognizer.returnFaceImage = true;
+
+      /* Uncomment line 143 if you're using DirectAPI and you are sending cropped images for processing.
+      The processing will most likely not work if cropped images are being sent with the scanCroppedDocumentImage property being set to false */
+            
+      //blinkIdSingleSideRecognizer.scanCroppedDocumentImage = true;
+
       const scanningResults = await plugin.scanWithDirectApi(
-        licenseKeys,
+        this.licenseKeys,
         new BlinkID.RecognizerCollection([blinkIdSingleSideRecognizer]),
         image
       );

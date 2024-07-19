@@ -10,7 +10,8 @@ import com.microblink.blinkid.capacitor.overlays.OverlaySettingsSerialization;
 import com.microblink.blinkid.capacitor.SerializationUtils;
 import com.microblink.blinkid.capacitor.overlays.OverlaySerializationUtils;
 import com.microblink.blinkid.locale.LanguageUtils;
-
+import com.microblink.blinkid.hardware.camera.VideoResolutionPreset;
+import com.microblink.blinkid.uisettings.CameraSettings;
 
 import org.json.JSONObject;
 
@@ -52,6 +53,15 @@ public final class BlinkIdOverlaySettingsSerialization implements OverlaySetting
 
         long backSideScanningTimeoutMilliseconds = jsonUISettings.optLong("backSideScanningTimeoutMilliseconds", 17000);
         settings.setBackSideScanningTimeoutMs(backSideScanningTimeoutMilliseconds);
+
+        int videoResolutionPreset = jsonUISettings.optInt("androidCameraResolutionPreset", VideoResolutionPreset.VIDEO_RESOLUTION_DEFAULT.ordinal());
+        
+        boolean androidLegacyCameraApi = jsonUISettings.optBoolean("setAndroidLegacyCameraApi", false);
+
+        settings.setCameraSettings(new CameraSettings.Builder()
+                .setVideoResolutionPreset(VideoResolutionPreset.values()[videoResolutionPreset])
+                .setForceLegacyApi(androidLegacyCameraApi)
+                .build());
 
         ReticleOverlayStrings.Builder overlasStringsBuilder = new ReticleOverlayStrings.Builder(context);
 
@@ -107,7 +117,14 @@ public final class BlinkIdOverlaySettingsSerialization implements OverlaySetting
         if (errorDocumentTooCloseToEdge != null) {
             overlasStringsBuilder.setErrorDocumentTooCloseToEdge(errorDocumentTooCloseToEdge);
         }
-
+        String errorBlurDetected = getStringFromJSONObject(jsonUISettings, "errorBlurDetected");
+        if (errorBlurDetected != null) {
+            overlasStringsBuilder.setErrorBlurDetected(errorBlurDetected);
+        }
+        String errorGlareDetected = getStringFromJSONObject(jsonUISettings, "errorGlareDetected");
+        if (errorGlareDetected != null) {
+            overlasStringsBuilder.setErrorGlareDetected(errorGlareDetected);
+        }
         String language = getStringFromJSONObject(jsonUISettings, "language");
         if (language != null) {
             String country = getStringFromJSONObject(jsonUISettings, "country");

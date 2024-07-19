@@ -1,4 +1,8 @@
 import { OverlaySettings } from '../overlaySettings'
+import {
+    AndroidCameraResolutionPreset,
+    iOSCameraResolutionPreset
+} from '../types'
 
 /**
  * Class for setting up document overlay.
@@ -160,6 +164,39 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
     */
     showCancelButton: boolean;
 
+    /**
+    * String: instructions for the user when blur has been detected on the document.
+    * If null, default value will be used.
+    */
+    errorBlurDetected: string;
+
+    /**
+    * String: instructions for the user when glare has been detected on the document.
+    * If null, default value will be used.
+    */
+    errorGlareDetected: string;
+
+    /**
+    * Defines possible iOS device camera video resolution preset.
+    * 
+    * Default: PresetOptimal
+    */
+    iosCameraResolutionPreset: iOSCameraResolutionPreset;
+
+    /**
+    * Defines possible Android device camera video resolution preset.
+    * 
+    * Default: PresetDefault
+    */
+    androidCameraResolutionPreset: AndroidCameraResolutionPreset;
+
+    /**
+    * Option to set whether legacy camera API should be used even on Lollipop devices that support newer Camera2 API.
+    * WARNING: This setting should only be used if the new Camera2 API is not working on the device. This setting should not be applied to all devices.
+    * Default: false
+    */
+    enableAndroidLegacyCameraApi: boolean;
+
     constructor() {
         super('BlinkIdOverlaySettings');
         /**
@@ -305,6 +342,39 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
         * Default: true
         */
         this.showCancelButton = true;
+
+        /**
+        * String: instructions for the user when blur has been detected on the document.
+        * If null, default value will be used.
+        */
+        this.errorBlurDetected = null;
+
+        /**
+        * String: instructions for the user when glare has been detected on the document.
+        * If null, default value will be used.
+        */
+        this.errorGlareDetected = null;
+
+        /**
+        * Defines possible iOS device camera video resolution preset.
+        * 
+        * Default: PresetOptimal
+        */
+        this.iosCameraResolutionPreset = iOSCameraResolutionPreset.PresetOptimal;
+
+        /**
+        * Defines possible Android device camera video resolution preset.
+        * 
+        * Default: PresetDefault
+        */
+        this.androidCameraResolutionPreset = AndroidCameraResolutionPreset.PresetDefault;
+
+        /**
+        * Option to set whether legacy camera API should be used even on Lollipop devices that support newer Camera2 API.
+        * 
+        * Default: false
+        */
+        this.enableAndroidLegacyCameraApi = false;
     }
 }
 

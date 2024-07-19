@@ -33,6 +33,8 @@ import {
     AdditionalProcessingInfo,
     DocumentSide,
     DataMatchResult,
+    StrictnessLevel,
+    CustomClassRules,
     
     
     ImageExtensionFactors,
@@ -137,6 +139,11 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
      * The one more additional number of the document.
      */
     documentOptionalAdditionalNumber?: StringResult;
+    
+    /**
+     * The transcription of the document subtype.
+     */
+    documentSubtype?: StringResult;
     
     /**
      * The driver license detailed info.
@@ -270,6 +277,16 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
     religion?: StringResult;
     
     /**
+     * The remarks on the residence permit.
+     */
+    remarks?: StringResult;
+    
+    /**
+     * The residence permit type.
+     */
+    residencePermitType?: StringResult;
+    
+    /**
      * The residential stauts of the document owner.
      */
     residentialStatus?: StringResult;
@@ -288,6 +305,11 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
      * The sponsor of the document owner.
      */
     sponsor?: StringResult;
+    
+    /**
+     * The visa type.
+     */
+    visaType?: StringResult;
     
     /**
      * Defines the data extracted from the visual inspection zone
@@ -389,6 +411,11 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
          * The one more additional number of the document.
          */
         this.documentOptionalAdditionalNumber = nativeResult.documentOptionalAdditionalNumber;
+        
+        /**
+         * The transcription of the document subtype.
+         */
+        this.documentSubtype = nativeResult.documentSubtype;
         
         /**
          * The driver license detailed info.
@@ -522,6 +549,16 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
         this.religion = nativeResult.religion;
         
         /**
+         * The remarks on the residence permit.
+         */
+        this.remarks = nativeResult.remarks;
+        
+        /**
+         * The residence permit type.
+         */
+        this.residencePermitType = nativeResult.residencePermitType;
+        
+        /**
          * The residential stauts of the document owner.
          */
         this.residentialStatus = nativeResult.residentialStatus;
@@ -542,6 +579,11 @@ export class BlinkIdSingleSideRecognizerResult extends RecognizerResult {
         this.sponsor = nativeResult.sponsor;
         
         /**
+         * The visa type.
+         */
+        this.visaType = nativeResult.visaType;
+        
+        /**
          * Defines the data extracted from the visual inspection zone
          */
         this.vizResult = nativeResult.vizResult;
@@ -559,13 +601,6 @@ export class BlinkIdSingleSideRecognizer extends Recognizer {
      * Additional anonymization settings.
      */
     additionalAnonymization: ClassAnonymizationSettings[];
-    
-    /**
-     * Defines whether blured frames filtering is allowed
-         * 
-         * 
-     */
-    allowBlurFilter: boolean;
     
     /**
      * Defines whether returning of unparsed MRZ (Machine Readable Zone) results is allowed
@@ -591,6 +626,32 @@ export class BlinkIdSingleSideRecognizer extends Recognizer {
     anonymizationMode: AnonymizationMode;
     
     /**
+     * Strictness level for blur detection.
+         * 
+         * 
+     */
+    blurStrictnessLevel: StrictnessLevel;
+    
+    /**
+     * Get custom class rules.
+     */
+    customClassRules: CustomClassRules[];
+    
+    /**
+     * Skip processing of the blurred frames.
+         * 
+         * 
+     */
+    enableBlurFilter: boolean;
+    
+    /**
+     * Skip processing of the glared frames.
+         * 
+         * 
+     */
+    enableGlareFilter: boolean;
+    
+    /**
      * Property for setting DPI for face images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
          * 
@@ -613,6 +674,13 @@ export class BlinkIdSingleSideRecognizer extends Recognizer {
          * 
      */
     fullDocumentImageExtensionFactors: ImageExtensionFactors;
+    
+    /**
+     * Strictness level for glare detection.
+         * 
+         * 
+     */
+    glareStrictnessLevel: StrictnessLevel;
     
     /**
      * Pading is a minimum distance from the edge of the frame and is defined as a percentage of the frame width. Default value is 0.0f and in that case
@@ -693,13 +761,6 @@ export class BlinkIdSingleSideRecognizer extends Recognizer {
         this.additionalAnonymization = [];
         
         /**
-         * Defines whether blured frames filtering is allowed
-         * 
-         * 
-         */
-        this.allowBlurFilter = true;
-        
-        /**
          * Defines whether returning of unparsed MRZ (Machine Readable Zone) results is allowed
          * 
          * 
@@ -721,6 +782,32 @@ export class BlinkIdSingleSideRecognizer extends Recognizer {
          * 
          */
         this.anonymizationMode = AnonymizationMode.FullResult;
+        
+        /**
+         * Strictness level for blur detection.
+         * 
+         * 
+         */
+        this.blurStrictnessLevel = StrictnessLevel.Normal;
+        
+        /**
+         * Get custom class rules.
+         */
+        this.customClassRules = [];
+        
+        /**
+         * Skip processing of the blurred frames.
+         * 
+         * 
+         */
+        this.enableBlurFilter = true;
+        
+        /**
+         * Skip processing of the glared frames.
+         * 
+         * 
+         */
+        this.enableGlareFilter = true;
         
         /**
          * Property for setting DPI for face images
@@ -745,6 +832,13 @@ export class BlinkIdSingleSideRecognizer extends Recognizer {
          * 
          */
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
+        
+        /**
+         * Strictness level for glare detection.
+         * 
+         * 
+         */
+        this.glareStrictnessLevel = StrictnessLevel.Normal;
         
         /**
          * Pading is a minimum distance from the edge of the frame and is defined as a percentage of the frame width. Default value is 0.0f and in that case
