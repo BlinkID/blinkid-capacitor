@@ -111,6 +111,16 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
     barcodeResult?: BarcodeResult;
     
     /**
+     * This member indicates whether the barcode scanning step was utilized during the
+         * process.
+         * If the barcode scanning step was executed: a parsable barcode image will be stored in the
+         * `barcodeCameraFrame`.
+         * If the barcode scanning step was not executed: a parsable barcode image will be stored in the
+         * `fullDocumentImage`.
+     */
+    barcodeStepUsed?: boolean;
+    
+    /**
      * The blood type of the document owner.
      */
     bloodType?: StringResult;
@@ -437,6 +447,16 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
         this.barcodeResult = nativeResult.barcodeResult;
         
         /**
+         * This member indicates whether the barcode scanning step was utilized during the
+         * process.
+         * If the barcode scanning step was executed: a parsable barcode image will be stored in the
+         * `barcodeCameraFrame`.
+         * If the barcode scanning step was not executed: a parsable barcode image will be stored in the
+         * `fullDocumentImage`.
+         */
+        this.barcodeStepUsed = nativeResult.barcodeStepUsed;
+        
+        /**
          * The blood type of the document owner.
          */
         this.bloodType = nativeResult.bloodType;
@@ -711,6 +731,16 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
     additionalAnonymization: ClassAnonymizationSettings[];
     
     /**
+     * Allows barcode recognition to proceed even if the initial extraction fails.
+         * This only works for still images - video feeds will ignore this setting.
+         * If the barcode recognition is successful, the recognizer will still end in a valid state.
+         * This setting is applicable only to photo frames. For multi-side recognizers, it is permitted only for the back side.
+         * 
+         * 
+     */
+    allowBarcodeScanOnly: boolean;
+    
+    /**
      * Proceed with scanning the back side even if the front side result is uncertain.
          * This only works for still images - video feeds will ignore this setting.
          * 
@@ -747,6 +777,15 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
          * 
      */
     blurStrictnessLevel: StrictnessLevel;
+    
+    /**
+     * Enables the aggregation of data from multiple frames.
+         * Disabling this setting will yield higher-quality captured images, but it may slow down the scanning process due to the additional effort required to find the optimal frame.
+         * Enabling this setting will simplify the extraction process, but the extracted data will be aggregated from multiple frames instead of being sourced from a single frame.
+         * 
+         * 
+     */
+    combineFrameResults: boolean;
     
     /**
      * Get custom class rules.
@@ -891,6 +930,16 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
         this.additionalAnonymization = [];
         
         /**
+         * Allows barcode recognition to proceed even if the initial extraction fails.
+         * This only works for still images - video feeds will ignore this setting.
+         * If the barcode recognition is successful, the recognizer will still end in a valid state.
+         * This setting is applicable only to photo frames. For multi-side recognizers, it is permitted only for the back side.
+         * 
+         * 
+         */
+        this.allowBarcodeScanOnly = false;
+        
+        /**
          * Proceed with scanning the back side even if the front side result is uncertain.
          * This only works for still images - video feeds will ignore this setting.
          * 
@@ -927,6 +976,15 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
          * 
          */
         this.blurStrictnessLevel = StrictnessLevel.Normal;
+        
+        /**
+         * Enables the aggregation of data from multiple frames.
+         * Disabling this setting will yield higher-quality captured images, but it may slow down the scanning process due to the additional effort required to find the optimal frame.
+         * Enabling this setting will simplify the extraction process, but the extracted data will be aggregated from multiple frames instead of being sourced from a single frame.
+         * 
+         * 
+         */
+        this.combineFrameResults = true;
         
         /**
          * Get custom class rules.

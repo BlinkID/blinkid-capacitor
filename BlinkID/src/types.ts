@@ -169,7 +169,7 @@ export class StringResult {
 
 /**
 * Define document side where the document field is located
- */
+*/
 export const enum DocumentSide {
     /* The field was not detected */
     None,
@@ -179,18 +179,27 @@ export const enum DocumentSide {
     Back
   }
 
+/**
+* Represents additional info on processing.
+* Information about missing fields, invalid characters, extra presented fields for each document field and image extraction failures can be obtained. 
+*/
 export class AdditionalProcessingInfo {
+    /** List of fields that were expected on the document but were missing. */
     missingMandatoryFields: FieldType[];
+    /** List of fields that contained characters which were not expected in that field. */
     invalidCharacterFields: FieldType[];
+    /** List of fields that weren't expected on the document but were present. */
     extraPresentFields: FieldType[];
-  
+    /** List of failed image extractions. */
+    imageExtractionFailures: ImageExtractionType[];
+
     constructor(nativeAdditionalProcessingInfo: any) {
           this.missingMandatoryFields = Object.values(nativeAdditionalProcessingInfo.missingMandatoryFields);
           this.invalidCharacterFields = Object.values(nativeAdditionalProcessingInfo.invalidCharacterFields);
           this.extraPresentFields = Object.values(nativeAdditionalProcessingInfo.extraPresentFields);
+          this.imageExtractionFailures = Object.values(nativeAdditionalProcessingInfo.imageExtractionFailures);
       }
   }
-
 
 /**
  * Represents the type of scanned barcode
@@ -268,6 +277,18 @@ export class VehicleClassInfo {
         this.expiryDate = nativeVehicleClassInfo.expiryDate;
     }
 }
+
+/**
+* Defines the type of the extracted image.
+*/
+export const enum ImageExtractionType {
+    /** Full document image. */
+    FullDocument = 0,
+    /** Face image. */
+    Face = 1,
+    /** Signature image. */
+    Signature = 2
+  }
 
 /**
  * Gives more info on data match
