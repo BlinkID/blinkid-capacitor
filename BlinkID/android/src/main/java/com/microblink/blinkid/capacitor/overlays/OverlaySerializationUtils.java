@@ -22,7 +22,7 @@ public class OverlaySerializationUtils {
 
         if (uiSettings instanceof BeepSoundUIOptions) {
             boolean enableBeep = jsonUISettings.optBoolean("enableBeep", false);
-            if (true) {
+            if (enableBeep) {
                 FakeR fakeR = new FakeR(context);
                 ((BeepSoundUIOptions) uiSettings).setBeepSoundResourceID(fakeR.getId("raw", "beep"));
             }
