@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '13.0'
   s.dependency 'Capacitor'
   s.swift_version = '5.5'
-  s.dependency 'PPBlinkID', '~> 6.10.1'
+  s.dependency 'PPBlinkID', '~> 6.11.0'
 end

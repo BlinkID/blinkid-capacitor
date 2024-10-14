@@ -104,11 +104,13 @@ export class Location {
     latin?: Rectangle;
     arabic?: Rectangle;
     cyrillic?: Rectangle;
+    greek?: Rectangle;
   
     constructor(nativeLocation: any) {
       this.latin = new Rectangle(nativeLocation.latin);
       this.arabic = new Rectangle(nativeLocation.arabic);
       this.cyrillic = new Rectangle(nativeLocation.cyrillic);
+      this.greek = new Rectangle(nativeLocation.greek);
       }
   }
 
@@ -119,13 +121,15 @@ export class Side {
     latin?: DocumentSide;
     arabic?: DocumentSide;
     cyrillic?: DocumentSide;
+    greek?: DocumentSide;
   
     constructor(nativeSide: any) {
         this.latin = nativeSide.latin;
         this.arabic = nativeSide.arabic;
         this.cyrillic = nativeSide.cyrillic;
+        this.greek = nativeSide.greek;
     }
-  }
+}
 
 /**
 * Represents all of the alphabet types that BlinkID supports extracting.
@@ -137,8 +141,9 @@ export const enum AlphabetType {
     Arabic = 1,
     /** The Cyrillic alphabet type. */
     Cyrillic = 2,
+    /** The Greek alphabet type. */
+    Greek = 3,
 }
-
 
 /**
 * Represents string results for three alphabets
@@ -152,6 +157,8 @@ export class StringResult {
     arabic?: string;
     /* String for field in cyrillic alphabet */
     cyrillic?: string;
+    /* String for field in greek alphabet */
+    greek?: string;
     /* Document field location */
     location?: Location;
     /*  Document field side */
@@ -162,6 +169,7 @@ export class StringResult {
         this.latin = nativeStringResult.latin;
         this.arabic = nativeStringResult.arabic;
         this.cyrillic = nativeStringResult.cyrillic;
+        this.greek = nativeStringResult.greek;
         this.location = nativeStringResult.location != undefined ? new Location(nativeStringResult.location) : undefined;
         this.side = nativeStringResult.side != undefined ? new Side(nativeStringResult.side): undefined;
     }
@@ -919,6 +927,7 @@ export const enum Region {
     Haryana = 136,
     Sergipe = 137,
     Alagos = 138,
+    Bangsamoro = 139
 }
 
 /**
@@ -996,6 +1005,12 @@ export const enum Type {
     EId = 68,
     Pass = 69,
     SisId = 70,
+    AsicCard = 71,
+    BidoonCard = 72,
+    InterimHealthInsuranceCard = 73,
+    NonVoterId = 74,
+    ReciprocalHealthInsuranceCard = 75,
+    VehicleRegistration = 76
 }
 
 export const enum FieldType {
@@ -1040,7 +1055,15 @@ export const enum FieldType {
     VisaType = 38,
     DocumentSubtype = 39,
     Remarks = 40,
-    ResidencePermitType = 41
+    ResidencePermitType = 41,
+    ManufacturingYear = 42,
+    VehicleType = 43,
+    DependentDateOfBirth = 44,
+    DependentSex = 45,
+    DependentDocumentNumber = 46,
+    DependentFullName = 47,
+    EligibilityCategory = 48,
+    SpecificDocumentValidity = 49
 }
 
 /** Defines the data extracted from the barcode. */
@@ -2504,6 +2527,29 @@ export class MrzResult {
         this.age = nativeMRZResult.age;
     }
 }
+
+/** Defines the dependents information */
+export class DependentInfo {
+    /** The date of birth of the dependent */
+    dateOfBirth: DateResult;
+    /** The sex or gender of the dependent */
+    sex: StringResult;
+    /** The document number of the dependent. */
+    documentNumber: StringResult;
+    /** The full name of the dependent. */
+    fullName: StringResult;
+    /** The full name of the dependent. */
+    empty: boolean;
+
+    constructor(nativeDependentInfo: any) {
+        this.dateOfBirth = nativeDependentInfo.dateOfBirth;
+        this.sex = nativeDependentInfo.sex;
+        this.documentNumber = nativeDependentInfo.documentNumber;
+        this.fullName = nativeDependentInfo.fullName;
+        this.empty = nativeDependentInfo.empty;
+    }
+}
+
 
 /** Possible supported detectors for documents containing face image */
 export const enum DocumentFaceDetectorType {

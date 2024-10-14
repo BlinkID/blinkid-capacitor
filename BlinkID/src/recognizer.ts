@@ -54,6 +54,6 @@ export class RecognizerCollection {
     constructor(recognizerArray: [Recognizer]) {
         this.recognizerArray = recognizerArray;
         this.allowMultipleResults = false;
-        this.milisecondsBeforeTimeout = 10000;
+        this.milisecondsBeforeTimeout = 0;
     }
 }
