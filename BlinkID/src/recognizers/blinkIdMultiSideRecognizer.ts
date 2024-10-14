@@ -35,6 +35,7 @@ import {
     DataMatchResult,
     StrictnessLevel,
     CustomClassRules,
+    DependentInfo,
     
     
     ImageExtensionFactors,
@@ -189,6 +190,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
     driverLicenseDetailedInfo?: DriverLicenseDetailedInfo;
     
     /**
+     * The manufacturing year..
+     */
+    eligibilityCategory?: StringResult;
+    
+    /**
      * The employer of the document owner.
      */
     employer?: StringResult;
@@ -285,6 +291,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
     localizedName?: StringResult;
     
     /**
+     * The manufacturing year.
+     */
+    manufacturingYear?: StringResult;
+    
+    /**
      * The marital status of the document owner.
      */
     maritalStatus?: StringResult;
@@ -371,14 +382,29 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
     signatureImage?: string;
     
     /**
+     * The specific document validity.
+     */
+    specificDocumentValidity?: StringResult;
+    
+    /**
      * The sponsor of the document owner.
      */
     sponsor?: StringResult;
     
     /**
+     * The eligibility category.
+     */
+    vehicleType?: StringResult;
+    
+    /**
      * The visa type.
      */
     visaType?: StringResult;
+    
+    /**
+     * The dependents info.
+     */
+    dependentsInfo?: DependentInfo[];
     
 
     constructor(nativeResult: any) {
@@ -525,6 +551,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
         this.driverLicenseDetailedInfo = nativeResult.driverLicenseDetailedInfo;
         
         /**
+         * The manufacturing year..
+         */
+        this.eligibilityCategory = nativeResult.eligibilityCategory;
+        
+        /**
          * The employer of the document owner.
          */
         this.employer = nativeResult.employer;
@@ -621,6 +652,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
         this.localizedName = nativeResult.localizedName;
         
         /**
+         * The manufacturing year.
+         */
+        this.manufacturingYear = nativeResult.manufacturingYear;
+        
+        /**
          * The marital status of the document owner.
          */
         this.maritalStatus = nativeResult.maritalStatus;
@@ -707,14 +743,29 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
         this.signatureImage = nativeResult.signatureImage;
         
         /**
+         * The specific document validity.
+         */
+        this.specificDocumentValidity = nativeResult.specificDocumentValidity;
+        
+        /**
          * The sponsor of the document owner.
          */
         this.sponsor = nativeResult.sponsor;
         
         /**
+         * The eligibility category.
+         */
+        this.vehicleType = nativeResult.vehicleType;
+        
+        /**
          * The visa type.
          */
         this.visaType = nativeResult.visaType;
+        
+        /**
+         * The dependents info.
+         */
+        this.dependentsInfo = nativeResult.dependentsInfo;
         
     }
 }

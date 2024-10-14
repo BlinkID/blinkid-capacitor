@@ -35,6 +35,7 @@ import {
     DataMatchResult,
     StrictnessLevel,
     CustomClassRules,
+    DependentInfo,
     
     
     ImageExtensionFactors,
