@@ -197,6 +197,75 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
     */
     enableAndroidLegacyCameraApi: boolean;
 
+    /**
+    * String: Instructions to scan the passport, shown when scanning of the first side is done, before
+    * scanning the second side of the document.
+    * 
+    * If null, default value will be used.
+    */
+    topPageInstructions: string;
+
+    /**
+    * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+    * side of the document.
+    * 
+    * If null, default value will be used.
+    */
+    leftPageInstructions: string;
+
+    /**
+    * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+    * side of the document.
+    * 
+    * If null, default value will be used.
+    */
+    rightPageInstructions: string;
+
+    /**
+    * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+    * side of the document.
+    * 
+    * If null, default value will be used.
+    */
+    turnTopPageInstructions: string;
+
+    /**
+    * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+    * side of the document.
+    * 
+    * If null, default value will be used.
+    */
+    turnLeftPageInstructions: string;
+
+    /**
+    * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+    * side of the document.
+    * 
+    * If null, default value will be used.
+    */
+    turnRightPageInstructions: string;
+
+    /**
+    * String: Instructions for the user when wrong side of passport is being scanned.
+    * 
+    * If null, default value will be used.
+    */
+    errorScanningWrongPageTop: string;
+
+    /**
+    * String: Instructions for the user when wrong side of passport is being scanned.
+    * 
+    * If null, default value will be used.
+    */
+    errorScanningWrongPageLeft: string;
+
+    /**
+    * String: Instructions for the user when wrong side of passport is being scanned.
+    * 
+    * If null, default value will be used.
+    */
+    errorScanningWrongPageRight: string;
+
     constructor() {
         super('BlinkIdOverlaySettings');
         /**
@@ -283,11 +352,11 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
         */
         this.backSideScanningTimeoutMilliseconds = 17000;
 
-       /**
-       * Message that is shown while scanning the barcode.
-       * If null, default value will be used.
-       */
-       this.scanBarcodeText = null;
+        /**
+        * Message that is shown while scanning the barcode.
+        * If null, default value will be used.
+        */
+        this.scanBarcodeText = null;
 
         /**
         * Instructions for the user to move the document from the edge.
@@ -375,6 +444,75 @@ export class BlinkIdOverlaySettings extends OverlaySettings {
         * Default: false
         */
         this.enableAndroidLegacyCameraApi = false;
+
+        /**
+        * String: Instructions to scan the passport, shown when scanning of the first side is done, before
+        * scanning the second side of the document.
+        * 
+        * If null, default value will be used.
+        */
+        this.topPageInstructions = null;
+
+        /**
+        * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+        * side of the document.
+        * 
+        * If null, default value will be used.
+        */
+        this.leftPageInstructions = null;
+
+        /**
+        * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+        * side of the document.
+        * 
+        * If null, default value will be used.
+        */
+        this.rightPageInstructions = null;
+
+        /**
+        * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+        * side of the document.
+        * 
+        * If null, default value will be used.
+        */
+        this.turnTopPageInstructions = null;
+
+        /**
+        * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+        * side of the document.
+        * 
+        * If null, default value will be used.
+        */
+        this.turnLeftPageInstructions = null;
+
+        /**
+        * String: Instructions to scan the passport, shown when scanning of the first side is done, before scanning the second
+        * side of the document.
+        * 
+        * If null, default value will be used.
+        */
+        this.turnRightPageInstructions = null;
+
+        /**
+        * String: Instructions for the user when wrong side of passport is being scanned.
+        * 
+        * If null, default value will be used.
+        */
+        this.errorScanningWrongPageTop = null;
+
+        /**
+        * String: Instructions for the user when wrong side of passport is being scanned.
+        * 
+        * If null, default value will be used.
+        */
+        this.errorScanningWrongPageLeft = null;
+
+        /**
+        * String: Instructions for the user when wrong side of passport is being scanned.
+        * 
+        * If null, default value will be used.
+        */
+        this.errorScanningWrongPageRight = null;
     }
 }
 

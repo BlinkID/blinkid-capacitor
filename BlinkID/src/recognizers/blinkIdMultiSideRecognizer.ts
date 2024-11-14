@@ -949,6 +949,14 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
     scanCroppedDocumentImage: boolean;
     
     /**
+     * Scan only the data page ( page containing MRZ ) of the passport.
+         * If set to `false`, it will be required to scan the second page of certain passports.
+         * 
+         * 
+     */
+    scanPassportDataPageOnly: boolean;
+    
+    /**
      * Property for setting DPI for signature images
          * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
          * 
@@ -1146,6 +1154,14 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
          * 
          */
         this.scanCroppedDocumentImage = false;
+        
+        /**
+         * Scan only the data page ( page containing MRZ ) of the passport.
+         * If set to `false`, it will be required to scan the second page of certain passports.
+         * 
+         * 
+         */
+        this.scanPassportDataPageOnly = true;
         
         /**
          * Property for setting DPI for signature images
