@@ -1010,7 +1010,8 @@ export const enum Type {
     InterimHealthInsuranceCard = 73,
     NonVoterId = 74,
     ReciprocalHealthInsuranceCard = 75,
-    VehicleRegistration = 76
+    VehicleRegistration = 76,
+    EsaadCard = 77,
 }
 
 export const enum FieldType {
@@ -1063,7 +1064,8 @@ export const enum FieldType {
     DependentDocumentNumber = 46,
     DependentFullName = 47,
     EligibilityCategory = 48,
-    SpecificDocumentValidity = 49
+    SpecificDocumentValidity = 49,
+    VehicleOwner = 50,
 }
 
 /** Defines the data extracted from the barcode. */
@@ -2661,6 +2663,82 @@ export class DetailedFieldType {
     fieldType?: FieldType;
     /** Alphabet type connected with the field type that will be optional for extraction for CustomClassRules. */
     alphabetType?: AlphabetType;
+}
+
+/**
+ * ClassFilter represents the document filter used to determine which documents will be processed.
+ * Document information (Country, Region, Type) is evaluated with the content set in the filter, and their inclusion or exclusion depends on the defined rules.
+ * 
+ * The recognition results of the excluded documents will not be returned.
+ * If using the standard BlinkID Overlay, an alert will be displayed that the document will not be scanned.
+ * 
+ * By default, the ClassFilter is turned off, and all documents will be included.
+ */
+export class ClassFilter {
+    /**
+     * Document classes that will be explicitly accepted by this filter.
+     * Only documents belonging to the specified classes will be processed. All other documents will be rejected.
+     * 
+     * If this array is empty, no restrictions are applied, and documents will be accepted unless explicitly excluded by `excludedClasses`.
+     * 
+     * Example usage:
+     *  
+     * var includedClassOne = new BlinkID.FilteredClass();
+     * includedClassOne.country = BlinkID.Country.Croatia;
+     * includedClassOne.type = BlinkID.Type.Id;
+     * 
+     * var includedClassTwo = new BlinkID.FilteredClass();
+     * includedClassTwo.region = BlinkID.Region.California;
+     *  
+     * var classFilter = new ClassFilter();
+     * classFilter.includeClasses = [includedClassOne, includedClassTwo];
+     * 
+     * NOTE: from the example above, the class filter is set to only accept Croatian IDs, and all documents from the California region.
+     * All other documents will be rejected.
+     * 
+     * Rules can be combined, for example, to set all three properties (Country Region, Type), two (e.g., Country and Type) or just one (e.g, Region).
+     */
+    includeClasses?: FilteredClass[];
+    /**
+     * Document classes that will be explicitly rejected by this filter.
+     * Documents belonging to the specified classes will not be processed. Other documents, not included with `excludeClasses` will be accepted.
+     * 
+     * If this array is empty, no restrictions are applied, and documents will be excluded only if not present in `includeClasses`.
+     * If a document class appears in both `includeClasses` and `excludeClasses`, it will be rejected, as `excludeClasses` takes precedence.
+     * 
+     * Example usage:
+     *  
+     * var excludedClassOne = new BlinkID.FilteredClass();
+     * excludedClassOne.country = BlinkID.Country.Croatia;
+     * excludedClassOne.type = BlinkID.Type.Id;
+     * 
+     * var excludedClassTwo = new BlinkID.FilteredClass();
+     * excludedClassTwo.region = BlinkID.Region.California;
+     *  
+     * var classFilter = new ClassFilter();
+     * classFilter.excludeClasses = [excludedClassOne, excludedClassTwo];
+     * 
+     * NOTE: from the example above, the class filter is set to only reject Croatian IDs, and all documents from the California region.
+     * All other classes will be accepted.
+     * 
+     * Rules can be combined, for example, to set all three properties (Country Region, Type), two (e.g., Country and Type) or just one (e.g, Region).
+     */
+    excludeClasses?: FilteredClass[];
+}
+
+/**
+ * FilteredClass represents the document class that is added in the ClassFilter.
+ * By defining the rules of the ClassFilter, the entered class can be included or excluded from processing.
+ * 
+ * See the ClassFilter class for more detailed information.
+ */
+export class FilteredClass {
+    /** Document country that will be added in the filter */
+    country?: Country;
+    /** Document region that will be added in the filter */
+    region?: Region;
+    /** Document type that will be added in the filter */
+    type?: Type;
 }
 
 /** Defines status of the last recognition process. */

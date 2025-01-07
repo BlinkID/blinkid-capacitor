@@ -11,6 +11,8 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
 
     var pluginCall: CAPPluginCall?
     var recognizerCollection: MBRecognizerCollection?
+    var jsonRecognizerCollection: [String : Any]?
+    var overlayVc: MBOverlayViewController?
     var recognizerRunner: MBRecognizerRunner?
     var backImage: String?
 
@@ -37,7 +39,7 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
         }
 
         let jsonOverlaySettings = sanitizeDictionary(overlaySettingsObject)
-        let jsonRecognizerCollection = sanitizeDictionary(recognizerCollectionObject)
+        jsonRecognizerCollection = sanitizeDictionary(recognizerCollectionObject)
         guard let jsonLicense = sanitizeDictionary(licensesObject) else {
             call.reject("Must provide license keys for Microblink SDK!")
             return
@@ -48,19 +50,32 @@ public class BlinkIDCapacitorPlugin: CAPPlugin {
                         jsonOverlaySettings?["country"] ?? "")
             
             recognizerCollection = MBRecognizerSerializers.sharedInstance()?.deserializeRecognizerCollection(jsonRecognizerCollection)
+            if let recognizerList = recognizerCollection?.recognizerList {
+                for recognizer in recognizerList {
+                    if (recognizer is MBBlinkIdMultiSideRecognizer) {
+                        (recognizer as! MBBlinkIdMultiSideRecognizer).delegate = self
+                    } else if (recognizer is MBBlinkIdSingleSideRecognizer) {
+                        (recognizer as! MBBlinkIdSingleSideRecognizer).delegate = self
+                    }
+                }
+            }
 
             DispatchQueue.main.async {
                 guard let overlayVC = MBOverlaySettingsSerializers.sharedInstance()?.createOverlayViewController(jsonOverlaySettings, recognizerCollection: self.recognizerCollection, delegate: self) else {
                     call.reject("Unsupported overlay view controller!")
                     return
                 }
-
-                guard let recognizerRunneViewController: UIViewController =
-                    MBViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: overlayVC) else {
-                        return
+                self.overlayVc = overlayVC
+                if let overlayVc = self.overlayVc {
+                    guard let recognizerRunneViewController: UIViewController =
+                    MBViewControllerFactory.recognizerRunnerViewController(withOverlayViewController: overlayVc) else {
+                            return
+                    }
+                    recognizerRunneViewController.modalPresentationStyle = .fullScreen
+                    self.bridge?.viewController?.present(recognizerRunneViewController, animated: true, completion: nil)
+                } else {
+                    return
                 }
-                recognizerRunneViewController.modalPresentationStyle = .fullScreen
-                self.bridge?.viewController?.present(recognizerRunneViewController, animated: true, completion: nil)
             }
         }
     }
@@ -321,4 +336,31 @@ extension BlinkIDCapacitorPlugin: MBFirstSideFinishedRecognizerRunnerDelegate, M
             pluginCall?.reject("Could not extract the information with DirectAPI!")
         }
     }
+}
+extension BlinkIDCapacitorPlugin: MBBlinkIdMultiSideRecognizerDelegate, MBBlinkIdSingleSideRecognizerDelegate {
+    
+    public func onMultiSideDocumentSupportStatus(_ isDocumentSupported: Bool) {
+        if (overlayVc is MBBlinkIdOverlayViewController) {
+            (overlayVc as! MBBlinkIdOverlayViewController).onMultiSideDocumentSupportStatus(isDocumentSupported)
+        }
+    }
+    
+    public func multiSideClassInfoFilter(_ classInfo: MBClassInfo?) -> Bool {
+        return MBBlinkIDSerializationUtils.deserializeClassFilter(jsonRecognizerCollection, classInfo: classInfo)
+    }
+    
+    public func onDocumentSupportStatus(_ isDocumentSupported: Bool) {
+        if (overlayVc is MBBlinkIdOverlayViewController) {
+            (overlayVc as! MBBlinkIdOverlayViewController).onDocumentSupportStatus(isDocumentSupported)
+        }
+    }
+    
+    public func classInfoFilter(_ classInfo: MBClassInfo?) -> Bool {
+        return MBBlinkIDSerializationUtils.deserializeClassFilter(jsonRecognizerCollection, classInfo: classInfo)
+    }
+    
+    public func onMultiSideImageAvailable(_ dewarpedImage: MBImage?) {}
+    public func onMultiSideBarcodeScanningStarted() {}
+    public func onImageAvailable(_ dewarpedImage: MBImage?) {}
+    public func onBarcodeScanningStarted() {}
 }

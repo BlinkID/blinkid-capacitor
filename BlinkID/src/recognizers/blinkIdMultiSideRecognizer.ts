@@ -36,6 +36,7 @@ import {
     StrictnessLevel,
     CustomClassRules,
     DependentInfo,
+    ClassFilter,
     
     
     ImageExtensionFactors,
@@ -390,6 +391,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
      * The sponsor of the document owner.
      */
     sponsor?: StringResult;
+    
+    /**
+     * The vehicle owner.
+     */
+    vehicleOwner?: StringResult;
     
     /**
      * The eligibility category.
@@ -753,6 +759,11 @@ export class BlinkIdMultiSideRecognizerResult extends RecognizerResult {
         this.sponsor = nativeResult.sponsor;
         
         /**
+         * The vehicle owner.
+         */
+        this.vehicleOwner = nativeResult.vehicleOwner;
+        
+        /**
          * The eligibility category.
          */
         this.vehicleType = nativeResult.vehicleType;
@@ -828,6 +839,11 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
          * 
      */
     blurStrictnessLevel: StrictnessLevel;
+    
+    /**
+     * Sets the ClassFilter that can determine whether the document should be processed or filtered out.
+     */
+    classFilter: ClassFilter;
     
     /**
      * Enables the aggregation of data from multiple frames.
@@ -1035,6 +1051,11 @@ export class BlinkIdMultiSideRecognizer extends Recognizer {
          * 
          */
         this.blurStrictnessLevel = StrictnessLevel.Normal;
+        
+        /**
+         * Sets the ClassFilter that can determine whether the document should be processed or filtered out.
+         */
+        this.classFilter = new ClassFilter();
         
         /**
          * Enables the aggregation of data from multiple frames.
