@@ -36,6 +36,7 @@ import {
     StrictnessLevel,
     CustomClassRules,
     DependentInfo,
+    ClassFilter,
     
     
     ImageExtensionFactors,
