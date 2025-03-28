@@ -1,6 +1,9 @@
-import { Plugins } from '@capacitor/core';
+import { registerPlugin } from '@capacitor/core';
+import type { BlinkIDCapacitorPlugin } from '../definitions';
 
-const { BlinkIDCapacitorPlugin } = Plugins;
+const BlinkIDplugin = registerPlugin<BlinkIDCapacitorPlugin>('BlinkIDCapacitorPlugin');
+
+export { BlinkIDCapacitorPlugin };
 
 import { Recognizer, RecognizerResult, RecognizerCollection, RecognizerResultState } from '../recognizer'
 import { OverlaySettings } from '../overlaySettings'
@@ -26,7 +29,7 @@ export class BlinkIDPlugin implements BlinkIDPluginInterface {
         delete recognizer.createResultFromNative;
     }
 
-    const response = await BlinkIDCapacitorPlugin.scanWithCamera({'overlaySettings': overlaySettings, 'recognizerCollection': recognizerCollection, 'license': license});
+    const response = await BlinkIDplugin.scanWithCamera({'overlaySettings': overlaySettings, 'recognizerCollection': recognizerCollection, 'license': license});
     const results = response.resultList;
     const isCancelled = response.cancelled;
     let resultsFromNative = [];
@@ -52,7 +55,7 @@ export class BlinkIDPlugin implements BlinkIDPluginInterface {
         delete recognizer.createResultFromNative;
     }
 
-    const response = await BlinkIDCapacitorPlugin.scanWithDirectApi({'license': license, 'recognizerCollection': recognizerCollection, 'frontImage': frontImage, 'backImage': backImage});
+    const response = await BlinkIDplugin.scanWithDirectApi({'license': license, 'recognizerCollection': recognizerCollection, 'frontImage': frontImage, 'backImage': backImage});
     const results = response.resultList;
     const isCancelled = response.cancelled;
     let resultsFromNative = [];
