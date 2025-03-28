@@ -1,3 +1,8 @@
+## 6.13.1
+
+- Added support for Capacitor V7.
+    - Note: Capacitor 7 requires a deployment target of iOS 14 and Android 15 (SDK 35).
+
 ## 6.13.0
 - Updated the plugin to [Android SDK v6.13.0](https://github.com/BlinkID/blinkid-android/releases/tag/v6.13.0) and [iOS SDK v6.13.0](https://github.com/BlinkID/blinkid-ios/releases/tag/v6.13.0)
 
