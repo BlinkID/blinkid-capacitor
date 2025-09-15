@@ -1,3 +1,11 @@
+# ⚠️ Disclaimer
+> Please note that Microblink is no longer maintaining this repository.\
+As such, there will be no additional updates or releases for this codebase. You are welcome to continue using the code, as it remains source available.\
+Furthermore, if you need to update it for a newer SDK or platform version, you can do so by forking this repository and maintaining the fork independently.\
+If you have questions regarding such, please contact our support team at support@microblink.com.
+
+---
+
 # BlinkID SDK Capacitor plugin
 
 AI-driven ID scanning software for cross-platform apps built with Capacitor. Keep in mind that for full access to all features and functionalities, you’ll be better off using one of our native SDKs ([iOS](https://github.com/BlinkID/blinkid-ios)
